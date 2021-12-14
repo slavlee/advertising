@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:advertisement/Resources/Private/Language/locallang_db.xlf" date="2021-12-14T21:14:53Z" product-name="advertisement">
+		<header/>
+		<body>
+			<trans-unit id="tx_advertisement_domain_model_banner" resname="tx_advertisement_domain_model_banner">
+				<source>Banner</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_banner.name" resname="tx_advertisement_domain_model_banner.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_banner.description" resname="tx_advertisement_domain_model_banner.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_banner.customer" resname="tx_advertisement_domain_model_banner.customer">
+				<source>Customer</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_banner.zones" resname="tx_advertisement_domain_model_banner.zones">
+				<source>Zones</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaign" resname="tx_advertisement_domain_model_campaign">
+				<source>Campaign</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaign.name" resname="tx_advertisement_domain_model_campaign.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaign.description" resname="tx_advertisement_domain_model_campaign.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaign.banners" resname="tx_advertisement_domain_model_campaign.banners">
+				<source>Banners</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_customer" resname="tx_advertisement_domain_model_customer">
+				<source>Customer</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_customer.name" resname="tx_advertisement_domain_model_customer.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_zone" resname="tx_advertisement_domain_model_zone">
+				<source>Zone</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_zone.name" resname="tx_advertisement_domain_model_zone.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_zone.height" resname="tx_advertisement_domain_model_zone.height">
+				<source>Height</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_zone.width" resname="tx_advertisement_domain_model_zone.width">
+				<source>Width</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

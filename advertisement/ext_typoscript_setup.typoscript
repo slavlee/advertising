@@ -1,0 +1,15 @@
+
+config.tx_extbase {
+  persistence {
+    classes {
+
+      Slavlee\Advertisement\Domain\Model\Banner {
+        mapping {
+          tableName = tt_content
+          recordType = Tx_Advertisement_Banner
+        }
+      }
+
+    }
+  }
+}
