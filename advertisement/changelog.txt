@@ -1,2 +1,6 @@
+Version 0.1.2
+- [NEW] Neue CType: Banner
+- [NEW] Neue Wizard Group: Advertisement mit Banner CType und Zone Plugin
+
 Version 0.0.1
 - [NEW] Kickstart with Extension Builder

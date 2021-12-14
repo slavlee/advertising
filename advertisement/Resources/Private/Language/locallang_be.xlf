@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:advertisement/Resources/Private/Language/locallang_be.xlf" date="2021-12-14T21:14:53Z" product-name="advertisement">
+		<header/>
+		<body>
+			<trans-unit id="ad-folder" resname="ad-folder">
+				<source>Advertisement</source>
+			</trans-unit>
+			<trans-unit id="wizard.group.name" resname="wizard.group.name">
+				<source>Advertisement</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_zone.name" resname="tx_advertisement_zone.name">
+				<source>Zone</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_zone.description" resname="tx_advertisement_zone.description">
+				<source>Add a advertisement zone</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_banner.name" resname="tx_advertisement_banner.name">
+				<source>Banner</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_banner.description" resname="tx_advertisement_banner.description">
+				<source>Add a single advertisement banner</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

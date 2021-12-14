@@ -26,32 +26,23 @@ defined('TYPO3') || die();
         ]
     );
 
-    // wizards
+    // wizards    
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        'mod {
-            wizards.newContentElement.wizardItems.plugins {
-                elements {
-                    zone {
-                        iconIdentifier = advertisement-plugin-zone
-                        title = LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_zone.name
-                        description = LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_zone.description
-                        tt_content_defValues {
-                            CType = list
-                            list_type = advertisement_zone
-                        }
-                    }
-                    banner {
-                        iconIdentifier = advertisement-plugin-banner
-                        title = LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_banner.name
-                        description = LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_banner.description
-                        tt_content_defValues {
-                            CType = list
-                            list_type = advertisement_banner
-                        }
-                    }
-                }
-                show = *
-            }
-       }'
+    	"@import 'EXT:advertisement/Configuration/TSconfig/Page/Mod/Wizards/Groups.tsconfig'
+    	 @import 'EXT:advertisement/Configuration/TSconfig/Page/Mod/Wizards/Plugins.tsconfig'
+		 @import 'EXT:advertisement/Configuration/TSconfig/Page/Mod/Wizards/Banner.tsconfig'"
+	);
+    
+    // Icons
+    $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+    $iconRegistry->registerIcon(
+    	'apps-pagetree-folder-contains-advertisement',
+    	\TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+    	['source' => 'EXT:advertisement/Resources/Public/Icons/Extension.svg']
+	);
+    $iconRegistry->registerIcon(
+    	'ad-banner',
+    	\TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+    	['source' => 'EXT:advertisement/Resources/Public/Icons/user_plugin_banner.svg']
     );
 })();
