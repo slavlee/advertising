@@ -37,6 +37,43 @@ defined('TYPO3') || die();
 	'textmedia',
 	'after'
 );    
+
+/* Add customer and zones fields - START */
+$GLOBALS['TCA']['tt_content']['columns']['customer'] = [
+	'exclude' => false,
+	'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_banner.customer',
+	'config' => [
+		'type' => 'group',
+		'internal_type' => 'db',
+		'allowed' => 'tx_advertisement_domain_model_customer',
+		'orderBy' => ' ORDER BY name ASC',
+		'minitems' => 1,
+		'maxitems' => 1,
+		'size' => 1,
+		'default' => 0
+	]
+];
+/* Add customer and zones fields - END */
+
+/* Set Fields for Banner - START */
+$GLOBALS['TCA']['tt_content']['types']['advertisement_banner'] = [		
+	'showitem' => 'CType, header, image, header_link, customer',
+	'columnsOverrides' => [
+		'image' => [
+			'config' => [
+				'minitems' => 1,
+				'maxitems' => 1,
+			]
+		],
+		'header_link' => [
+			'config' => [
+				'eval' => 'required'
+			]
+		]
+	]
+];
+/* Set Fields for Banner - END */
+
 /**********************************************************************
  * CUSTOM CTYPES - END
  *********************************************************************/

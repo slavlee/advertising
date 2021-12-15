@@ -1,3 +1,6 @@
+Version 0.2.3
+- [NEW] Banner: Konfiguration CType und allen wichtigen Feldern mit Ausgabe in eigenem Template
+
 Version 0.1.2
 - [NEW] Neue CType: Banner
 - [NEW] Neue Wizard Group: Advertisement mit Banner CType und Zone Plugin

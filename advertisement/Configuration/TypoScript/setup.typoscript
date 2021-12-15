@@ -1,3 +1,37 @@
+##########################################################################################
+# TT_CONTENT - START
+##########################################################################################
+# Add Banner rendering definition
+tt_content {
+	advertisement_banner =< lib.contentElement
+	advertisement_banner {
+		templateName = Banner
+		templateRootPaths {
+			10 = EXT:advertisement/Resources/Private/Templates/Content/
+		}
+		partialRootPaths {
+			10 = EXT:advertisement/Resources/Private/Partials/Content/Banner/
+		}
+		layoutRootPaths {
+			10 = EXT:advertisement/Resources/Private/Layouts/Content/
+		}
+		dataProcessing {
+			10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+			10 {
+				references {
+					fieldName = Image
+				}
+			}
+			20 = TYPO3\CMS\Frontend\DataProcessing\GalleryProcessor
+		}
+	}
+}
+##########################################################################################
+# TT_CONTENT - END
+##########################################################################################
+##########################################################################################
+# PLUGINS - START
+##########################################################################################
 plugin.tx_advertisement_zone {
     view {
         templateRootPaths.0 = EXT:advertisement/Resources/Private/Templates/
@@ -76,3 +110,6 @@ plugin.tx_advertisement._CSS_DEFAULT_STYLE (
         color:green;
     }
 )
+##########################################################################################
+# PLUGINS - END
+##########################################################################################

@@ -1,0 +1,19 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:ce="http://typo3.org/ns/TYPO3/CMS/FluidStyledContent/ViewHelpers" data-namespace-typo3-fluid="true">
+<figure class="image">
+    <f:if condition="{data.header_link}">
+        <f:then>
+            <f:link.typolink parameter="{data.header_link}" title="{file.title}">
+                <f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
+            </f:link.typolink>
+        </f:then>
+        <f:else>
+            <f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
+        </f:else>
+    </f:if>
+    <f:if condition="{file.description}">
+        <figcaption class="image-caption">
+            {file.description -> f:format.nl2br()}
+        </figcaption>
+    </f:if>
+</figure>
+</html>

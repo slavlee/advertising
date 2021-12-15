@@ -34,6 +34,12 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $description = '';
+    
+    /**
+     * $link
+     * @var string
+     */
+    protected $link = '';
 
     /**
      * customer
@@ -178,5 +184,24 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setZones(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $zones)
     {
         $this->zones = $zones;
+    }
+    
+    /**
+     * Returns the link
+     * @return string
+     */
+    public function getLink()
+    {
+    	return $this->link;
+    }
+    
+    /**
+     * Sets the link
+     * @param string $link
+     * @return void
+     */
+    public function setLink($link)
+    {
+    	$this->link = $link;
     }
 }
