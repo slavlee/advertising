@@ -14,18 +14,6 @@ defined('TYPO3') || die();
         ]
     );
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Advertisement',
-        'Banner',
-        [
-            \Slavlee\Advertisement\Controller\BannerController::class => 'show'
-        ],
-        // non-cacheable actions
-        [
-            \Slavlee\Advertisement\Controller\BannerController::class => 'show'
-        ]
-    );
-
     // wizards    
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
     	"@import 'EXT:advertisement/Configuration/TSconfig/Page/Mod/Wizards/Groups.tsconfig'

@@ -1,4 +1,16 @@
 ##########################################################################################
+# LIBS - START
+##########################################################################################
+lib.advertisement.renderContent = RECORDS
+lib.advertisement.renderContent {
+	source.current = 1
+	dontCheckPid = 1
+	tables = tt_content
+}
+##########################################################################################
+# LIBS - END
+##########################################################################################
+##########################################################################################
 # TT_CONTENT - START
 ##########################################################################################
 # Add Banner rendering definition
@@ -42,8 +54,6 @@ plugin.tx_advertisement_zone {
         layoutRootPaths.1 = {$plugin.tx_advertisement_zone.view.layoutRootPath}
     }
     persistence {
-        storagePid = {$plugin.tx_advertisement_zone.persistence.storagePid}
-        #recursive = 1
     }
     features {
         #skipDefaultArguments = 1
@@ -64,8 +74,6 @@ plugin.tx_advertisement_banner {
         layoutRootPaths.1 = {$plugin.tx_advertisement_banner.view.layoutRootPath}
     }
     persistence {
-        storagePid = {$plugin.tx_advertisement_banner.persistence.storagePid}
-        #recursive = 1
     }
     features {
         #skipDefaultArguments = 1

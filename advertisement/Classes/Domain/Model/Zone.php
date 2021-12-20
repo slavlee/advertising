@@ -43,6 +43,24 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $width = '';
+    
+    /**
+     * banners
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Banner>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $banners = null;
+    
+    /**
+     * __construct
+     */
+    public function __construct()
+    {
+    
+    	// Do not remove the next line: It would break the functionality
+    	$this->initializeObject();
+    }
 
     /**
      * Returns the name
@@ -105,5 +123,61 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setWidth(string $width)
     {
         $this->width = $width;
+    }
+    
+    /**
+     * Initializes all ObjectStorage properties when model is reconstructed from DB (where __construct is not called)
+     * Do not modify this method!
+     * It will be rewritten on each save in the extension builder
+     * You may modify the constructor of this class instead
+     *
+     * @return void
+     */
+    public function initializeObject()
+    {
+    	$this->banners = $this->banners ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+    
+    /**
+     * Adds a Banner
+     *
+     * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+     * @return void
+     */
+    public function addBanner(\Slavlee\Advertisement\Domain\Model\Banner $banner)
+    {
+    	$this->banners->attach($banner);
+    }
+    
+    /**
+     * Removes a Banner
+     *
+     * @param \Slavlee\Advertisement\Domain\Model\Banner $bannerToRemove The Banner to be removed
+     * @return void
+     */
+    public function removeBanner(\Slavlee\Advertisement\Domain\Model\Banner $bannerToRemove)
+    {
+    	$this->banners->detach($bannerToRemove);
+    }
+    
+    /**
+     * Returns the banners
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Banner> $banners
+     */
+    public function getBanners()
+    {
+    	return $this->banners;
+    }
+    
+    /**
+     * Sets the banners
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Banner> $banners
+     * @return void
+     */
+    public function setBanners(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $banners)
+    {
+    	$this->banners = $banners;
     }
 }

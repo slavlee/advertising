@@ -1,3 +1,7 @@
+Version 0.3.4
+- [NEW] Zuweisung Campaign bei Banner
+- [NEW] Ausgabe Banner (unter- bzw. nacheinander) im Plugin Zone
+
 Version 0.2.3
 - [NEW] Banner: Konfiguration CType und allen wichtigen Feldern mit Ausgabe in eigenem Template
 

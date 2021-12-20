@@ -20,7 +20,7 @@ return [
         'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_zone.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'name, width, height, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
+        '1' => ['showitem' => 'name, width, height, banners, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -124,6 +124,30 @@ return [
                 'default' => ''
             ],
         ],
-    
+        'banners' => [
+            'exclude' => false,
+            'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_campaign.banners',
+            'config' => [
+                'type' => 'group',
+				'allowed' => 'tt_content',
+                'MM' => 'tx_advertisement_zone_banner_mm',
+            	'foreign_table' => 'tt_content',
+                'size' => 5,
+                'minitems' => 0,
+				'maxitems' => 99,
+                'fieldControl' => [
+                    'editPopup' => [
+                        'disabled' => false,
+                    ],
+                    'addRecord' => [
+                        'disabled' => false,
+                    ],
+                    'listModule' => [
+                        'disabled' => true,
+                    ],
+                ],
+            ],
+            
+        ],
     ],
 ];

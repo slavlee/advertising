@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertisement\Domain\Repository;
 
-use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -16,23 +15,18 @@ use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
  */
 
 /**
- * The repository for Banners
+ * Base repository for all advertisement repositories
  */
-class BannerRepository extends BaseRepository
+class BaseRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 	/**
-	 * Find alle Banners assigend to given zones
-	 * @param array $zones
-	 * @return QueryResult
+	 * Disable the storage page behaviour
+	 * @return void
 	 */
-	public function findByZones(array $zones)
+	public function disableStorage()
 	{
-		$query = $this->createQuery();
-		
-		$query->matching(
-			$query->in('zones', $zones)
-		);
-		
-		return $query->execute();
+		$querySettings = $this->createQuery()->getQuerySettings();
+		$querySettings->setRespectStoragePage(false);
+		$this->setDefaultQuerySettings($querySettings);
 	}
 }

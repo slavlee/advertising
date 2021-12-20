@@ -56,6 +56,14 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $zones = null;
+    
+    /**
+     * campaigns
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Campaign>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $campaigns = null;
 
     /**
      * Returns the customer
@@ -141,6 +149,7 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function initializeObject()
     {
         $this->zones = $this->zones ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->campaigns = $this->campaigns ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -184,6 +193,49 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setZones(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $zones)
     {
         $this->zones = $zones;
+    }
+    
+    /**
+     * Adds a Campaign
+     *
+     * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaigns
+     * @return void
+     */
+    public function addCampaign(\Slavlee\Advertisement\Domain\Model\Campaign $campaign)
+    {
+    	$this->campaigns->attach($campaigns);
+    }
+    
+    /**
+     * Removes a Campaign
+     *
+     * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaignToRemove The Zone to be removed
+     * @return void
+     */
+    public function removeCampaign(\Slavlee\Advertisement\Domain\Model\Campaign $campaignToRemove)
+    {
+    	$this->campaigns->detach($campaignToRemove);
+    }
+    
+    /**
+     * Returns the campaigns
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Campaign> campaigns
+     */
+    public function getCampaigns()
+    {
+    	return $this->campaigns;
+    }
+    
+    /**
+     * Sets the campaigns
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Campaign> $campaigns
+     * @return void
+     */
+    public function setCampaigns(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $campaigns)
+    {
+    	$this->campaigns = $campaigns;
     }
     
     /**
