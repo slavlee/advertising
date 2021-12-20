@@ -1,3 +1,6 @@
+Version 0.4.5
+- [Change] Zone: Ausgabe von immer einem zufälligen Banner
+
 Version 0.3.4
 - [NEW] Zuweisung Campaign bei Banner
 - [NEW] Ausgabe Banner (unter- bzw. nacheinander) im Plugin Zone

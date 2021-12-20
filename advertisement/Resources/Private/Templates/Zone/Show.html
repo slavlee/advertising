@@ -2,8 +2,10 @@
 	<f:layout name="Nothing" />
 	
 	<f:section name="Main">
-	    <f:for each="{zone.banners}" as="banner">
-	    	<f:cObject typoscriptObjectPath="lib.advertisement.renderContent" data="{banner.uid}" />
-	    </f:for>
+		<f:alias map="{banner: zone.nextBanner}">
+		    <f:if condition="{banner}">
+		    	<f:cObject typoscriptObjectPath="lib.advertisement.renderContent" data="{banner.uid}" />
+		    </f:if>
+	   </f:alias>
 	</f:section>
 </html>
