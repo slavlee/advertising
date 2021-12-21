@@ -1,3 +1,6 @@
+Version 0.6.7
+- [NEW] Clicktracking for banner
+
 Version 0.5.6
 - [NEW] New Model CampaignStatistics to savely store the statistics of a active banner ad.
 - [NEW] CampaignStatistic delivered Tracking based on DataProcessor implemented

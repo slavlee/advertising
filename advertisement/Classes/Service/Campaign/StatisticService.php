@@ -74,6 +74,46 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	 **********************************************************************************/
 	
 	/**
+	 * Save click event on given banner
+	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+	 * @return void
+	 */
+	protected function clickedForBanner(\Slavlee\Advertisement\Domain\Model\Banner $banner)
+	{
+		// get all active campaigns for given banner
+		$campaigns = $this->findCampaignsForBanner($banner);
+		
+		// Break if we dont have any campaigns
+		if (count($campaigns) <= 0)
+		{
+			return;
+		}
+		
+		foreach($campaigns as $campaign)
+		{
+			// get or create campaign statistic object
+			$campaignStatistic = $this->findOrCreateCampaignStatisticForBanner($campaign, $banner);
+				
+			if ($campaignStatistic)
+			{
+				// increase delivered count
+				$campaignStatistic->incrementClicked();
+		
+				// save to db
+				if ($campaignStatistic->_isNew())
+				{
+					$this->campaignStatisticRepository->add($campaignStatistic);
+				}else
+				{
+					$this->campaignStatisticRepository->update($campaignStatistic);
+				}
+		
+				$this->campaignStatisticRepository->commit();
+			}
+		}
+	}
+	
+	/**
 	 * Ad was delivered, save it in the statistic of
 	 * all active campaigns that are related to the given ad
 	 * @param array $contentElementData

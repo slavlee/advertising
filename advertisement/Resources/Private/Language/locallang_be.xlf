@@ -28,6 +28,9 @@
 			<trans-unit id="extconf.general.storagePid.desc" resname="extconf.general.storagePid.desc">
 				<source>TYPO3 page or folder where the statistic data will be stored</source>
 			</trans-unit>
+			<trans-unit id="extconf.typeNums.clickTracking" resname="extconf.typeNums.clickTracking">
+				<source>typeNum for PAGE object to configure clickTracking requests</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

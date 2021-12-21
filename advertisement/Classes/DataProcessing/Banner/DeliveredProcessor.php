@@ -5,6 +5,7 @@ namespace Slavlee\Advertisement\DataProcessing\Banner;
 
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
@@ -40,6 +41,11 @@ class DeliveredProcessor implements DataProcessorInterface
 			$objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 			$campaignStatisticService = $objectManager->get(\Slavlee\Advertisement\Service\Campaign\StatisticService::class);
 			$campaignStatisticService->execute('delivered', $cObj->data);
+			
+			// Add typeNums
+			$extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('advertisement');
+			$processedData['settings']['typeNums'] = $extConf['general']['typeNums'];
+			$processedData['settings']['currentPageUid'] = $GLOBALS['TSFE']->id;
 		}
       
 		return $processedData;

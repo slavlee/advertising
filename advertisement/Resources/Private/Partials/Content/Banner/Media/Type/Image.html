@@ -2,7 +2,7 @@
 <figure class="image">
     <f:if condition="{data.header_link}">
         <f:then>
-            <f:link.typolink parameter="{data.header_link}" title="{file.title}">
+            <f:link.typolink parameter="t3://page?uid={settings.currentPageId}" title="{file.title}" additionalParams="type={settings.typeNums.clickTracking}&tx_advertisement_clicktracking[banner]={data.uid}">
                 <f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
             </f:link.typolink>
         </f:then>

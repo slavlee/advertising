@@ -168,6 +168,15 @@ class CampaignStatistic extends BaseEntity
     {
         $this->clicked = $clicked;
     }
+    
+    /**
+     * Banner has been clicked so increment clicked property
+     * @return void
+     */
+    public function incrementClicked()
+    {
+    	$this->clicked++;
+    }
 
     /**
      * Returns the bannerPersisted

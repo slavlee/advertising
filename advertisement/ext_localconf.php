@@ -13,6 +13,18 @@ defined('TYPO3') || die();
             \Slavlee\Advertisement\Controller\ZoneController::class => 'show'
         ]
     );
+    
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    	'Advertisement',
+    	'Clicktracking',
+    	[
+    		\Slavlee\Advertisement\Controller\TrackingController::class => 'click'
+    	],
+    	// non-cacheable actions
+    	[
+    		\Slavlee\Advertisement\Controller\TrackingController::class => 'click'
+    	]
+	);
 
     // wizards    
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(

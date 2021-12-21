@@ -45,7 +45,7 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * customer
      *
      * @var \Slavlee\Advertisement\Domain\Model\Customer
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $customer = null;
 
