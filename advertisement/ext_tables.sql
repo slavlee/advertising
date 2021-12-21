@@ -22,3 +22,14 @@ CREATE TABLE tx_advertisement_domain_model_zone (
 	width varchar(255) NOT NULL DEFAULT '',
 	banners int(11) unsigned NOT NULL DEFAULT '0'
 );
+
+CREATE TABLE tx_advertisement_domain_model_campaignstatistic (
+	priority int(11) NOT NULL DEFAULT '0',
+	delivered int(11) NOT NULL DEFAULT '0',
+	been_visible int(11) NOT NULL DEFAULT '0',
+	clicked int(11) NOT NULL DEFAULT '0',
+	banner_persisted text NOT NULL DEFAULT '',
+	campaign_persisted text NOT NULL DEFAULT '',
+	campaign int(11) unsigned DEFAULT '0',
+	banner int(11) unsigned DEFAULT '0'
+);

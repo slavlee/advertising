@@ -21,6 +21,13 @@
 			<trans-unit id="tx_advertisement_banner.description" resname="tx_advertisement_banner.description">
 				<source>Add a single advertisement banner</source>
 			</trans-unit>
+			
+			<trans-unit id="extconf.general.storagePid" resname="extconf.general.storagePid">
+				<source>Storage Page</source>
+			</trans-unit>
+			<trans-unit id="extconf.general.storagePid.desc" resname="extconf.general.storagePid.desc">
+				<source>TYPO3 page or folder where the statistic data will be stored</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

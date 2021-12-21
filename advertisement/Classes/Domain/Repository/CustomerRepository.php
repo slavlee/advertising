@@ -17,6 +17,6 @@ namespace Slavlee\Advertisement\Domain\Repository;
 /**
  * The repository for Customers
  */
-class CustomerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class CustomerRepository extends BaseRepository
 {
 }

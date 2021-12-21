@@ -20,6 +20,16 @@ namespace Slavlee\Advertisement\Domain\Repository;
 class BaseRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 	/**
+	 * Force to commit db transaction immediately
+	 * @return void
+	 */
+	public function commit()
+	{
+		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class);
+		$persistenceManager->persistAll();
+	}
+	
+	/**
 	 * Disable the storage page behaviour
 	 * @return void
 	 */
@@ -27,6 +37,19 @@ class BaseRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	{
 		$querySettings = $this->createQuery()->getQuerySettings();
 		$querySettings->setRespectStoragePage(false);
+		$this->setDefaultQuerySettings($querySettings);
+	}
+	
+	
+	/**
+	 * Set storage page uid
+	 * @param integer $pageUid
+	 * @return void
+	 */
+	public function setStorage($pageUid)
+	{
+		$querySettings = $this->createQuery()->getQuerySettings();
+		$querySettings->setStoragePageIds([$pageUid]);
 		$this->setDefaultQuerySettings($querySettings);
 	}
 }

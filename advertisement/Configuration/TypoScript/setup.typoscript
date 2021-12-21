@@ -35,6 +35,7 @@ tt_content {
 				}
 			}
 			20 = TYPO3\CMS\Frontend\DataProcessing\GalleryProcessor
+			30 = Slavlee\Advertisement\DataProcessing\Banner\DeliveredProcessor
 		}
 	}
 }
