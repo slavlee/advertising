@@ -38,9 +38,12 @@ class DeliveredProcessor implements DataProcessorInterface
 		
 		if ($cObj->data['CType'] == 'advertisement_banner')
 		{
-			$objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-			$campaignStatisticService = $objectManager->get(\Slavlee\Advertisement\Service\Campaign\StatisticService::class);
-			$campaignStatisticService->execute('delivered', $cObj->data);
+			// Track delivery
+			// I disable it, because it is incurate. Due cache the processor is not guaranteed
+			// to be called on every request
+// 			$objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+// 			$campaignStatisticService = $objectManager->get(\Slavlee\Advertisement\Service\Campaign\StatisticService::class);
+// 			$campaignStatisticService->execute('delivered', $cObj->data);
 			
 			// Add typeNums
 			$extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('advertisement');

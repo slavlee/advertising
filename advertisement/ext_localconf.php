@@ -18,13 +18,25 @@ defined('TYPO3') || die();
     	'Advertisement',
     	'Clicktracking',
     	[
-    		\Slavlee\Advertisement\Controller\TrackingController::class => 'click'
+    		\Slavlee\Advertisement\Controller\TrackingController::class => 'click,delivered'
     	],
     	// non-cacheable actions
     	[
-    		\Slavlee\Advertisement\Controller\TrackingController::class => 'click'
+    		\Slavlee\Advertisement\Controller\TrackingController::class => 'click,delivered'
     	]
 	);
+    
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+   		'Advertisement',
+   		'Deliveredtracking',
+   		[
+   			\Slavlee\Advertisement\Controller\TrackingController::class => 'delivered'
+   		],
+   		// non-cacheable actions
+   		[
+   			\Slavlee\Advertisement\Controller\TrackingController::class => 'delivered'
+   		]
+   	);
 
     // wizards    
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(

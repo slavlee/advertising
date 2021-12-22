@@ -6,5 +6,8 @@ general {
 	typeNums {
 		# cat=General; type=int+; label=LLL:EXT:advertisement/Resources/Private/Language/locallang_be.xlf:extconf.typeNums.clickTracking; description=LLL:EXT:advertisement/Resources/Private/Language/locallang_be.xlf:extconf.general.typeNums.clickTracking.desc
 		clickTracking = 28062019
+		
+		# cat=General; type=int+; label=LLL:EXT:advertisement/Resources/Private/Language/locallang_be.xlf:extconf.typeNums.clickTracking; description=LLL:EXT:advertisement/Resources/Private/Language/locallang_be.xlf:extconf.general.typeNums.deliveredTracking.desc
+		deliveredTracking = 28062020
 	}
 }

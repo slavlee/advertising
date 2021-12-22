@@ -130,9 +130,20 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 			return;
 		}
 		
+		$this->deliveredForBanner($banner);
+	}
+	
+	/**
+	 * Ad was delivered, save it in the statistic of
+	 * all active campaigns that are related to the given ad
+	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+	 * @return void
+	 */
+	protected function deliveredForBanner(\Slavlee\Advertisement\Domain\Model\Banner $banner)
+	{
 		// get all active campaigns for given banner
 		$campaigns = $this->findCampaignsForBanner($banner);
-		
+			
 		// Break if we dont have any campaigns
 		if (count($campaigns) <= 0)
 		{
@@ -143,12 +154,12 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 		{
 			// get or create campaign statistic object
 			$campaignStatistic = $this->findOrCreateCampaignStatisticForBanner($campaign, $banner);
-			
+				
 			if ($campaignStatistic)
 			{
 				// increase delivered count
 				$campaignStatistic->incrementDelivered();
-				
+		
 				// save to db
 				if ($campaignStatistic->_isNew())
 				{
@@ -157,7 +168,7 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 				{
 					$this->campaignStatisticRepository->update($campaignStatistic);
 				}
-				
+		
 				$this->campaignStatisticRepository->commit();
 			}
 		}

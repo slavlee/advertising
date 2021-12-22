@@ -65,4 +65,35 @@ class TrackingController extends ActionController
 		// Redirect
 		\TYPO3\CMS\Core\Utility\HttpUtility::redirect($contentObject->typoLink_URL($instructions));
    	}
+   	
+   	/**
+   	 * Delivered tracking for given banner
+   	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+   	 * @return string
+   	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("banner")
+   	 */
+   	public function deliveredAction(\Slavlee\Advertisement\Domain\Model\Banner $banner)
+   	{
+   		$state = 'success';
+   		$data = [];
+   		$service = $this->objectManager->get(\Slavlee\Advertisement\Service\Campaign\StatisticService::class);
+   		$service->execute('deliveredForBanner', $banner);
+   		
+   		// Create json response
+   		$this->view->setConfiguration([
+		    'response' => [
+		        '_only' => [
+		            'state',
+		            'data',
+		        ],
+		    ],
+		]);
+		
+		$this->view->setVariablesToRender(['response']);
+		
+		$this->view->assign('response', [
+		    'state' => $state,
+		    'data' => $data]
+		);
+   	}
 }
