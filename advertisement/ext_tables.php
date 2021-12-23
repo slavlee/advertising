@@ -13,6 +13,12 @@ defined('TYPO3') || die();
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_advertisement_domain_model_zone', 'EXT:advertisement/Resources/Private/Language/locallang_csh_tx_advertisement_domain_model_zone.xlf');
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_advertisement_domain_model_zone');
+    
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_advertisement_domain_model_bannerstatistic', 'EXT:advertisement/Resources/Private/Language/locallang_csh_tx_advertisement_domain_model_bannerstatistic.xlf');
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_advertisement_domain_model_bannerstatistic');
+    
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_advertisement_domain_model_campaignstatistic', 'EXT:advertisement/Resources/Private/Language/locallang_csh_tx_advertisement_domain_model_campaignstatistic.xlf');
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_advertisement_domain_model_campaignstatistic');
     /***************************************************************
      * NEW MODELS - END
      **************************************************************/

@@ -20,7 +20,7 @@ return [
         'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_zone.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'name, width, height, banners, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
+        '1' => ['showitem' => 'name, height, width, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [

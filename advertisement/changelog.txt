@@ -1,3 +1,9 @@
+Version 0.8.10
+- [NEW] New Model: BannerStatistic
+- [NEW] Campaign: Neue Felder startDate und endDate
+- [Change] CampaignStatistic ohne Start-und Endtime und Hidden Feld
+- [NEW] Delivered and Click Tracking on BannerStatistic
+
 Version 0.7.9
 - [NEW] Registrierung Backend Modul für Dashboard
 

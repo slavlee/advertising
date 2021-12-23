@@ -9,6 +9,8 @@ CREATE TABLE tt_content (
 CREATE TABLE tx_advertisement_domain_model_campaign (
 	name varchar(255) NOT NULL DEFAULT '',
 	description text,
+	start_date int(11) NOT NULL DEFAULT '0',
+	end_date int(11) NOT NULL DEFAULT '0',
 	banners int(11) unsigned NOT NULL DEFAULT '0'
 );
 
@@ -23,6 +25,14 @@ CREATE TABLE tx_advertisement_domain_model_zone (
 	banners int(11) unsigned NOT NULL DEFAULT '0'
 );
 
+CREATE TABLE tx_advertisement_domain_model_bannerstatistic (
+	delivered varchar(255) NOT NULL DEFAULT '',
+	been_visible int(11) NOT NULL DEFAULT '0',
+	clicked int(11) NOT NULL DEFAULT '0',
+	crdate int(11) NOT NULL DEFAULT '0',
+	banner int(11) unsigned DEFAULT '0'
+);
+
 CREATE TABLE tx_advertisement_domain_model_campaignstatistic (
 	priority int(11) NOT NULL DEFAULT '0',
 	delivered int(11) NOT NULL DEFAULT '0',
@@ -30,6 +40,7 @@ CREATE TABLE tx_advertisement_domain_model_campaignstatistic (
 	clicked int(11) NOT NULL DEFAULT '0',
 	banner_persisted text NOT NULL DEFAULT '',
 	campaign_persisted text NOT NULL DEFAULT '',
+	crdate int(11) NOT NULL DEFAULT '0',
 	campaign int(11) unsigned DEFAULT '0',
 	banner int(11) unsigned DEFAULT '0'
 );

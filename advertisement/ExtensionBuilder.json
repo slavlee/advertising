@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    44,
-                    33
+                    42,
+                    67
                 ]
             },
             "name": "New Model Object",
@@ -64,7 +64,7 @@
                     "relations": [
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": true,
+                            "lazyLoading": false,
                             "propertyIsExcludeField": false,
                             "relationDescription": "",
                             "relationName": "customer",
@@ -91,8 +91,8 @@
         {
             "config": {
                 "position": [
-                    372,
-                    212
+                    333,
+                    405
                 ]
             },
             "name": "New Model Object",
@@ -168,8 +168,8 @@
         {
             "config": {
                 "position": [
-                    21,
-                    331
+                    24,
+                    366
                 ]
             },
             "name": "New Model Object",
@@ -221,8 +221,8 @@
         {
             "config": {
                 "position": [
-                    760,
-                    47
+                    681,
+                    60
                 ]
             },
             "name": "New Model Object",
@@ -292,6 +292,231 @@
                 },
                 "relationGroup": {
                     "relations": []
+                }
+            }
+        },
+        {
+            "config": {
+                "position": [
+                    692,
+                    280
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_index": false,
+                    "_default1_list": false,
+                    "_default2_show": false,
+                    "_default3_new_create": false,
+                    "_default4_edit_update": false,
+                    "_default5_delete": false,
+                    "customActions": []
+                },
+                "name": "BannerStatistic",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": false,
+                    "addStarttimeEndtimeFields": false,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "352558542780"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsNullable": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "delivered",
+                            "propertyType": "String",
+                            "uid": "280083865721"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsNullable": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "beenVisible",
+                            "propertyType": "Integer",
+                            "uid": "1553309788500"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsNullable": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "clicked",
+                            "propertyType": "Integer",
+                            "uid": "1612555180033"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": false,
+                            "relationDescription": "",
+                            "relationName": "banner",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "renderType": "selectSingle",
+                            "uid": "194856670978"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "config": {
+                "position": [
+                    352,
+                    57
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_index": false,
+                    "_default1_list": false,
+                    "_default2_show": false,
+                    "_default3_new_create": false,
+                    "_default4_edit_update": false,
+                    "_default5_delete": false,
+                    "customActions": []
+                },
+                "name": "CampaignStatistic",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": false,
+                    "addStarttimeEndtimeFields": false,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "1521771258224"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsNullable": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "priority",
+                            "propertyType": "Integer",
+                            "uid": "189858333952"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsNullable": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "delivered",
+                            "propertyType": "Integer",
+                            "uid": "1103462544877"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsNullable": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "beenVisible",
+                            "propertyType": "Integer",
+                            "uid": "444060283248"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsNullable": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "clicked",
+                            "propertyType": "Integer",
+                            "uid": "124526323230"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsNullable": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "bannerPersisted",
+                            "propertyType": "Text",
+                            "uid": "274866332266"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsNullable": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "campaignPersisted",
+                            "propertyType": "Text",
+                            "uid": "887521046659"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": false,
+                            "relationDescription": "",
+                            "relationName": "campaign",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "renderType": "selectSingle",
+                            "uid": "65655110595"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": false,
+                            "relationDescription": "",
+                            "relationName": "banner",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "renderType": "selectSingle",
+                            "uid": "669643947170"
+                        }
+                    ]
                 }
             }
         }
@@ -383,11 +608,47 @@
                 "terminal": "SOURCES",
                 "uid": "282284539879"
             }
+        },
+        {
+            "src": {
+                "moduleId": 5,
+                "terminal": "relationWire_0",
+                "uid": "65655110595"
+            },
+            "tgt": {
+                "moduleId": 1,
+                "terminal": "SOURCES",
+                "uid": "406868758126"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 5,
+                "terminal": "relationWire_1",
+                "uid": "669643947170"
+            },
+            "tgt": {
+                "moduleId": 0,
+                "terminal": "SOURCES",
+                "uid": "939528232797"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 4,
+                "terminal": "relationWire_0",
+                "uid": "194856670978"
+            },
+            "tgt": {
+                "moduleId": 0,
+                "terminal": "SOURCES",
+                "uid": "939528232797"
+            }
         }
     ],
     "storagePath": "\/usr\/www\/users\/typoppc\/subdomains\/slavlee\/dev\/dev.t311.slavlee.de\/typo3conf\/ext\/",
     "log": {
-        "last_modified": "2021-12-14 09:14",
+        "last_modified": "2021-12-23 01:15",
         "extension_builder_version": "11.0.1",
         "be_user": " (1)"
     }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertisement\Domain\Model;
 
-
 use Slavlee\Advertisement\Utility\ZoneUtility;
 
 /**
@@ -21,6 +20,14 @@ use Slavlee\Advertisement\Utility\ZoneUtility;
  */
 class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
+
+    /**
+     * banners
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Banner>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $banners = null;
 
     /**
      * name
@@ -45,23 +52,15 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $width = '';
-    
-    /**
-     * banners
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Banner>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     */
-    protected $banners = null;
-    
+
     /**
      * __construct
      */
     public function __construct()
     {
-    
-    	// Do not remove the next line: It would break the functionality
-    	$this->initializeObject();
+
+        // Do not remove the next line: It would break the functionality
+        $this->initializeObject();
     }
 
     /**
@@ -126,7 +125,7 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->width = $width;
     }
-    
+
     /**
      * Initializes all ObjectStorage properties when model is reconstructed from DB (where __construct is not called)
      * Do not modify this method!
@@ -139,7 +138,7 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
     	$this->banners = $this->banners ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
-    
+
     /**
      * Adds a Banner
      *
@@ -148,9 +147,9 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function addBanner(\Slavlee\Advertisement\Domain\Model\Banner $banner)
     {
-    	$this->banners->attach($banner);
+        $this->banners->attach($banner);
     }
-    
+
     /**
      * Removes a Banner
      *
@@ -159,9 +158,9 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function removeBanner(\Slavlee\Advertisement\Domain\Model\Banner $bannerToRemove)
     {
-    	$this->banners->detach($bannerToRemove);
+        $this->banners->detach($bannerToRemove);
     }
-    
+
     /**
      * Returns the banners
      *
@@ -169,19 +168,20 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getBanners()
     {
-    	return $this->banners;
+        return $this->banners;
     }
-    
+
     /**
      * Get the banner to display next request
      * based on prior
+     *
      * @return \Slavlee\Advertisement\Domain\Model\Banner
      */
     public function getNextBanner()
     {
-    	return ZoneUtility::getNextBanner($this->banners);
+        return ZoneUtility::getNextBanner($this->banners);
     }
-    
+
     /**
      * Sets the banners
      *
@@ -190,6 +190,6 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setBanners(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $banners)
     {
-    	$this->banners = $banners;
+        $this->banners = $banners;
     }
 }

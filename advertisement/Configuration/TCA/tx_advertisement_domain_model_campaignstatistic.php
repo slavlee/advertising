@@ -12,15 +12,12 @@ return [
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'delete' => 'deleted',
         'enablecolumns' => [
-            'disabled' => 'hidden',
-            'starttime' => 'starttime',
-            'endtime' => 'endtime',
         ],
         'searchFields' => 'banner_persisted,campaign_persisted',
         'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_campaignstatistic.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'priority, delivered, been_visible, clicked, banner_persisted, campaign_persisted, campaign, banner, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
+        '1' => ['showitem' => 'priority, delivered, been_visible, clicked, banner_persisted, campaign_persisted, crdate, campaign, banner, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, '],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -47,50 +44,6 @@ return [
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
-            ],
-        ],
-        'hidden' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
-                    ]
-                ],
-            ],
-        ],
-        'starttime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
-                'default' => 0,
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
-            ],
-        ],
-        'endtime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
-                'default' => 0,
-                'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
-                ],
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
             ],
         ],
 
@@ -125,7 +78,7 @@ return [
             ]
         ],
         'clicked' => [
-            'exclude' => true,
+            'exclude' => false,
             'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_campaignstatistic.clicked',
             'config' => [
                 'type' => 'input',
@@ -155,6 +108,17 @@ return [
                 'eval' => 'trim',
                 'default' => ''
             ]
+        ],
+        'crdate' => [
+            'exclude' => false,
+            'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_campaignstatistic.crdate',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'size' => 10,
+                'eval' => 'datetime',
+                'default' => time()
+            ],
         ],
         'campaign' => [
             'exclude' => false,

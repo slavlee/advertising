@@ -36,6 +36,20 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $description = '';
 
     /**
+     * startDate
+     *
+     * @var \DateTime
+     */
+    protected $startDate = null;
+
+    /**
+     * endDate
+     *
+     * @var \DateTime
+     */
+    protected $endDate = null;
+
+    /**
      * banners
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Banner>
@@ -149,5 +163,47 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setBanners(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $banners)
     {
         $this->banners = $banners;
+    }
+
+    /**
+     * Returns the startDate
+     *
+     * @return \DateTime $startDate
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * Sets the startDate
+     *
+     * @param \DateTime $startDate
+     * @return void
+     */
+    public function setStartDate(\DateTime $startDate)
+    {
+        $this->startDate = $startDate;
+    }
+
+    /**
+     * Returns the endDate
+     *
+     * @return \DateTime $endDate
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * Sets the endDate
+     *
+     * @param \DateTime $endDate
+     * @return void
+     */
+    public function setEndDate(\DateTime $endDate)
+    {
+        $this->endDate = $endDate;
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Slavlee\Advertisement\Service\Campaign;
 
 use Slavlee\Advertisement\Domain\Model\CampaignStatistic;
+use Slavlee\Advertisement\Domain\Model\BannerStatistic;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -33,6 +34,12 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	 * @var \Slavlee\Advertisement\Domain\Repository\CampaignStatisticRepository
 	 */
 	protected $campaignStatisticRepository;
+	
+	/**
+	 * $bannerStatisticRepository
+	 * @var \Slavlee\Advertisement\Domain\Repository\BannerStatisticRepository
+	 */
+	protected $bannerStatisticRepository;
 	
 	/***********************************************************************************
 	 * INJECTIONS - START
@@ -68,6 +75,17 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	{
 		$this->campaignStatisticRepository = $campaignStatisticRepository;
 		$this->campaignStatisticRepository->setStorage($this->extConf['general']['storagePid']);
+	}
+	
+	/**
+	 * Inject $bannerStatisticRepository
+	 * @param \Slavlee\Advertisement\Domain\Repository\BannerStatisticRepository $bannerStatisticRepository
+	 * @return void
+	 */
+	public function injectBannerStatisticRepository(\Slavlee\Advertisement\Domain\Repository\BannerStatisticRepository $bannerStatisticRepository)
+	{
+		$this->bannerStatisticRepository = $bannerStatisticRepository;
+		$this->bannerStatisticRepository->setStorage($this->extConf['general']['storagePid']);
 	}
 	/***********************************************************************************
 	 * INJECTIONS - END
@@ -109,6 +127,26 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 				}
 		
 				$this->campaignStatisticRepository->commit();
+			}
+			
+			// get or create banner statistic object
+			$bannerStatistic = $this->findOrCreateBannerStatistic($banner);
+			
+			if ($bannerStatistic)
+			{
+				// increase delivered count
+				$bannerStatistic->incrementClicked();
+			
+				// save to db
+				if ($bannerStatistic->_isNew())
+				{
+					$this->bannerStatisticRepository->add($bannerStatistic);
+				}else
+				{
+					$this->bannerStatisticRepository->update($bannerStatistic);
+				}
+			
+				$this->bannerStatisticRepository->commit();
 			}
 		}
 	}
@@ -171,6 +209,24 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 		
 				$this->campaignStatisticRepository->commit();
 			}
+			
+			// get or create the banner statistic object
+			$bannerStatistic = $this->findOrCreateBannerStatistic($banner);
+			
+			if ($bannerStatistic)
+			{
+				$bannerStatistic->incrementDelivered();
+				
+				if ($bannerStatistic->_isNew())
+				{
+					$this->bannerStatisticRepository->add($bannerStatistic);
+				}else
+				{
+					$this->bannerStatisticRepository->update($bannerStatistic);
+				}
+				
+				$this->bannerStatisticRepository->commit();
+			}
 		}
 	}
 	
@@ -185,6 +241,24 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	}
 	
 	/**
+	 * get or create banner statistic object
+	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+	 * @return \Slavlee\Advertisement\Domain\Model\BannerStatistic
+	 */
+	protected function findOrCreateBannerStatistic(\Slavlee\Advertisement\Domain\Model\Banner $banner) : \Slavlee\Advertisement\Domain\Model\BannerStatistic
+	{
+		$today = new \DateTime();
+		$bannerStatistic = $this->bannerStatisticRepository->findByBannerAndDate($banner, $today)->current();
+		
+		if (!$bannerStatistic)
+		{
+			$bannerStatistic = BannerStatistic::makeInstance(['pid' => (int)$this->extConf['general']['storagePid'], 'banner' => $banner, 'crdate' => $today], BannerStatistic::class);
+		}
+		
+		return $bannerStatistic;
+	}
+	
+	/**
 	 * get or create campaign statistic object
 	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
 	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
@@ -193,12 +267,12 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	protected function findOrCreateCampaignStatisticForBanner(\Slavlee\Advertisement\Domain\Model\Campaign $campaign, \Slavlee\Advertisement\Domain\Model\Banner $banner) : \Slavlee\Advertisement\Domain\Model\CampaignStatistic
 	{
 		$campaignStatistic = $this->campaignStatisticRepository->findByCampaignAndBanner($campaign, $banner)->current();
-		
+	
 		if (!$campaignStatistic)
 		{
 			$campaignStatistic = CampaignStatistic::makeInstance(['pid' => (int)$this->extConf['general']['storagePid'], 'banner' => $banner, 'campaign' => $campaign], CampaignStatistic::class);
 		}
-		
+	
 		return $campaignStatistic;
 	}
 }

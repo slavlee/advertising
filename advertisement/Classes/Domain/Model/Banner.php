@@ -21,6 +21,21 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
     /**
+     * $link
+     *
+     * @var string
+     */
+    protected $link = '';
+
+    /**
+     * campaigns
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Campaign>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $campaigns = null;
+
+    /**
      * name
      *
      * @var string
@@ -34,18 +49,11 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $description = '';
-    
-    /**
-     * $link
-     * @var string
-     */
-    protected $link = '';
 
     /**
      * customer
      *
      * @var \Slavlee\Advertisement\Domain\Model\Customer
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $customer = null;
 
@@ -56,14 +64,6 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $zones = null;
-    
-    /**
-     * campaigns
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Campaign>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     */
-    protected $campaigns = null;
 
     /**
      * Returns the customer
@@ -194,7 +194,7 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->zones = $zones;
     }
-    
+
     /**
      * Adds a Campaign
      *
@@ -203,9 +203,9 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function addCampaign(\Slavlee\Advertisement\Domain\Model\Campaign $campaign)
     {
-    	$this->campaigns->attach($campaigns);
+        $this->campaigns->attach($campaigns);
     }
-    
+
     /**
      * Removes a Campaign
      *
@@ -214,9 +214,9 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function removeCampaign(\Slavlee\Advertisement\Domain\Model\Campaign $campaignToRemove)
     {
-    	$this->campaigns->detach($campaignToRemove);
+        $this->campaigns->detach($campaignToRemove);
     }
-    
+
     /**
      * Returns the campaigns
      *
@@ -224,9 +224,9 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getCampaigns()
     {
-    	return $this->campaigns;
+        return $this->campaigns;
     }
-    
+
     /**
      * Sets the campaigns
      *
@@ -235,25 +235,27 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setCampaigns(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $campaigns)
     {
-    	$this->campaigns = $campaigns;
+        $this->campaigns = $campaigns;
     }
-    
+
     /**
      * Returns the link
+     *
      * @return string
      */
     public function getLink()
     {
-    	return $this->link;
+        return $this->link;
     }
-    
+
     /**
      * Sets the link
+     *
      * @param string $link
      * @return void
      */
     public function setLink($link)
     {
-    	$this->link = $link;
+        $this->link = $link;
     }
 }

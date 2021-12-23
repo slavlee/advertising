@@ -17,8 +17,6 @@
 				this.opts = $.extend( {}, $.fn.advertisement_delivered_tracker.defaults, options, $.fn.advertisement_delivered_tracker.defaultsCustom );
 			}
     		
-    		console.debug($.fn.advertisement_delivered_tracker.defaultsCustom);
-    		
     		// Skip if we dont have an endpoint
     		if (this.opts.endpoint == "")
 			{
