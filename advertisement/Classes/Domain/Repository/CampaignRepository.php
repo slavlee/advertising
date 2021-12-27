@@ -22,6 +22,20 @@ use Slavlee\Advertisement\Utility\DebugUtility;
 class CampaignRepository extends BaseRepository
 {
 	/**
+	 * findAll with enable fields to be ignored
+	 * @param array $enableFieldsToIgnore
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	 */
+	public function findAllIgnoreEnableFields(array $enableFieldsToIgnore) : \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	{
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setEnableFieldsToBeIgnored($enableFieldsToIgnore);
+		$query->getQuerySettings()->setIgnoreEnableFields(true);
+// 		DebugUtility::debugQuery($query);
+		return $query->execute();
+	}
+	
+	/**
 	 * Find all campaigns for given banner
 	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
 	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult

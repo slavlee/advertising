@@ -57,4 +57,8 @@ defined('TYPO3') || die();
     	\TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
     	['source' => 'EXT:advertisement/Resources/Public/Icons/user_plugin_banner.svg']
     );
+    
+    //Caches
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['advertisement_campaign_totalstatistic'] ??= [];
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['advertisement_campaign_totalstatistic']['backend'] ??= \TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend::class;
 })();

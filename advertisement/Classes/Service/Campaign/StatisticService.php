@@ -248,6 +248,7 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	protected function findOrCreateBannerStatistic(\Slavlee\Advertisement\Domain\Model\Banner $banner) : \Slavlee\Advertisement\Domain\Model\BannerStatistic
 	{
 		$today = new \DateTime();
+		$today->setTime(0,0,0,0);
 		$bannerStatistic = $this->bannerStatisticRepository->findByBannerAndDate($banner, $today)->current();
 		
 		if (!$bannerStatistic)
@@ -262,17 +263,47 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	 * get or create campaign statistic object
 	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
 	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+	 * @param boolean $suppressCreate
 	 * @return \Slavlee\Advertisement\Domain\Model\CampaignStatistic
 	 */
-	protected function findOrCreateCampaignStatisticForBanner(\Slavlee\Advertisement\Domain\Model\Campaign $campaign, \Slavlee\Advertisement\Domain\Model\Banner $banner) : \Slavlee\Advertisement\Domain\Model\CampaignStatistic
+	protected function findOrCreateCampaignStatisticForBanner(\Slavlee\Advertisement\Domain\Model\Campaign $campaign, \Slavlee\Advertisement\Domain\Model\Banner $banner, $suppressCreate = FALSE) : \Slavlee\Advertisement\Domain\Model\CampaignStatistic
 	{
 		$campaignStatistic = $this->campaignStatisticRepository->findByCampaignAndBanner($campaign, $banner)->current();
 	
-		if (!$campaignStatistic)
+		if (!$campaignStatistic && !$suppressCreate)
 		{
 			$campaignStatistic = CampaignStatistic::makeInstance(['pid' => (int)$this->extConf['general']['storagePid'], 'banner' => $banner, 'campaign' => $campaign], CampaignStatistic::class);
 		}
 	
 		return $campaignStatistic;
+	}
+	
+	/**
+	 * Loop through all CampaignStatistic for given Campaign and calculate total statistic metrics
+	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
+	 * @return \stdClass
+	 */
+	protected function findTotalCampaignStatistics(\Slavlee\Advertisement\Domain\Model\Campaign $campaign) : \stdClass
+	{
+		$banners = $campaign->getBanners();
+		$totalStatistic = new \stdClass();
+		$totalStatistic->priority = 0;
+		$totalStatistic->delivered = 0;
+		$totalStatistic->clicked = 0;
+		
+		foreach($banners as $banner)
+		{
+			$campaignStatistic = $this->findOrCreateCampaignStatisticForBanner($campaign, $banner, true);
+			$totalStatistic->delivered += $campaignStatistic->getDelivered();
+			$totalStatistic->clicked += $campaignStatistic->getClicked();
+			
+			// we save the highest priority
+			if ($totalStatistic->priority < $campaignStatistic->getPriority())
+			{
+				$totalStatistic->priority = $campaignStatistic->getPriority();
+			}
+		}
+
+		return $totalStatistic;
 	}
 }

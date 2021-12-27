@@ -78,6 +78,39 @@
 			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority" resname="tx_advertisement_domain_model_campaignstatistic.priority">
 				<source>Priority</source>
 			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.0" resname="tx_advertisement_domain_model_campaignstatistic.priority.0">
+				<source>None (0)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.1" resname="tx_advertisement_domain_model_campaignstatistic.priority.1">
+				<source>Very Low (1)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.2" resname="tx_advertisement_domain_model_campaignstatistic.priority.2">
+				<source>Low (2)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.3" resname="tx_advertisement_domain_model_campaignstatistic.priority.3">
+				<source>Minor (3)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.4" resname="tx_advertisement_domain_model_campaignstatistic.priority.4">
+				<source>Medium (4)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.5" resname="tx_advertisement_domain_model_campaignstatistic.priority.5">
+				<source>Medium (5)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.6" resname="tx_advertisement_domain_model_campaignstatistic.priority.6">
+				<source>Medium (6)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.7" resname="tx_advertisement_domain_model_campaignstatistic.priority.7">
+				<source>Major (7)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.8" resname="tx_advertisement_domain_model_campaignstatistic.priority.8">
+				<source>High (8)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.9" resname="tx_advertisement_domain_model_campaignstatistic.priority.9">
+				<source>Very High (9)</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.priority.10" resname="tx_advertisement_domain_model_campaignstatistic.priority.10">
+				<source>Critical (10)</source>
+			</trans-unit>
 			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.delivered" resname="tx_advertisement_domain_model_campaignstatistic.delivered">
 				<source>Delivered</source>
 			</trans-unit>
@@ -101,6 +134,31 @@
 			</trans-unit>
 			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.banner" resname="tx_advertisement_domain_model_campaignstatistic.banner">
 				<source>Banner</source>
+			</trans-unit>
+			
+			<trans-unit id="module.dashboard.title" resname="module.dashboard.title">
+				<source>Advertisement Dashboard</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.title" resname="module.dashboard.section.overview.title">
+				<source>At a glance</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.campaigns.title" resname="module.dashboard.section.overview.campaigns.title">
+				<source>Campaigns</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.campaigns.text" resname="module.dashboard.section.overview.campaigns.text">
+				<source>%s/%s Campaigns (Active/Total)</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.campaigns.title" resname="module.dashboard.section.campaigns.title">
+				<source>Campaigns</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.banners.text" resname="module.dashboard.section.overview.banners.text">
+				<source>%s/%s Banners (Active/Total)</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.banners.title" resname="module.dashboard.section.overview.banners.title">
+				<source>Banners</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.campaigns.alert.empty" resname="module.dashboard.section.campaigns.alert.empty">
+				<source>Sorry, but you don't have any campaigns yet. Please create one first.</source>
 			</trans-unit>
 		</body>
 	</file>

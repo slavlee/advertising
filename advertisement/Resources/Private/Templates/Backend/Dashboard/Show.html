@@ -1,0 +1,71 @@
+<html
+   xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+   xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+   xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+   xmlns:ad="http://typo3.org/ns/Slavlee/Advertisement/ViewHelpers"
+   data-namespace-typo3-fluid="true">
+	<f:layout name="Backend/Default" />
+	
+	<f:section name="Main">
+		<h1><f:translate key="module.dashboard.title" /></h1>
+		
+		<section id="adSectionOverview">
+			<h2><f:translate key="module.dashboard.section.overview.title" /></h2>
+			<div class="card-group">
+				<div class="card card-campaigns">
+					<div class="card-header"><f:translate key="module.dashboard.section.overview.campaigns.title" /></div>
+					<div class="card-body text-primary">
+						<p class="card-title"><f:translate key="module.dashboard.section.overview.campaigns.text" arguments="{0: '10', 1: '50'}" /></p>						
+					</div>
+				</div>
+				<div class="card card-banners">
+					<div class="card-header"><f:translate key="module.dashboard.section.overview.banners.title" /></div>
+					<div class="card-body text-primary">
+						<p class="card-title"><f:translate key="module.dashboard.section.overview.banners.text" arguments="{0: '10', 1: '50'}" /></p>						
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="adSectionFilter">
+			<f:render partial="Backend/Dashboard/TableFilter" arguments="{_all}" />
+		</section>
+		<section id="adSectionCampaigns">
+			<h2><f:translate key="module.dashboard.section.campaigns.title" /></h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaign.name" /></th>
+						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaign.startDate" /> - <f:translate key="tx_advertisement_domain_model_campaign.endDate" /></th>
+						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.priority" /></th>
+						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.delivered" /></th>
+						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.clicked" /></th>
+					</tr>
+				</thead>
+				<tbody>
+					<f:if condition="{campaigns -> f:count()} == 0">
+						<f:then>
+							<tr>
+								<td colspan="6">
+									<p class="alert alert-info m-0"><f:translate key="module.dashboard.section.campaigns.alert.empty" /></p>
+								</td>
+							</tr>
+						</f:then>
+						<f:else>
+							<f:for each="{campaigns}" as="campaign" iteration="it">
+								<tr>
+									<th scope="row">{it.cycle}</th>
+									<td class="ad-campaign-name">{campaign.name}</td>
+									<td class="ad-campaign-date"><f:format.date format="{settings.dateFormat}">{campaign.startDate}</f:format.date> - <f:format.date format="{settings.dateFormat}">{campaign.endDate}</f:format.date></td>
+									<td class="ad-campaign-priority"><f:translate key="tx_advertisement_domain_model_campaignstatistic.priority.{campaign.statistic.priority}" extensionName="advertisement" /></td>
+									<td class="ad-campaign-delivered">{campaign.totalStatistic.delivered}</td>
+									<td class="ad-campaign-clicked">{campaign.totalStatistic.clicked}</td>
+								</tr>
+							</f:for>
+						</f:else>
+					</f:if>
+				</tbody>
+			</table>
+		</section>
+	</f:section>
+</html>

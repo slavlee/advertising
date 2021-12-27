@@ -1,3 +1,8 @@
+Version 0.8.11
+- [CHANGE] StatisticService->findOrCreateBannerStatistic: today normalisiert auf 0 Uhr.
+- [WIP] Dashboard: Anzeige Total Campaigns und Banners als Skeletton
+- [NEW] Dashboard: Anzeige aller Campaigns mit Total Metrics
+
 Version 0.8.10
 - [NEW] New Model: BannerStatistic
 - [NEW] Campaign: Neue Felder startDate und endDate

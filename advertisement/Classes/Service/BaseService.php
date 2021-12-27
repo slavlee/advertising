@@ -24,6 +24,12 @@ class BaseService
 	protected $extConf = [];
 	
 	/**
+	 * $lastReturnValue, stores the value of the last execute function
+	 * @var string|array|object
+	 */
+	protected $lastReturnValue = null;
+	
+	/**
 	 * Create a BaseService
 	 * @return void
 	 */
@@ -43,10 +49,19 @@ class BaseService
 	{
 		if (method_exists($this, $methodName))
 		{
-			$this->$methodName(...$arguments);
+			$this->lastReturnValue = $this->$methodName(...$arguments);
 			return true;
 		}
 		
 		return FALSE;
+	}
+	
+	/**
+	 * Returns the value of the last execute function
+	 * @return string|object
+	 */
+	public function getLastReturnValue()
+	{
+		return $this->lastReturnValue;
 	}
 }

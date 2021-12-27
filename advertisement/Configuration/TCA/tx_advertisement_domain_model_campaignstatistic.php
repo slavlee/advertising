@@ -52,9 +52,17 @@ return [
             'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_campaignstatistic.priority',
             'config' => [
                 'type' => 'input',
-                'size' => 4,
-                'eval' => 'int',
-                'default' => 0
+                'size' => 5,
+                'eval' => 'trim,int',
+                'default' => 0,
+            	'range' => [
+            		'lower' => 0,
+            		'upper' => 10
+            	],
+            	'slider' => [
+            		'step' => 1,
+            		'width' => 100
+            	]
             ]
         ],
         'delivered' => [

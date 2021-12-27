@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Slavlee\Advertisement\Domain\Model;
 
 
+use Slavlee\Advertisement\Utility\GeneralUtility;
+use Slavlee\Advertisement\Utility\CacheUtility;
+
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
  *
@@ -56,6 +59,12 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $banners = null;
+    
+    /**
+     * $totalStatistic, holds a summary of all CampaignStatistic for given Campaign
+     * @var \stdClass
+     */
+    protected $totalStatistic = null;
 
     /**
      * Returns the name
@@ -205,5 +214,71 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setEndDate(\DateTime $endDate)
     {
         $this->endDate = $endDate;
+    }
+    
+    /**
+     * Returns a summary of all related CampaignStatistic, if exists
+     * @return \Slavlee\Advertisement\Domain\Model\CampaignStatistic
+     */
+    public function getTotalStatistic()
+    {
+    	// If not set, then fetch statistic
+    	if ($this->totalStatistic == null)
+    	{
+    		// Try to load from cache
+    		$session = $GLOBALS['BE_USER']->getSession();
+    		$cacheIdentifier = CacheUtility::formatIdentifier(__CLASS__ . '.' . __FUNCTION__);
+    		$cacheValue = unserialize($session->get($cacheIdentifier));
+    		
+    		if (!empty($cacheValue))
+			{
+    			$this->totalStatistic = $cacheValue;
+    			
+    			// check if data is older than 5mins
+    			$now = new \DateTime();
+
+    			if (!$this->totalStatistic->crdate || ($now->getTimestamp() - $this->totalStatistic->crdate->getTimestamp()) >= 300000)
+    			{
+    				// then refetch data
+    				$this->totalStatistic = $this->getTotalStatisticFresh();
+    				 
+    				// and save to cache
+    				$session->set($cacheIdentifier, serialize($this->totalStatistic));
+    				
+    				debug('refetched');
+    			}
+    		}else
+    		{    		
+	    		// If nothing in cache, then load from db
+	    		$this->totalStatistic = $this->getTotalStatisticFresh();
+	    		
+	    		// and save to cache
+	    		$session->set($cacheIdentifier, serialize($this->totalStatistic));
+    		}
+    	}
+    	
+    	return $this->totalStatistic;
+    }
+    
+    /**
+     * Return total campaign statistic
+     * @return \stdClass
+     */
+    protected function getTotalStatisticFresh()
+    {
+    	$totalStatistic = null;
+    	
+    	/**
+    	 * @var \Slavlee\Advertisement\Service\Campaign\StatisticService $service
+    	 */
+    	$service = GeneralUtility::makeInstance(\Slavlee\Advertisement\Service\Campaign\StatisticService::class);
+    	 
+    	if ($service->execute('findTotalCampaignStatistics', $this))
+    	{
+    		$totalStatistic = $service->getLastReturnValue();
+    		$totalStatistic->crdate = new \DateTime();
+    	}
+    	
+    	return $totalStatistic;
     }
 }
