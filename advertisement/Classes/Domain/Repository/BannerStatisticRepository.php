@@ -35,4 +35,30 @@ class BannerStatisticRepository extends BaseRepository
 		
 		return $query->execute();
 	}
+	
+	/**
+	 * Find a banner statistic for given banner and date
+	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	 */
+	public function findByBannerAndCampaign(\Slavlee\Advertisement\Domain\Model\Banner $banner, \Slavlee\Advertisement\Domain\Model\Campaign $campaign)
+	{
+		$query = $this->createQuery();
+		$query->matching(
+			$query->equals('banner', $banner),
+			$query->logicalAnd(
+				$query->logicalOr(
+					$query->equals('starttime', 0),
+					$query->greaterThanOrEqual('starttime', $campaign->getStartTime())
+				),
+				$query->logicalOr(
+					$query->equals('endtime', 0),
+					$query->lessThanOrEqual('endtime', $campaign->getEndtime())
+				)
+			)
+		);
+	
+		return $query->execute();
+	}
 }

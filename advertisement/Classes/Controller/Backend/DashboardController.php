@@ -62,6 +62,15 @@ class DashboardController extends BaseActionController
 	 * Init showAction
 	 * @return void
 	 */
+	public function initializeCampaignAction()
+	{
+		$this->campaignRepository->setStorage((int)$this->extConf['general']['storagePid']);
+	}
+	
+	/**
+	 * Init showAction
+	 * @return void
+	 */
 	public function initializeShowAction()
 	{
 		$this->campaignRepository->setStorage((int)$this->extConf['general']['storagePid']);
@@ -78,6 +87,22 @@ class DashboardController extends BaseActionController
    		//Prepare View   		
    		$this->view->assign('campaigns', $this->campaignRepository->findAllIgnoreEnableFields(['disabled', 'endtime', 'starttime']));
    		
+   		// Render Backend View
+   		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+   		$moduleTemplate->setContent($this->view->render());
+   		return $this->htmlResponse($moduleTemplate->renderContent());
+   	}
+   	
+   	/**
+   	 * Campaign view in Dashboard of Backend Module: adverisement
+   	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
+   	 * @return string
+   	 */
+   	public function campaignAction($campaign)
+   	{
+   		//Prepare View
+   		$this->view->assign('campaign', $this->campaignRepository->findByUidIgnoreEnableFields($campaign->getUid(), ['disabled', 'endtime', 'starttime'])->current());
+   		 
    		// Render Backend View
    		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
    		$moduleTemplate->setContent($this->view->render());

@@ -36,6 +36,23 @@ class CampaignRepository extends BaseRepository
 	}
 	
 	/**
+	 * findAll with enable fields to be ignored
+	 * @param integer $uid
+	 * @param array $enableFieldsToIgnore
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	 */
+	public function findByUidIgnoreEnableFields($uid, array $enableFieldsToIgnore) : \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	{
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setEnableFieldsToBeIgnored($enableFieldsToIgnore);
+		$query->getQuerySettings()->setIgnoreEnableFields(true);
+		$query->matching(
+			$query->equals('uid', $uid)	
+		);
+		return $query->execute();
+	}
+	
+	/**
 	 * Find all campaigns for given banner
 	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
 	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult

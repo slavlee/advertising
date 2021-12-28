@@ -33,7 +33,7 @@ defined('TYPO3') || die();
    		'Dashboard',
    		'bottom',
   		[
-			\Slavlee\Advertisement\Controller\Backend\DashboardController::class => 'show'
+			\Slavlee\Advertisement\Controller\Backend\DashboardController::class => 'show,campaign',
    		],
   		[
 			'access' => 'admin',
@@ -41,7 +41,7 @@ defined('TYPO3') || die();
 			'labels' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_mod.xlf',
 			'inheritNavigationComponentFromMainModule' => false,
    		]
-	);
+	);       
     /***************************************************************
      * BACKEND MODULES - END
      **************************************************************/

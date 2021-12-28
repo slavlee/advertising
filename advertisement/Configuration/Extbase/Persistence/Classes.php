@@ -8,7 +8,10 @@ return [
     	'properties' => [
     		'link' => [
     			'fieldName' => 'header_link'
-    		]
+    		],
+   			'name' => [
+				'fieldName' => 'header'
+   			]
     	]
-    ],
+    ]
 ];

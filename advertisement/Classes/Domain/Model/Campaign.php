@@ -39,18 +39,18 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $description = '';
 
     /**
-     * startDate
+     * starttime
      *
      * @var \DateTime
      */
-    protected $startDate = null;
+    protected $starttime = null;
 
     /**
-     * endDate
+     * endtime
      *
      * @var \DateTime
      */
-    protected $endDate = null;
+    protected $endtime = null;
 
     /**
      * banners
@@ -175,45 +175,45 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the startDate
+     * Returns the starttime
      *
-     * @return \DateTime $startDate
+     * @return \DateTime $starttime
      */
-    public function getStartDate()
+    public function getStartTime()
     {
-        return $this->startDate;
+        return $this->starttime;
     }
 
     /**
-     * Sets the startDate
+     * Sets the starttime
      *
-     * @param \DateTime $startDate
+     * @param \DateTime $starttime
      * @return void
      */
-    public function setStartDate(\DateTime $startDate)
+    public function setStartTime(\DateTime $starttime)
     {
-        $this->startDate = $startDate;
+        $this->starttime = $starttime;
     }
 
     /**
-     * Returns the endDate
+     * Returns the endtime
      *
-     * @return \DateTime $endDate
+     * @return \DateTime $endtime
      */
-    public function getEndDate()
+    public function getEndtime()
     {
-        return $this->endDate;
+        return $this->endtime;
     }
 
     /**
-     * Sets the endDate
+     * Sets the endtime
      *
-     * @param \DateTime $endDate
+     * @param \DateTime $endtime
      * @return void
      */
-    public function setEndDate(\DateTime $endDate)
+    public function setEndtime(\DateTime $endtime)
     {
-        $this->endDate = $endDate;
+        $this->endtime = $endtime;
     }
     
     /**
@@ -228,33 +228,47 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     		// Try to load from cache
     		$session = $GLOBALS['BE_USER']->getSession();
     		$cacheIdentifier = CacheUtility::formatIdentifier(__CLASS__ . '.' . __FUNCTION__);
-    		$cacheValue = unserialize($session->get($cacheIdentifier));
+    		$unserializedCacheValue = $session->get($cacheIdentifier);
     		
-    		if (!empty($cacheValue))
-			{
-    			$this->totalStatistic = $cacheValue;
+    		// Check if there is a valid cache value
+    		if (!$unserializedCacheValue) 
+    		{
+    			// If cache value is invalid, then load fresh
+    			$this->totalStatistic = $this->getTotalStatisticFresh();
     			
-    			// check if data is older than 5mins
-    			$now = new \DateTime();
-
-    			if (!$this->totalStatistic->crdate || ($now->getTimestamp() - $this->totalStatistic->crdate->getTimestamp()) >= 300000)
+    			// and save to cache
+    			$session->set($cacheIdentifier, serialize($this->totalStatistic));
+    		}else 
+    		{
+    			// if so, then unserialize it
+    			$cacheValue = unserialize($unserializedCacheValue);
+    			
+    			if (!empty($cacheValue))
     			{
-    				// then refetch data
+    				$this->totalStatistic = $cacheValue;
+    				 
+    				// check if data is older than 5mins
+    				$now = new \DateTime();
+
+    				if (!$this->totalStatistic->crdate || ($now->getTimestamp() - $this->totalStatistic->crdate->getTimestamp()) >= 300000)
+    				{
+    					// then refetch data
+    					$this->totalStatistic = $this->getTotalStatisticFresh();
+    						
+    					// and save to cache
+    					$session->set($cacheIdentifier, serialize($this->totalStatistic));
+    			
+    					debug('refetched');
+    				}
+    			}else
+    			{
+    				// If nothing in cache, then load from db
     				$this->totalStatistic = $this->getTotalStatisticFresh();
     				 
     				// and save to cache
     				$session->set($cacheIdentifier, serialize($this->totalStatistic));
-    				
-    				debug('refetched');
-    			}
-    		}else
-    		{    		
-	    		// If nothing in cache, then load from db
-	    		$this->totalStatistic = $this->getTotalStatisticFresh();
-	    		
-	    		// and save to cache
-	    		$session->set($cacheIdentifier, serialize($this->totalStatistic));
-    		}
+    			}	
+    		}   
     	}
     	
     	return $this->totalStatistic;

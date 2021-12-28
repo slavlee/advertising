@@ -9,8 +9,6 @@ CREATE TABLE tt_content (
 CREATE TABLE tx_advertisement_domain_model_campaign (
 	name varchar(255) NOT NULL DEFAULT '',
 	description text,
-	start_date int(11) NOT NULL DEFAULT '0',
-	end_date int(11) NOT NULL DEFAULT '0',
 	banners int(11) unsigned NOT NULL DEFAULT '0'
 );
 

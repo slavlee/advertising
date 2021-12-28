@@ -1,3 +1,6 @@
+Version 0.9.12
+- [NEW] Dashboard: Anzeige aller Banner einer Campaign
+
 Version 0.8.11
 - [CHANGE] StatisticService->findOrCreateBannerStatistic: today normalisiert auf 0 Uhr.
 - [WIP] Dashboard: Anzeige Total Campaigns und Banners als Skeletton

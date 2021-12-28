@@ -160,6 +160,22 @@
 			<trans-unit id="module.dashboard.section.campaigns.alert.empty" resname="module.dashboard.section.campaigns.alert.empty">
 				<source>Sorry, but you don't have any campaigns yet. Please create one first.</source>
 			</trans-unit>
+			<trans-unit id="module.dashboard.section.banners.alert.empty" resname="module.dashboard.section.banners.alert.empty">
+				<source>Sorry, but you don't have any banners yet. Please create one first.</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.banners.text" resname="module.dashboard.section.overview.banners.text">
+				<source>%s/%s Banners (Active/Total)</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.impressions.title" resname="module.dashboard.section.overview.impressions.title">
+				<source>Impressions</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.impressions.text" resname="module.dashboard.section.overview.impressions.text">
+				<source>%s/%s Interactions (Impressions/Clicks)</source>
+			</trans-unit>
+			
+			<trans-unit id="module.dashboard.section.overview.title" resname="module.dashboard.section.overview.title">
+				<source>Overview Campaign: %s</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
