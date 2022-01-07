@@ -98,8 +98,13 @@ class DashboardController extends BaseActionController
    		// ignore always these enabled fields
    		$demand->setEnabledFieldsToBeIgnored(['disabled', 'endtime', 'starttime']);
    		
+   		// Statistic object for dashboard overview
+   		$campaigns = $this->campaignRepository->findDemanded($demand)->toArray();
+   		$statistic = $this->objectManager->get(\Slavlee\Advertisement\Statistic\CampaignStatistic::class, $campaigns);
+   		
    		//Prepare View   		
-   		$this->view->assign('campaigns', $this->campaignRepository->findDemanded($demand));
+   		$this->view->assign('statistic', $statistic);
+   		$this->view->assign('campaigns', $campaigns);
    		$this->view->assign('demand', $demand);
    		$pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
    		$pageRenderer->addCssFile('EXT:advertisement/Resources/Public/Css/Backend/dashboard.css');
