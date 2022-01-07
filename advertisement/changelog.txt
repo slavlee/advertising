@@ -1,3 +1,12 @@
+Version 0.10.13
+- [CHANGE] BannerStatistic: Extend to relation with campaign
+- [CHANGE] BannerStatistic Queries changed to Banner, Campaign and Date as identifier
+- [CHANGE] Anzeige Campaign ignoriert Enable Fields
+- [NEW] Campaign: Anzeige Core Data und Advertising Materials als Overview
+- [CHANGE] Campaign: Banner Tabelle ohne Datum
+- [NEW] TableFilter mit State Selectfeld und Filterung DB Query via Demand Object
+- [NEW] Campaign State optisch dargestellt in Tabelle
+
 Version 0.9.12
 - [NEW] Dashboard: Anzeige aller Banner einer Campaign
 

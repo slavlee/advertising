@@ -47,12 +47,41 @@ class BannerStatisticRepository extends BaseRepository
 		$query = $this->createQuery();
 		$query->matching(
 			$query->equals('banner', $banner),
+			$query->equals('campaign', $campaign),
 			$query->logicalAnd(
 				$query->logicalOr(
 					$query->equals('starttime', 0),
 					$query->greaterThanOrEqual('starttime', $campaign->getStartTime())
 				),
 				$query->logicalOr(
+					$query->equals('endtime', 0),
+					$query->lessThanOrEqual('endtime', $campaign->getEndtime())
+				)
+			)
+		);
+	
+		return $query->execute();
+	}
+	
+	/**
+	 * Find a banner statistic for given banner and date
+	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
+	 * @param \DateTime $date
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	 */
+	public function findByBannerCampaignAndDate(\Slavlee\Advertisement\Domain\Model\Banner $banner, \Slavlee\Advertisement\Domain\Model\Campaign $campaign, \DateTime $date)
+	{
+		$query = $this->createQuery();
+		$query->matching(
+			$query->equals('banner', $banner),
+			$query->equals('crdate', $date),
+		$query->logicalAnd(
+			$query->logicalOr(
+					$query->equals('starttime', 0),
+					$query->greaterThanOrEqual('starttime', $campaign->getStartTime())
+				),
+			$query->logicalOr(
 					$query->equals('endtime', 0),
 					$query->lessThanOrEqual('endtime', $campaign->getEndtime())
 				)

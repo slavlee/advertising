@@ -6,22 +6,35 @@
    data-namespace-typo3-fluid="true">
 	<f:layout name="Backend/Default" />
 	
-	<f:section name="Main">
-		<h1><f:translate key="module.dashboard.title" /></h1>
-		<p class="lead"><f:translate key="module.dashboard.campaign.title" /></p>
+	<f:section name="Main">		
+		<h1><f:translate key="module.dashboard.title" extensionName="advertisement" /></h1>
+		<p class="lead"><f:translate key="module.dashboard.campaign.title" extensionName="advertisement" /></p>
 		<section id="adSectionOverview">
-			<h2><f:translate key="module.dashboard.section.overview.title" arguments="{0: campaign.name}" /></h2>
+			<h2><f:translate key="module.dashboard.section.overview.title" extensionName="advertisement" /></h2>
 			<div class="card-group">				
 				<div class="card card-banners">
-					<div class="card-header"><f:translate key="module.dashboard.section.overview.banners.title" /></div>
+					<div class="card-header"><f:translate key="module.dashboard.section.overview.campaign.title" extensionName="advertisement" /></div>
 					<div class="card-body text-primary">
-						<p class="card-title"><f:translate key="module.dashboard.section.overview.banners.text" arguments="{0: '10', 1: '50'}" /></p>						
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col"><f:translate key="tx_advertisement_domain_model_campaign.start_date" extensionName="advertisement" /></th>
+									<th scope="col"><f:translate key="tx_advertisement_domain_model_campaign.end_date" extensionName="advertisement" /></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{campaign.starttime -> f:format.date(format: settings.dateFormat)} <f:translate key="oclock" extensionName="advertisement" /></td>
+									<td>{campaign.endtime -> f:format.date(format: settings.dateFormat)} <f:translate key="oclock" extensionName="advertisement" /></td>
+								</tr>
+							</tbody>
+						</table>						
 					</div>
 				</div>
 				<div class="card card-impressions">
-					<div class="card-header"><f:translate key="module.dashboard.section.overview.impressions.title" /></div>
+					<div class="card-header"><f:translate key="module.dashboard.section.campaign.banners.title" extensionName="advertisement" /></div>
 					<div class="card-body text-primary">
-						<p class="card-title"><f:translate key="module.dashboard.section.overview.impressions.text" arguments="{0: '10', 1: '50'}" /></p>						
+						<p class="card-title"><f:translate key="module.dashboard.section.campaign.banners.text" arguments="{0: '{campaign.activeBanners  -> f:count()}'}" extensionName="advertisement" /></p>						
 					</div>
 				</div>
 			</div>
@@ -36,7 +49,6 @@
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_banner.name" /></th>
-						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaign.startDate" /> - <f:translate key="tx_advertisement_domain_model_campaign.endDate" /></th>
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.delivered" /></th>
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.clicked" /></th>
 					</tr>
@@ -55,7 +67,6 @@
 								<tr>
 									<th scope="row">{it.cycle}</th>
 									<td class="ad-campaign-name">{banner.name}</td>
-									<td class="ad-campaign-date"><f:format.date format="{settings.dateFormat}">{campaign.startDate}</f:format.date> - <f:format.date format="{settings.dateFormat}">{campaign.endDate}</f:format.date></td>
 									<ad:bannerStatisticForCampaign campaign="{campaign}" banner="{banner}" as="statistic">
 										<td class="ad-campaign-delivered">{statistic.delivered}</td>
 										<td class="ad-campaign-clicked">{statistic.clicked}</td>

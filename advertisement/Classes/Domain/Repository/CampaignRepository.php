@@ -66,4 +66,35 @@ class CampaignRepository extends BaseRepository
 		
 		return $query->execute();
 	}
+	
+	/**
+	 * Find all campaigns in given demand context
+	 * @param \Slavlee\Advertisement\Domain\Model\Dashboard\Demand\CampaignDemand $demand
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	 */
+	public function findDemanded(\Slavlee\Advertisement\Domain\Model\Dashboard\Demand\CampaignDemand $demand)
+	{
+		// We create query for demand object
+		$query = $this->createQuery();
+		$demand->setQuery($query);
+		
+		// we create constraints and query settings
+		$constraints = $demand->createConstraints();
+		$query->setQuerySettings($demand->createQuerySettings());
+		
+		// we create query
+		if ($constraints)
+		{
+			$query->matching(
+				$query->logicalAnd(
+					$constraints
+				)
+			);
+		}
+		
+		// we execute query
+// 		debug($constraints);
+// 		DebugUtility::debugQuery($query);
+		return $query->execute();
+	}
 }

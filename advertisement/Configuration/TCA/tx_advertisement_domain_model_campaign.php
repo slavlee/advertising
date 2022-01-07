@@ -20,7 +20,7 @@ return [
         'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_campaign.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'name, description, start_date, end_date, banners, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
+        '1' => ['showitem' => 'name, description, starttime, endtime, banners, hidden, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -121,28 +121,6 @@ return [
                 'eval' => 'trim',
             ],
             
-        ],
-        'start_date' => [
-            'exclude' => false,
-            'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_campaign.start_date',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 10,
-                'eval' => 'datetime',
-                'default' => time()
-            ],
-        ],
-        'end_date' => [
-            'exclude' => false,
-            'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_campaign.end_date',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 10,
-                'eval' => 'datetime',
-                'default' => time()
-            ],
         ],
         'banners' => [
             'exclude' => false,

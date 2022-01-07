@@ -21,6 +21,20 @@ class BannerStatistic extends BaseEntity
 {
 
     /**
+     * crdate
+     *
+     * @var \DateTime
+     */
+    protected $crdate = null;
+
+    /**
+     * campaign
+     *
+     * @var \Slavlee\Advertisement\Domain\Model\Campaign
+     */
+    protected $campaign = null;
+
+    /**
      * delivered
      *
      * @var string
@@ -40,13 +54,6 @@ class BannerStatistic extends BaseEntity
      * @var int
      */
     protected $clicked = 0;
-
-    /**
-     * crdate
-     *
-     * @var \DateTime
-     */
-    protected $crdate = null;
 
     /**
      * banner
@@ -75,7 +82,7 @@ class BannerStatistic extends BaseEntity
     {
         $this->delivered = $delivered;
     }
-    
+
     /**
      * Banner has beend delivered so increment delivered property
      *
@@ -83,7 +90,7 @@ class BannerStatistic extends BaseEntity
      */
     public function incrementDelivered()
     {
-    	$this->delivered++;
+        $this->delivered++;
     }
 
     /**
@@ -135,7 +142,7 @@ class BannerStatistic extends BaseEntity
      */
     public function incrementClicked()
     {
-    	$this->clicked++;
+        $this->clicked++;
     }
 
     /**
@@ -178,5 +185,26 @@ class BannerStatistic extends BaseEntity
     public function setCrdate(\DateTime $crdate)
     {
         $this->crdate = $crdate;
+    }
+
+    /**
+     * Returns the campaign
+     *
+     * @return \Slavlee\Advertisement\Domain\Model\Campaign $campaign
+     */
+    public function getCampaign()
+    {
+        return $this->campaign;
+    }
+
+    /**
+     * Sets the campaign
+     *
+     * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
+     * @return void
+     */
+    public function setCampaign(\Slavlee\Advertisement\Domain\Model\Campaign $campaign)
+    {
+        $this->campaign = $campaign;
     }
 }

@@ -17,7 +17,7 @@ return [
         'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_bannerstatistic.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'delivered, been_visible, clicked, crdate, banner, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, '],
+        '1' => ['showitem' => 'delivered, been_visible, clicked, banner, campaign, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, '],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -77,17 +77,6 @@ return [
                 'default' => 0
             ]
         ],
-        'crdate' => [
-            'exclude' => false,
-            'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_bannerstatistic.crdate',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 10,
-                'eval' => 'datetime',
-                'default' => time()
-            ],
-        ],
         'banner' => [
             'exclude' => false,
             'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_bannerstatistic.banner',
@@ -95,6 +84,19 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tt_content',
+                'default' => 0,
+                'minitems' => 0,
+                'maxitems' => 1,
+            ],
+
+        ],
+        'campaign' => [
+            'exclude' => false,
+            'label' => 'LLL:EXT:advertisement/Resources/Private/Language/locallang_db.xlf:tx_advertisement_domain_model_bannerstatistic.campaign',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'tx_advertisement_domain_model_campaign',
                 'default' => 0,
                 'minitems' => 0,
                 'maxitems' => 1,

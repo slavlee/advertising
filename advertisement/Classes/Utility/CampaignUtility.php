@@ -17,6 +17,19 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class CampaignUtility
 {
 	/**
+	 * Check if campaign is expired
+	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
+	 * @return bool
+	 */
+	public static function isExpired(\Slavlee\Advertisement\Domain\Model\Campaign $campaign): bool
+	{
+		$now = new \DateTime();
+		$endTime = $campaign->getEndtime();
+		
+		return !$campaign->getDisabled() && $endTime && $endTime->getTimestamp() <= $now->getTimestamp();
+	}
+	
+	/**
 	 * Return the label of the given priority db value
 	 * @param integer $priorityInt
 	 * @return string

@@ -2,7 +2,7 @@
 general {
 	# cat=General; type=int+; label=LLL:EXT:advertisement/Resources/Private/Language/locallang_be.xlf:extconf.general.storagePid; description=LLL:EXT:advertisement/Resources/Private/Language/locallang_be.xlf:extconf.general.storagePid.desc
 	storagePid = 0	
-		
+
 	typeNums {
 		# cat=General; type=int+; label=LLL:EXT:advertisement/Resources/Private/Language/locallang_be.xlf:extconf.typeNums.clickTracking; description=LLL:EXT:advertisement/Resources/Private/Language/locallang_be.xlf:extconf.general.typeNums.clickTracking.desc
 		clickTracking = 28062019

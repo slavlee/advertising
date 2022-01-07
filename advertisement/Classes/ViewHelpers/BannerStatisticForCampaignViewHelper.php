@@ -6,6 +6,8 @@ namespace Slavlee\Advertisement\ViewHelpers;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Slavlee\Advertisement\Utility\BannerUtility;
+use Slavlee\Advertisement\Utility\CacheUtility;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -66,15 +68,71 @@ class BannerStatisticForCampaignViewHelper extends AbstractViewHelper
 	{
 		$extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('advertisement');
 		$this->bannerStatisticRepository->setStorage($extConf['general']['storagePid']);
+		$totalBannerStatistic = [];
 		
-		$campaignStatistic = $this->bannerStatisticRepository->findByBannerAndCampaign($this->arguments['banner'], $this->arguments['campaign'])->current();
+		// Try to load from cache
+		$session = $GLOBALS['BE_USER']->getSession();
+		$cacheIdentifier = CacheUtility::formatIdentifier(__CLASS__ . '.' . __FUNCTION__);
+		$unserializedCacheValue = $session->get($cacheIdentifier);		
+		
+		// Check if there is a valid cache value
+		if (!$unserializedCacheValue)
+		{
+			// Get all metrics for banner inside campaign on all dates
+			$bannerStatistics = $this->bannerStatisticRepository->findByBannerAndCampaign($this->arguments['banner'], $this->arguments['campaign'])->toArray();
+			
+			// Calculate total and save it in a new \stdClass
+			$totalBannerStatistic = BannerUtility::calculateTotalStatistic($bannerStatistics);
+			
+			// and save to cache
+			$session->set($cacheIdentifier, serialize($totalBannerStatistic));
+		}else
+		{
+			// if so, then unserialize it
+			$cacheValue = unserialize($unserializedCacheValue);
+			
+			if (!empty($cacheValue))
+			{
+				$totalBannerStatistic = $cacheValue;
+				
+				// check if data is older than 5mins
+				$now = new \DateTime();
+				
+				if (!$totalBannerStatistic->crdate || ($now->getTimestamp() - $totalBannerStatistic->crdate->getTimestamp()) >= 300000)
+				{
+					// then refetch data
+					// Get all metrics for banner inside campaign on all dates
+					$bannerStatistics = $this->bannerStatisticRepository->findByBannerAndCampaign($this->arguments['banner'], $this->arguments['campaign'])->toArray();
+					$totalBannerStatistic = BannerUtility::calculateTotalStatistic($bannerStatistics);
+				
+					// and save to cache
+					$session->set($cacheIdentifier, serialize($this->totalStatistic));
+				}else
+    			{
+    				// If value from cache is to old, then refetch data
+    				$bannerStatistics = $this->bannerStatisticRepository->findByBannerAndCampaign($this->arguments['banner'], $this->arguments['campaign'])->toArray();
+					$totalBannerStatistic = BannerUtility::calculateTotalStatistic($bannerStatistics);
+    					
+    				// and save to cache
+    				$session->set($cacheIdentifier, serialize($totalBannerStatistic));
+    			}
+			}else
+			{
+				// If nothing in cache, then load from db
+				$bannerStatistics = $this->bannerStatisticRepository->findByBannerAndCampaign($this->arguments['banner'], $this->arguments['campaign'])->toArray();
+				$totalBannerStatistic = BannerUtility::calculateTotalStatistic($bannerStatistics);
+					
+				// and save to cache
+				$session->set($cacheIdentifier, serialize($totalBannerStatistic));
+			}
+		}				
 		
 		if ($this->templateVariableContainer->exists($this->arguments['as']))
 		{
 			$this->templateVariableContainer->remove($this->arguments['as']);
 		}
 						
-		$this->templateVariableContainer->add($this->arguments['as'], $campaignStatistic);
+		$this->templateVariableContainer->add($this->arguments['as'], $totalBannerStatistic);
 		
 		return $this->renderChildren();
 	}

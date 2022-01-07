@@ -7,10 +7,10 @@
 	<f:layout name="Backend/Default" />
 	
 	<f:section name="Main">
-		<h1><f:translate key="module.dashboard.title" /></h1>
+		<h1><f:translate key="module.dashboard.title" extensionName="advertisement" /></h1>
 		
-		<section id="adSectionOverview">
-			<h2><f:translate key="module.dashboard.section.overview.title" /></h2>
+		<section id="adSectionOverview" class="mb-4">
+			<h2><f:translate key="module.dashboard.section.campaign.title" arguments="{0: campaign.name}" extensionName="advertisement" /></h2>
 			<div class="card-group">
 				<div class="card card-campaigns">
 					<div class="card-header"><f:translate key="module.dashboard.section.overview.campaigns.title" /></div>
@@ -27,16 +27,16 @@
 			</div>
 		</section>
 		<section id="adSectionFilter">
-			<f:render partial="Backend/Dashboard/TableFilter" arguments="{_all}" />
+			<f:render partial="Backend/Dashboard/TableFilter" arguments="{action: 'show', controller: 'Backend\Dashboard', demand: demand}" />
 		</section>
 		<section id="adSectionCampaigns">
 			<h2><f:translate key="module.dashboard.section.campaigns.title" /></h2>
-			<table class="table table-striped">
+			<table class="table table-striped table-campaigns">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaign.name" /></th>
-						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaign.startDate" /> - <f:translate key="tx_advertisement_domain_model_campaign.endDate" /></th>
+						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaign.start_date" /> - <f:translate key="tx_advertisement_domain_model_campaign.end_date" /></th>
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.priority" /></th>
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.delivered" /></th>
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.clicked" /></th>
@@ -53,10 +53,15 @@
 						</f:then>
 						<f:else>
 							<f:for each="{campaigns}" as="campaign" iteration="it">
-								<tr>
+								<tr class="ad-campaign-state-{campaign.stateCssClass}">
 									<th scope="row">{it.cycle}</th>
-									<td class="ad-campaign-name"><f:link.action action="campaign" arguments="{campaign: campaign.uid}">{campaign.name}</f:link.action></td>
-									<td class="ad-campaign-date"><f:format.date format="{settings.dateFormat}">{campaign.startDate}</f:format.date> - <f:format.date format="{settings.dateFormat}">{campaign.endDate}</f:format.date></td>
+									<td class="ad-campaign-name">
+										<f:link.action action="campaign" arguments="{campaign: campaign.uid}">{campaign.name}</f:link.action>
+										<f:if condition="{campaign.expired} || {campaign.disabled}">
+											(<f:translate key="{campaign.stateLangKey}" extensionName="advertisement" />)
+										</f:if>
+									</td>
+									<td class="ad-campaign-date"><f:format.date format="{settings.dateFormat}">{campaign.starttime}</f:format.date> - <f:format.date format="{settings.dateFormat}">{campaign.endtime}</f:format.date></td>
 									<td class="ad-campaign-priority"><f:translate key="tx_advertisement_domain_model_campaignstatistic.priority.{campaign.statistic.priority}" extensionName="advertisement" /></td>
 									<td class="ad-campaign-delivered">{campaign.totalStatistic.delivered}</td>
 									<td class="ad-campaign-clicked">{campaign.totalStatistic.clicked}</td>

@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+/******************************************************
+ * CAMPAIGN TABLE - START
+ *****************************************************/
+ /* Campaign States - START */
+ /* Override bootstrap color def */
+ .table-campaigns > tbody > tr.ad-campaign-state-expired,
+ .table-campaigns > tbody > tr.ad-campaign-state-expired *,
+ .table-campaigns > tbody > tr.ad-campaign-state-disabled,
+ .table-campaigns > tbody > tr.ad-campaign-state-disabled *
+ {
+ 	color: rgba(0,0,0,0.25) !important;
+ }
+ /* Campaign States - END */
+/******************************************************
+ * CAMPAIGN TABLE - END
+ *****************************************************/

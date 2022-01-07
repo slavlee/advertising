@@ -7,6 +7,7 @@ namespace Slavlee\Advertisement\Domain\Model;
 
 use Slavlee\Advertisement\Utility\GeneralUtility;
 use Slavlee\Advertisement\Utility\CacheUtility;
+use Slavlee\Advertisement\Utility\CampaignUtility;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -65,6 +66,12 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \stdClass
      */
     protected $totalStatistic = null;
+    
+    /**
+     * $hidden
+     * @var boolean
+     */
+    protected $disabled = false;
 
     /**
      * Returns the name
@@ -162,6 +169,29 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->banners;
     }
+    
+    /**
+     * Returns only active banners
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertisement\Domain\Model\Banner> $banners
+     */
+    public function getActiveBanners()
+    {
+    	// Banners don't have start-/endtime yet
+    	return $this->getBanners();
+    	
+//     	$activeBanners = [];
+    	
+//     	foreach($this->banners as $banner)
+//     	{
+//     		if ($banner->isActive())
+//     		{
+//     			$activeBanners[] = $banner;
+//     		}
+//     	}
+    	
+//     	return $activeBanners;
+    }
 
     /**
      * Sets the banners
@@ -179,7 +209,7 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \DateTime $starttime
      */
-    public function getStartTime()
+    public function getStarttime()
     {
         return $this->starttime;
     }
@@ -190,7 +220,7 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \DateTime $starttime
      * @return void
      */
-    public function setStartTime(\DateTime $starttime)
+    public function setStarttime(\DateTime $starttime)
     {
         $this->starttime = $starttime;
     }
@@ -214,6 +244,43 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setEndtime(\DateTime $endtime)
     {
         $this->endtime = $endtime;
+    }
+    
+    /**
+     * Returns the disabled
+     * @return boolean
+     */
+    public function getDisabled()
+    {
+    	return $this->disabled;
+    }
+    
+	/**
+     * Sets the $disabled
+     * @param boolean $disabled
+     * @return void
+     */
+    public function setDisabled($disabled)
+    {
+    	$this->disabled = boolval($disabled);
+    }
+    
+    /**
+     * Returns the css class reflecting current state
+     * @return string
+     */
+    public function getStateCssClass()
+    {
+    	if ($this->isActive())
+    	{
+    		return 'active';
+    	}else if($this->getDisabled())
+    	{
+    		return 'disabled';
+    	}else if($this->isExpired())
+    	{
+    		return 'expired';
+    	}
     }
     
     /**
@@ -257,8 +324,6 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     						
     					// and save to cache
     					$session->set($cacheIdentifier, serialize($this->totalStatistic));
-    			
-    					debug('refetched');
     				}
     			}else
     			{
@@ -272,6 +337,50 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     	}
     	
     	return $this->totalStatistic;
+    }
+    
+    /**
+     * Return TRUE if campaign is active
+     * @return boolean
+     */
+    public function isActive()
+    {
+    	$now = new \DateTime();
+    	$startTime = $this->getStarttime();
+    	$endTime = $this->getEndtime();
+    	
+    	return !$this->getDisabled() && ($startTime == null || $startTime->getTimestamp() <= $now->getTimestamp()) && ($endTime == null || $endTime->getTimestamp() >= $now->getTimestamp()); 
+    }
+    
+    /**
+     * Return TRUE if campaign is expired
+     * @return boolean
+     */
+    public function isExpired()
+    {
+    	return CampaignUtility::isExpired($this);
+    }
+    
+    /**
+     * Return the language key for given state
+     * @return string
+     */
+    public function getStateLangKey()
+    {
+    	$langKey = 'tx_advertisement_domain_model_campaign.state.';
+    	
+    	if ($this->isActive())
+    	{
+    		$langKey .= 'active';
+    	}elseif ($this->isExpired())
+    	{
+    		$langKey .= 'expired';
+    	}elseif ($this->getDisabled())
+    	{
+    		$langKey .= 'disabled';
+    	}
+    	
+    	return $langKey;
     }
     
     /**

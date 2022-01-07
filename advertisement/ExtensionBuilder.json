@@ -91,8 +91,8 @@
         {
             "config": {
                 "position": [
-                    333,
-                    405
+                    338,
+                    444
                 ]
             },
             "name": "New Model Object",
@@ -298,8 +298,8 @@
         {
             "config": {
                 "position": [
-                    692,
-                    280
+                    683,
+                    281
                 ]
             },
             "name": "New Model Object",
@@ -379,6 +379,17 @@
                             "relationWire": "[wired]",
                             "renderType": "selectSingle",
                             "uid": "194856670978"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": false,
+                            "relationDescription": "",
+                            "relationName": "campaign",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "renderType": "selectSingle",
+                            "uid": "955368911935"
                         }
                     ]
                 }
@@ -387,8 +398,8 @@
         {
             "config": {
                 "position": [
-                    352,
-                    57
+                    349,
+                    68
                 ]
             },
             "name": "New Model Object",
@@ -644,11 +655,23 @@
                 "terminal": "SOURCES",
                 "uid": "939528232797"
             }
+        },
+        {
+            "src": {
+                "moduleId": 4,
+                "terminal": "relationWire_1",
+                "uid": "955368911935"
+            },
+            "tgt": {
+                "moduleId": 1,
+                "terminal": "SOURCES",
+                "uid": "406868758126"
+            }
         }
     ],
     "storagePath": "\/usr\/www\/users\/typoppc\/subdomains\/slavlee\/dev\/dev.t311.slavlee.de\/typo3conf\/ext\/",
     "log": {
-        "last_modified": "2021-12-23 01:15",
+        "last_modified": "2021-12-29 12:32",
         "extension_builder_version": "11.0.1",
         "be_user": " (1)"
     }

@@ -130,7 +130,7 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 			}
 			
 			// get or create banner statistic object
-			$bannerStatistic = $this->findOrCreateBannerStatistic($banner);
+			$bannerStatistic = $this->findOrCreateBannerStatistic($banner, $campaign);
 			
 			if ($bannerStatistic)
 			{
@@ -211,7 +211,7 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 			}
 			
 			// get or create the banner statistic object
-			$bannerStatistic = $this->findOrCreateBannerStatistic($banner);
+			$bannerStatistic = $this->findOrCreateBannerStatistic($banner, $campaign);
 			
 			if ($bannerStatistic)
 			{
@@ -243,17 +243,24 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	/**
 	 * get or create banner statistic object
 	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
 	 * @return \Slavlee\Advertisement\Domain\Model\BannerStatistic
 	 */
-	protected function findOrCreateBannerStatistic(\Slavlee\Advertisement\Domain\Model\Banner $banner) : \Slavlee\Advertisement\Domain\Model\BannerStatistic
+	protected function findOrCreateBannerStatistic(\Slavlee\Advertisement\Domain\Model\Banner $banner, \Slavlee\Advertisement\Domain\Model\Campaign $campaign) : \Slavlee\Advertisement\Domain\Model\BannerStatistic
 	{
 		$today = new \DateTime();
 		$today->setTime(0,0,0,0);
-		$bannerStatistic = $this->bannerStatisticRepository->findByBannerAndDate($banner, $today)->current();
+		$bannerStatistic = $this->bannerStatisticRepository->findByBannerCampaignAndDate($banner, $campaign, $today)->current();
 		
 		if (!$bannerStatistic)
 		{
-			$bannerStatistic = BannerStatistic::makeInstance(['pid' => (int)$this->extConf['general']['storagePid'], 'banner' => $banner, 'crdate' => $today], BannerStatistic::class);
+			$bannerStatistic = BannerStatistic::makeInstance(['pid' => (int)$this->extConf['general']['storagePid'], 'banner' => $banner, 'campaign' => $campaign, 'crdate' => $today], BannerStatistic::class);
+		}
+		
+		//Make sure campaign is set
+		if (!$bannerStatistic->getCampaign())
+		{
+			$bannerStatistic->setCampaign($campaign);
 		}
 		
 		return $bannerStatistic;
@@ -290,12 +297,14 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 		$totalStatistic->priority = 0;
 		$totalStatistic->delivered = 0;
 		$totalStatistic->clicked = 0;
+		$totalStatistic->beenVisible = 0;
 		
 		foreach($banners as $banner)
 		{
 			$campaignStatistic = $this->findOrCreateCampaignStatisticForBanner($campaign, $banner, true);
 			$totalStatistic->delivered += $campaignStatistic->getDelivered();
 			$totalStatistic->clicked += $campaignStatistic->getClicked();
+			$totalStatistic->beenVisible += $campaignStatistic->getBeenVisible();
 			
 			// we save the highest priority
 			if ($totalStatistic->priority < $campaignStatistic->getPriority())

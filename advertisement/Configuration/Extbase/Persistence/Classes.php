@@ -13,5 +13,12 @@ return [
 				'fieldName' => 'header'
    			]
     	]
-    ]
+    ],
+	\Slavlee\Advertisement\Domain\Model\Campaign::class => [
+		'properties' => [
+			'disabled' => [
+				'fieldName' => 'hidden'
+			],
+		]
+	]
 ];

@@ -36,6 +36,18 @@
 			<trans-unit id="tx_advertisement_domain_model_campaign.banners" resname="tx_advertisement_domain_model_campaign.banners">
 				<source>Banners</source>
 			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaign.state.all" resname="tx_advertisement_domain_model_campaign.state.all">
+				<source>All</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaign.state.active" resname="tx_advertisement_domain_model_campaign.state.active">
+				<source>Active</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaign.state.expired" resname="tx_advertisement_domain_model_campaign.state.expired">
+				<source>Expired</source>
+			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaign.state.disabled" resname="tx_advertisement_domain_model_campaign.state.disabled">
+				<source>Disabled</source>
+			</trans-unit>
 			<trans-unit id="tx_advertisement_domain_model_customer" resname="tx_advertisement_domain_model_customer">
 				<source>Customer</source>
 			</trans-unit>
@@ -157,6 +169,12 @@
 			<trans-unit id="module.dashboard.section.overview.banners.title" resname="module.dashboard.section.overview.banners.title">
 				<source>Banners</source>
 			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.campaign.title" resname="module.dashboard.section.overview.banners.text">
+				<source>Core data</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.banners.title" resname="module.dashboard.section.overview.banners.title">
+				<source>Banners</source>
+			</trans-unit>
 			<trans-unit id="module.dashboard.section.campaigns.alert.empty" resname="module.dashboard.section.campaigns.alert.empty">
 				<source>Sorry, but you don't have any campaigns yet. Please create one first.</source>
 			</trans-unit>
@@ -166,6 +184,12 @@
 			<trans-unit id="module.dashboard.section.overview.banners.text" resname="module.dashboard.section.overview.banners.text">
 				<source>%s/%s Banners (Active/Total)</source>
 			</trans-unit>
+			<trans-unit id="module.dashboard.section.campaign.banners.title" resname="module.dashboard.section.campaign.banners.title">
+				<source>Advertising materials</source>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.campaign.banners.text" resname="module.dashboard.section.campaign.banners.text">
+				<source>%s Banners</source>
+			</trans-unit>
 			<trans-unit id="module.dashboard.section.overview.impressions.title" resname="module.dashboard.section.overview.impressions.title">
 				<source>Impressions</source>
 			</trans-unit>
@@ -173,8 +197,19 @@
 				<source>%s/%s Interactions (Impressions/Clicks)</source>
 			</trans-unit>
 			
-			<trans-unit id="module.dashboard.section.overview.title" resname="module.dashboard.section.overview.title">
+			<trans-unit id="module.dashboard.section.campaign.title" resname="module.dashboard.section.campaign.title">
 				<source>Overview Campaign: %s</source>
+			</trans-unit>
+			
+			<trans-unit id="module.tablefilter.title" resname="module.tablefilter.title">
+				<source>Filter</source>
+			</trans-unit>
+			<trans-unit id="module.tablefilter.submit" resname="module.tablefilter.submit">
+				<source>Filter</source>
+			</trans-unit>
+			
+			<trans-unit id="oclock" resname="oclock">
+				<source>o'clock</source>
 			</trans-unit>
 		</body>
 	</file>
