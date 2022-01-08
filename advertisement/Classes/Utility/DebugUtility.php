@@ -28,6 +28,14 @@ class DebugUtility
 			$sql = preg_replace('/:' . $placeholder . '/', $value, $sql, 1);
 		}
 		
+		if ($query->getLimit() && $query->getOffset())
+		{
+			$sql .= ' LIMIT ' . $query->getOffset() . ',' . $query->getLimit();
+		}else if($query->getLimit())
+		{
+			$sql .= ' LIMIT ' . $query->getLimit();
+		}
+		
 		var_dump($sql);
 	}
 }

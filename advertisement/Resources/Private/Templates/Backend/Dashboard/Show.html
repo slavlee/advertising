@@ -66,11 +66,33 @@
 									<td class="ad-campaign-delivered">{campaign.totalStatistic.delivered}</td>
 									<td class="ad-campaign-clicked">{campaign.totalStatistic.clicked}</td>
 								</tr>
-							</f:for>
+							</f:for>							
 						</f:else>
 					</f:if>
 				</tbody>
 			</table>
+			<f:if condition="{paginateHelper} && {paginateHelper.enable}">
+				<f:alias map="{pagination: paginateHelper.paginationBar}">
+					<f:if condition="{pagination -> f:count()} > 0">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<f:for each="{pagination}" as="step">
+									<li class="page-item{f:if(condition: step.current, then: ' active')}{f:if(condition: step.disabled, then: ' disabled')}">
+										<f:if condition="{step.disabled}">
+											<f:then>
+												<span class="page-link" href="#">{step.label}</span>
+											</f:then>
+											<f:else>
+												<f:link.action action="show" arguments="{pagination: {entriesPerStep: paginateHelper.entriesPerStep, currentStep: step.step}}" class="page-link">{step.label}</f:link.action>
+											</f:else>
+										</f:if>													
+									</li>
+								</f:for>
+							</ul>
+						</nav>
+					</f:if>
+				</f:alias>
+			</f:if>
 		</section>
 	</f:section>
 </html>

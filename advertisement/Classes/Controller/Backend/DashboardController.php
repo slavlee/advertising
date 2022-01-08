@@ -7,6 +7,8 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use Slavlee\Advertisement\Controller\BaseActionController;
 use Psr\Http\Message\ResponseInterface;
 use Slavlee\Advertisement\Domain\Model\Dashboard\Demand\CampaignDemand;
+use Slavlee\Advertisement\Utility\GeneralUtility;
+use Slavlee\Advertisement\Utility\DebugUtility;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -85,24 +87,41 @@ class DashboardController extends BaseActionController
 	/**
 	 * Dashboard of Backend Module: adverisement
 	 * @param \Slavlee\Advertisement\Domain\Model\Dashboard\Demand\CampaignDemand $demand
+	 * @param array $pagination
 	 * @return ResponseInterface 
 	 */
-   	public function showAction(\Slavlee\Advertisement\Domain\Model\Dashboard\Demand\CampaignDemand $demand = null): ResponseInterface
-   	{   		 
+   	public function showAction(\Slavlee\Advertisement\Domain\Model\Dashboard\Demand\CampaignDemand $demand = null, $pagination = []): ResponseInterface
+   	{   	
+   		// Set start pagination
+   		if (empty($pagination))
+   		{
+   			$pagination = ['entriesPerStep' => 10, 'currentStep' => 1];
+   		}
+   		
    		// if we have to demand object, then create one
    		if (!$demand)
    		{
-   			$demand = $this->objectManager->get(CampaignDemand::class);   			
+   			$demand = $this->objectManager->get(CampaignDemand::class);
    		}
    		
    		// ignore always these enabled fields
    		$demand->setEnabledFieldsToBeIgnored(['disabled', 'endtime', 'starttime']);
    		
    		// Statistic object for dashboard overview
-   		$campaigns = $this->campaignRepository->findDemanded($demand)->toArray();
+   		$campaigns = $this->campaignRepository->findDemanded($demand);   		
    		$statistic = $this->objectManager->get(\Slavlee\Advertisement\Statistic\CampaignStatistic::class, $campaigns);
    		
+   		// Do pagination
+   		if (!empty($pagination))
+   		{
+   			$paginateHelper = GeneralUtility::makeInstance(\Slavlee\Advertisement\Helper\PaginateHelper::class, $pagination);
+   			$query = $paginateHelper->paginate($campaigns->getQuery(), $pagination['currentStep']);
+   			
+   			$campaigns = $query->execute();
+   		}
+   		
    		//Prepare View   		
+   		$this->view->assign('paginateHelper', $paginateHelper);
    		$this->view->assign('statistic', $statistic);
    		$this->view->assign('campaigns', $campaigns);
    		$this->view->assign('demand', $demand);

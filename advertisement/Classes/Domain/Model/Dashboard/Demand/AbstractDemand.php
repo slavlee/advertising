@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertisement\Domain\Model\Dashboard\Demand;
 
+use Slavlee\Advertisement\Utility\GeneralUtility;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -27,7 +28,7 @@ abstract class AbstractDemand
 	
 	/**
 	 * $query
-	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\Query
+	 * @var object
 	 */
 	protected $query = null;
 	
@@ -67,7 +68,7 @@ abstract class AbstractDemand
 	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
 	 */
 	public function getQuery(): \TYPO3\CMS\Extbase\Persistence\Generic\Query
-	{
+	{		
 		return $this->query;
 	}
 	
@@ -79,5 +80,14 @@ abstract class AbstractDemand
 	public function setQuery(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query): void
 	{
 		$this->query = $query;
+	}
+	
+	/**
+	 * Returns the paginateHelper, if we have a pagination going on
+	 * @return \Slavlee\Advertisement\Helper\PaginateHelper
+	 */
+	public function getPaginateHelper()
+	{
+		return $this->paginateHelper;
 	}
 }

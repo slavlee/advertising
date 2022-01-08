@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertisement\Statistic;
 
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
  *
@@ -29,10 +31,10 @@ class CampaignStatistic
 	
 	/**
 	 * Create a CampaignStatistic
-	 * @param array $campaigns
+	 * @param QueryResult $campaigns
 	 * @return void
 	 */
-	public function __construct(array $campaigns)
+	public function __construct(QueryResult $campaigns)
 	{
 		$this->campaigns = $campaigns;
 	}
@@ -43,7 +45,7 @@ class CampaignStatistic
 	 */
 	public function getTotalCampaignsCount(): int
 	{
-		return count($this->campaigns);
+		return $this->campaigns->count();
 	}
 	
 	/**

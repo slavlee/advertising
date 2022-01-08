@@ -208,6 +208,13 @@
 				<source>Filter</source>
 			</trans-unit>
 			
+			<trans-unit id="pagination.previous" resname="pagination.previous">
+				<source>Previous</source>
+			</trans-unit>
+			<trans-unit id="pagination.next" resname="pagination.next">
+				<source>Next</source>
+			</trans-unit>
+			
 			<trans-unit id="oclock" resname="oclock">
 				<source>o'clock</source>
 			</trans-unit>

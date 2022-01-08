@@ -23,6 +23,6 @@ class GeneralUtility
 	public static function makeInstance($class, ...$arguments)
 	{
 		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
-		return $objectManager->get($class);
+		return $objectManager->get($class, ...$arguments);
 	}
 }
