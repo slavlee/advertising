@@ -132,6 +132,9 @@
 			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.clicked" resname="tx_advertisement_domain_model_campaignstatistic.clicked">
 				<target>Geklickt</target>
 			</trans-unit>
+			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.ctr" resname="tx_advertisement_domain_model_campaignstatistic.clicked">
+				<target>Klickrate</target>
+			</trans-unit>
 			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.banner_persisted" resname="tx_advertisement_domain_model_campaignstatistic.banner_persisted">
 				<target>Banner gespeichert</target>
 			</trans-unit>
@@ -165,6 +168,9 @@
 			</trans-unit>
 			<trans-unit id="module.dashboard.section.campaigns.statistic.info" resname="module.dashboard.section.campaigns.statistic.info">
 				<target>Die statistischen Daten werden circa alle 5 Minuten neu berechnet.</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.campaign.toolbar.recalculate" resname="module.dashboard.campaign.toolbar.recalculate">
+				<target>Neu berechnen</target>
 			</trans-unit>
 			
 			<trans-unit id="module.dashboard.section.overview.banners.text" resname="module.dashboard.section.overview.banners.text">

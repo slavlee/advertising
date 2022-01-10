@@ -148,6 +148,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tt_content',
+            	'foreign_table_where' => 'CType = "advertisement_banner"',
                 'default' => 0,
                 'minitems' => 0,
                 'maxitems' => 1,

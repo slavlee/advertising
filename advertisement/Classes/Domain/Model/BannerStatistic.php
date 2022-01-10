@@ -218,4 +218,20 @@ class BannerStatistic extends BaseEntity
     {
     	return GeneralStatistic::ctr($this->getClicked(), $this->getDelivered());
     }
+    
+    /**
+     * Return itself as stdClass
+     * @return \stdClass
+     */
+    public function toStdClass()
+    {
+    	$std = new \stdClass();
+    	$std->beenVisible = $this->getBeenVisible();
+    	$std->clicked = $this->getClicked();
+    	$std->delivered = $this->getDelivered();
+    	$std->ctr = $this->getCtr();
+    	$std->crdate = $this->getCrdate();
+    	
+    	return $std;
+    }
 }

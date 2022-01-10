@@ -81,6 +81,15 @@ class DashboardController extends BaseActionController
 		
 		$this->settings['dateFormat'] = $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'] . ' ' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['hhmm'];
 	}
+	
+	/**
+	 * Init showAction
+	 * @return void
+	 */
+	public function initializeRecalculateCampaignStatisticAction(): void
+	{
+		$this->campaignRepository->setStorage((int)$this->extConf['general']['storagePid']);
+	}
 	/********************************************************
 	 * INIT - START
 	 *******************************************************/
@@ -126,6 +135,7 @@ class DashboardController extends BaseActionController
    		$this->view->assign('campaigns', $campaigns);
    		$this->view->assign('demand', $demand);
    		$pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+   		$pageRenderer->addCssFile('EXT:advertisement/Resources/Public/Contrib/FontAwesome/css/all.min.css');
    		$pageRenderer->addCssFile('EXT:advertisement/Resources/Public/Css/Backend/dashboard.css');
    		
    		// Render Backend View
@@ -154,5 +164,34 @@ class DashboardController extends BaseActionController
    		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
    		$moduleTemplate->setContent($this->view->render());
    		return $this->htmlResponse($moduleTemplate->renderContent());
+   	}
+   	
+   	/**
+   	 * Recalculate all campaign statistics
+   	 * @param \Slavlee\Advertisement\Domain\Model\Dashboard\Demand\CampaignDemand $demand
+   	 * @param array $pagination
+   	 * @return void
+   	 */
+   	public function recalculateCampaignStatisticAction(): void
+   	{
+   		$demand = $this->objectManager->get(CampaignDemand::class);
+   		 
+   		// ignore always these enabled fields
+   		$demand->setEnabledFieldsToBeIgnored(['disabled', 'endtime', 'starttime']);
+   		
+   		// find campaigns
+   		$campaigns = $this->campaignRepository->findDemanded($demand);
+   		
+   		// Recalculate
+   		foreach($campaigns as $campaign)
+   		{
+   			/**
+   			 * @var \Slavlee\Advertisement\Service\Campaign\StatisticService $service
+   			 */
+   			$service = $this->objectManager->get(\Slavlee\Advertisement\Service\Campaign\StatisticService::class);
+   			$service->execute('recalculateCampaignStatisticsWithTrackerData', $campaign);
+   		}
+   		
+   		$this->redirect('show');
    	}
 }

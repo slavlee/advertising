@@ -133,7 +133,7 @@
 				<source>Clicked</source>
 			</trans-unit>
 			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.ctr" resname="tx_advertisement_domain_model_campaignstatistic.clicked">
-				<source>Click Through Rate</source>
+				<source>Click-Through-Rate</source>
 			</trans-unit>
 			<trans-unit id="tx_advertisement_domain_model_campaignstatistic.banner_persisted" resname="tx_advertisement_domain_model_campaignstatistic.banner_persisted">
 				<source>Banner Persisted</source>
@@ -169,6 +169,10 @@
 			<trans-unit id="module.dashboard.section.campaigns.statistic.info" resname="module.dashboard.section.campaigns.statistic.info">
 				<source>The statistic metrics are recalculated approximately every 5 minutes.</source>
 			</trans-unit>
+			<trans-unit id="module.dashboard.campaign.toolbar.recalculate" resname="module.dashboard.campaign.toolbar.recalculate">
+				<source>Recalculate</source>
+			</trans-unit>
+			
 			<trans-unit id="module.dashboard.section.overview.banners.text" resname="module.dashboard.section.overview.banners.text">
 				<source>%s/%s Banners (Active/Total)</source>
 			</trans-unit>

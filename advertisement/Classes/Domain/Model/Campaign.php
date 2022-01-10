@@ -290,12 +290,14 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getTotalStatistic()
     {
+    	return $this->getTotalStatisticFresh();
+    	
     	// If not set, then fetch statistic
     	if ($this->totalStatistic == null)
     	{
     		// Try to load from cache
     		$session = $GLOBALS['BE_USER']->getSession();
-    		$cacheIdentifier = CacheUtility::formatIdentifier(__CLASS__ . '.' . __FUNCTION__);
+    		$cacheIdentifier = CacheUtility::formatIdentifier(__CLASS__ . '_' . __FUNCTION__ . '_' . $this->getUid());
     		$unserializedCacheValue = $session->get($cacheIdentifier);
     		
     		// Check if there is a valid cache value
@@ -336,7 +338,7 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     			{
     				// If nothing in cache, then load from db
     				$this->totalStatistic = $this->getTotalStatisticFresh();
-    				 
+    				
     				// and save to cache
     				$session->set($cacheIdentifier, serialize($this->totalStatistic));
     			}	

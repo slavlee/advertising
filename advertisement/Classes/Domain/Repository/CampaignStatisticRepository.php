@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Slavlee\Advertisement\Domain\Repository;
 
 
+use Slavlee\Advertisement\Utility\DebugUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
  *
@@ -23,16 +27,19 @@ class CampaignStatisticRepository extends BaseRepository
 	 * Find campaign statistic for campaign and banner
 	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
 	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	 * @return \Doctrine\DBAL\ForwardCompatibility\Result
 	 */
-	public function findByCampaignAndBanner(\Slavlee\Advertisement\Domain\Model\Campaign $campaign, \Slavlee\Advertisement\Domain\Model\Banner $banner): \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	public function findByCampaignAndBanner(\Slavlee\Advertisement\Domain\Model\Campaign $campaign, \Slavlee\Advertisement\Domain\Model\Banner $banner): \Doctrine\DBAL\ForwardCompatibility\Result
 	{
-		$query = $this->createQuery();
-		$query->matching(
-			$query->equals('campaign', $campaign),
-			$query->equals('banner', $banner)
-		);
-		
-		return $query->execute();
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_advertisement_domain_model_campaignstatistic')->createQueryBuilder();
+		$queryBuilder
+		->select('*')
+		->from('tx_advertisement_domain_model_campaignstatistic')
+		->where(
+			$queryBuilder->expr()->eq('campaign', $queryBuilder->createNamedParameter($campaign->getUid(), \PDO::PARAM_INT)),
+			$queryBuilder->expr()->eq('banner', $queryBuilder->createNamedParameter($banner->getUid(), \PDO::PARAM_INT))
+ 		);
+					 
+		return $queryBuilder->execute();
 	}
 }

@@ -33,7 +33,7 @@ defined('TYPO3') || die();
    		'Dashboard',
    		'bottom',
   		[
-			\Slavlee\Advertisement\Controller\Backend\DashboardController::class => 'show,campaign',
+			\Slavlee\Advertisement\Controller\Backend\DashboardController::class => 'show,campaign,recalculateCampaignStatistic',
    		],
   		[
 			'access' => 'admin',

@@ -302,4 +302,19 @@ class CampaignStatistic extends BaseEntity
     {
     	return GeneralStatistic::ctr($this->getClicked(), $this->getDelivered());
     }
+    
+    /**
+     * Only return the metrics data
+     * @return array
+     */
+    public function getMetrics()
+    {
+    	return [
+    		'uid' => $this->getUid(),
+    		'beenVisible' => $this->getBeenVisible(),
+    		'delivered' => $this->getDelivered(),
+    		'clicked' => $this->getClicked(),
+    		'ctr' => $this->getCtr()
+    	];
+    }
 }

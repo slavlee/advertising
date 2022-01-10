@@ -1,3 +1,10 @@
+Version 0.13.17
+- [NEW] Translate Click-Through-Rate into german
+- [CHANGE] Rename Click Through Rate to Click-Through-Rate
+- [BUGFIX] CampaignStatisticRepository->findByCampaignAndBanner Banner wird bei Query nicht berücksichtigt
+- [BUGFIX] Campaign: getTotalStatistics: Cache identifier muss Campaign Uid mit einschließen
+- [NEW] Recalculate Button für Campaign Statistic implementiert
+
 Version 0.12.16
 - [CHANGE] Campaign: There are no Table Filter for Banners yet
 - [NEW] Deutsche Übersetzung erstellt

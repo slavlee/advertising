@@ -63,7 +63,7 @@ class CampaignRepository extends BaseRepository
 		$query->matching(
 			$query->contains('banners', $banner)
 		);
-		
+// 		DebugUtility::debugQuery($query);
 		return $query->execute();
 	}
 	
@@ -93,14 +93,7 @@ class CampaignRepository extends BaseRepository
 		}
 		
 		// ORDER BY
-		$query->setOrderings(['starttime' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING, 'name' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING]);
-		
-		// LIMT
-		if ($demand->getPaginateHelper() && $demand->getPaginateHelper()->getEnable())
-		{
-			$query->setLimit($demand->getPaginateHelper()->getEntriesPerStep());
-			$query->setOffset($demand->getPaginateHelper()->calculateMySQLOffset());
-		}			
+		$query->setOrderings(['starttime' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING, 'name' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING]);		
 		
 		// we execute query
 // 		debug($constraints);

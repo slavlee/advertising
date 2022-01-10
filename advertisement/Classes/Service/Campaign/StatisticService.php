@@ -182,7 +182,7 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	{
 		// get all active campaigns for given banner
 		$campaigns = $this->findCampaignsForBanner($banner);
-			
+		
 		// Break if we dont have any campaigns
 		if (count($campaigns) <= 0)
 		{
@@ -232,6 +232,71 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	}
 	
 	/**
+	 * Recalculate campaign statistics based on tracker data for banners
+	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
+	 * @return \stdClass
+	 */
+	protected function recalculateCampaignStatisticsWithTrackerData(\Slavlee\Advertisement\Domain\Model\Campaign $campaign)
+	{
+		$banners = $campaign->getBanners();
+		$statistics = [];
+		$totalStatistic = new \stdClass();
+		$totalStatistic->delivered = 0;
+		$totalStatistic->clicked = 0;
+		$totalStatistic->beenVisible = 0;
+		$totalStatistic->ctr = 0;
+		
+		foreach($banners as $banner)
+		{
+			$statistic = $this->findOrCreateBannerStatistic($banner, $campaign);
+			$identifier = $banner->getUid() . '_' . $campaign->getUid();
+			
+			// Check if banner/campaign comb was there
+			if (!array_key_exists($identifier, $statistics))
+			{				
+				$statistics[$identifier] = new \stdClass();
+				$statistics[$identifier]->banner = $banner;
+				$statistics[$identifier]->delivered = 0;
+				$statistics[$identifier]->clicked = 0;
+				$statistics[$identifier]->beenVisible = 0;
+			}
+			
+			// Save all banner statistics to a campaign in one object
+			if ($statistics[$identifier])
+			{
+				$statistics[$identifier]->delivered += $statistic->getDelivered();
+				$statistics[$identifier]->clicked += $statistic->getClicked();
+				$statistics[$identifier]->beenVisible += $statistic->getBeenVisible();
+			}
+		}				
+		
+		// Save to campaign statistics for banner
+		foreach($statistics as $statistic)
+		{
+			$campaignStatistic = $this->findOrCreateCampaignStatisticForBanner($campaign, $statistic->banner);
+			
+			if ($campaignStatistic)
+			{
+				$campaignStatistic->setBeenVisible($statistic->beenVisible);
+				$campaignStatistic->setDelivered($statistic->delivered);
+				$campaignStatistic->setClicked($statistic->clicked);
+				
+				if ($campaignStatistic->_isNew())
+				{
+					$this->campaignStatisticRepository->add($campaignStatistic);
+				}else 
+				{
+					$this->campaignStatisticRepository->update($campaignStatistic);
+				}				
+			}
+		}
+		
+		$this->lastReturnValue = $totalStatistic;
+		
+		return $totalStatistic;
+	}
+	
+	/**
 	 * get all active campaigns for given content element
 	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
 	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
@@ -272,15 +337,18 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 	 * @param \Slavlee\Advertisement\Domain\Model\Campaign $campaign
 	 * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
 	 * @param boolean $suppressCreate
-	 * @return \Slavlee\Advertisement\Domain\Model\CampaignStatistic
+	 * @return \Slavlee\Advertisement\Domain\Model\CampaignStatistic|bool
 	 */
-	protected function findOrCreateCampaignStatisticForBanner(\Slavlee\Advertisement\Domain\Model\Campaign $campaign, \Slavlee\Advertisement\Domain\Model\Banner $banner, $suppressCreate = FALSE) : \Slavlee\Advertisement\Domain\Model\CampaignStatistic
+	protected function findOrCreateCampaignStatisticForBanner(\Slavlee\Advertisement\Domain\Model\Campaign $campaign, \Slavlee\Advertisement\Domain\Model\Banner $banner, $suppressCreate = FALSE)
 	{
-		$campaignStatistic = $this->campaignStatisticRepository->findByCampaignAndBanner($campaign, $banner)->current();
-	
+		$campaignStatistic = $this->campaignStatisticRepository->findByCampaignAndBanner($campaign, $banner)->fetch();
+		
 		if (!$campaignStatistic && !$suppressCreate)
 		{
 			$campaignStatistic = CampaignStatistic::makeInstance(['pid' => (int)$this->extConf['general']['storagePid'], 'banner' => $banner, 'campaign' => $campaign], CampaignStatistic::class);
+		}elseif($campaignStatistic)
+		{
+			$campaignStatistic = $this->campaignStatisticRepository->findByUid($campaignStatistic['uid']);			
 		}
 	
 		return $campaignStatistic;
@@ -303,14 +371,18 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 		foreach($banners as $banner)
 		{
 			$campaignStatistic = $this->findOrCreateCampaignStatisticForBanner($campaign, $banner, true);
-			$totalStatistic->delivered += $campaignStatistic->getDelivered();
-			$totalStatistic->clicked += $campaignStatistic->getClicked();
-			$totalStatistic->beenVisible += $campaignStatistic->getBeenVisible();
 			
-			// we save the highest priority
-			if ($totalStatistic->priority < $campaignStatistic->getPriority())
+			if ($campaignStatistic)
 			{
-				$totalStatistic->priority = $campaignStatistic->getPriority();
+				$totalStatistic->delivered += $campaignStatistic->getDelivered();
+				$totalStatistic->clicked += $campaignStatistic->getClicked();
+				$totalStatistic->beenVisible += $campaignStatistic->getBeenVisible();
+				
+				// we save the highest priority
+				if ($totalStatistic->priority < $campaignStatistic->getPriority())
+				{
+					$totalStatistic->priority = $campaignStatistic->getPriority();
+				}
 			}
 		}
 		
