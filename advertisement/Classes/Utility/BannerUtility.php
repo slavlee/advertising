@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Slavlee\Advertisement\Utility;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Slavlee\Advertisement\Statistic\GeneralStatistic;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -26,7 +27,7 @@ class BannerUtility
 		$total = new \stdClass();
 		$total->delivered = 0;
 		$total->clicked = 0;
-		$total->beenVisible = 0;
+		$total->beenVisible = 0;		
 		
 		foreach($bannerStatistics as $bannerStatistic)
 		{
@@ -37,6 +38,8 @@ class BannerUtility
 			$total->clicked += $bannerStatistic->getClicked();
 			$total->beenVisible += $bannerStatistic->getBeenVisible();
 		}
+		
+		$total->ctr = GeneralStatistic::ctr($total->clicked, $total->delivered) . '%';
 		
 		return $total;
 	}

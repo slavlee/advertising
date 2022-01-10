@@ -1,3 +1,9 @@
+Version 0.12.16
+- [CHANGE] Campaign: There are no Table Filter for Banners yet
+- [NEW] Deutsche Übersetzung erstellt
+- [CHANGE] Campaign: Ausgabe Uhr, nur wenn es auch eine Start- und Endzeit gibt.
+- [NEW] Campaign and Banner: CTR Calculation
+
 Version 0.12.15
 - [NEW] Dashboard: Overview Campaign: Implement Pagination
 

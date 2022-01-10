@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Slavlee\Advertisement\Domain\Model;
 
 
+use Slavlee\Advertisement\Statistic\GeneralStatistic;
+
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
  *
@@ -206,5 +208,14 @@ class BannerStatistic extends BaseEntity
     public function setCampaign(\Slavlee\Advertisement\Domain\Model\Campaign $campaign)
     {
         $this->campaign = $campaign;
+    }
+    
+    /**
+     * Return the Click Through Value of the whole campaign
+     * @return float
+     */
+    public function getCtr()
+    {
+    	return GeneralStatistic::ctr($this->getClicked(), $this->getDelivered());
     }
 }

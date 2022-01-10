@@ -8,6 +8,7 @@ namespace Slavlee\Advertisement\Domain\Model;
 use Slavlee\Advertisement\Utility\GeneralUtility;
 use Slavlee\Advertisement\Utility\CacheUtility;
 use Slavlee\Advertisement\Utility\CampaignUtility;
+use Slavlee\Advertisement\Utility\DateUtility;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -315,13 +316,19 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     				$this->totalStatistic = $cacheValue;
     				 
     				// check if data is older than 5mins
-    				$now = new \DateTime();
-
-    				if (!$this->totalStatistic->crdate || ($now->getTimestamp() - $this->totalStatistic->crdate->getTimestamp()) >= 300000)
+    				$now = new \DateTime();    				    			
+    				$diffInMinutes = 0;
+    				
+    				if ($this->totalStatistic && $this->totalStatistic->crdate)
+    				{
+	    				$diffInMinutes = DateUtility::diffTotalMinutes($now, $this->totalStatistic->crdate);	    				
+    				}
+    				
+    				if (!$this->totalStatistic || !$this->totalStatistic->crdate || $diffInMinutes >= 5)
     				{
     					// then refetch data
     					$this->totalStatistic = $this->getTotalStatisticFresh();
-    						
+    					
     					// and save to cache
     					$session->set($cacheIdentifier, serialize($this->totalStatistic));
     				}
@@ -389,16 +396,15 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected function getTotalStatisticFresh()
     {
-    	$totalStatistic = null;
-    	
     	/**
     	 * @var \Slavlee\Advertisement\Service\Campaign\StatisticService $service
     	 */
     	$service = GeneralUtility::makeInstance(\Slavlee\Advertisement\Service\Campaign\StatisticService::class);
-    	 
-    	if ($service->execute('findTotalCampaignStatistics', $this))
+    	$service->execute('findTotalCampaignStatistics', $this);
+    	$totalStatistic = $service->getLastReturnValue();
+    	
+    	if ($totalStatistic)
     	{
-    		$totalStatistic = $service->getLastReturnValue();
     		$totalStatistic->crdate = new \DateTime();
     	}
     	

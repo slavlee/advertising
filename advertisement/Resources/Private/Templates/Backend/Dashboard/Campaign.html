@@ -24,8 +24,8 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>{campaign.starttime -> f:format.date(format: settings.dateFormat)} <f:translate key="oclock" extensionName="advertisement" /></td>
-									<td>{campaign.endtime -> f:format.date(format: settings.dateFormat)} <f:translate key="oclock" extensionName="advertisement" /></td>
+									<td>{campaign.starttime -> f:format.date(format: settings.dateFormat)}<f:if condition="{campaign.starttime}"><f:then> <f:translate key="oclock" extensionName="advertisement" /></f:then><f:else><f:translate key="module.dashboard.section.overview.campaign.no_starttime" extensionName="advertisement" /></f:else></f:if></td>
+									<td>{campaign.endtime -> f:format.date(format: settings.dateFormat)}<f:if condition="{campaign.endtime}"><f:then> <f:translate key="oclock" extensionName="advertisement" /></f:then><f:else><f:translate key="module.dashboard.section.overview.campaign.no_endtime" extensionName="advertisement" /></f:else></f:if></td>
 								</tr>
 							</tbody>
 						</table>						
@@ -39,9 +39,6 @@
 				</div>
 			</div>
 		</section>
-		<section id="adSectionFilter">
-			<f:render partial="Backend/Dashboard/TableFilter" arguments="{_all}" />
-		</section>
 		<section id="adSectionCampaigns">
 			<h2><f:translate key="module.dashboard.section.overview.banners.title" /></h2>
 			<table class="table table-striped">
@@ -51,6 +48,7 @@
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_banner.name" /></th>
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.delivered" /></th>
 						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.clicked" /></th>
+						<th scope="col"><f:translate key="tx_advertisement_domain_model_campaignstatistic.ctr" /></th>
 					</tr>
 				</thead>
 				<tbody>				
@@ -70,12 +68,18 @@
 									<ad:bannerStatisticForCampaign campaign="{campaign}" banner="{banner}" as="statistic">
 										<td class="ad-campaign-delivered">{statistic.delivered}</td>
 										<td class="ad-campaign-clicked">{statistic.clicked}</td>
+										<td class="ad-campaign-ctr">{statistic.ctr}</td>
 									</ad:bannerStatisticForCampaign>
 								</tr>
 							</f:for>
 						</f:else>
 					</f:if>
-				</tbody>
+				</tbody>				
+				<tfoot>
+					<tr>
+						<td colspan="7"><p class="m-0 text-info"><f:translate key="module.dashboard.section.campaigns.statistic.info" extensionName="advertisement" /></p></td>
+					</tr>
+				</tfoot>
 			</table>
 		</section>
 	</f:section>

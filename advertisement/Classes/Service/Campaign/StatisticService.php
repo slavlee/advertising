@@ -5,6 +5,7 @@ namespace Slavlee\Advertisement\Service\Campaign;
 
 use Slavlee\Advertisement\Domain\Model\CampaignStatistic;
 use Slavlee\Advertisement\Domain\Model\BannerStatistic;
+use Slavlee\Advertisement\Statistic\GeneralStatistic;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -312,7 +313,11 @@ class StatisticService extends \Slavlee\Advertisement\Service\BaseService
 				$totalStatistic->priority = $campaignStatistic->getPriority();
 			}
 		}
+		
+		$totalStatistic->ctr = GeneralStatistic::ctr($totalStatistic->clicked, $totalStatistic->delivered) . '%';
 
+		$this->lastReturnValue = $totalStatistic;
+		
 		return $totalStatistic;
 	}
 }

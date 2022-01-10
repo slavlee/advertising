@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Slavlee\Advertisement\Domain\Model;
 
 
+use Slavlee\Advertisement\Statistic\GeneralStatistic;
+
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
  *
@@ -290,5 +292,14 @@ class CampaignStatistic extends BaseEntity
     public function setCrdate(\DateTime $crdate)
     {
         $this->crdate = $crdate;
+    }
+    
+    /**
+     * Return the Click Through Value of the whole campaign
+     * @return float
+     */
+    public function getCtr()
+    {
+    	return GeneralStatistic::ctr($this->getClicked(), $this->getDelivered());
     }
 }
