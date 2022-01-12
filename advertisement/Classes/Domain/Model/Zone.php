@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Slavlee\Advertisement\Domain\Model;
 
 use Slavlee\Advertisement\Utility\ZoneUtility;
+use Slavlee\Advertisement\Utility\GeneralUtility;
 
 /**
  * This file is part of the "Advertisement" Extension for TYPO3 CMS.
@@ -179,7 +180,10 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getNextBanner()
     {
-        return ZoneUtility::getNextBanner($this->banners);
+    	$service = GeneralUtility::makeInstance(\Slavlee\Advertisement\Service\Banner\BannerDeliveryService::class);
+    	$banners = $service->getBannersFromActiveCampaignsForZone($this); // we want only banners from active campaigns
+        
+    	return $banners ? ZoneUtility::getNextBanner($banners) : null;
     }
 
     /**

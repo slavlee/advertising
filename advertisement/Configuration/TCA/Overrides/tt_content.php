@@ -89,7 +89,7 @@ $GLOBALS['TCA']['tt_content']['columns'] = array_merge($GLOBALS['TCA']['tt_conte
 
 /* Set Fields for Banner - START */
 $GLOBALS['TCA']['tt_content']['types']['advertisement_banner'] = [		
-	'showitem' => 'CType, header, image, header_link, customer, zones, campaigns',
+	'showitem' => 'CType, header, image, header_link, customer, zones, campaigns, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, --palette--;;hidden',
 	'columnsOverrides' => [
 		'image' => [
 			'config' => [

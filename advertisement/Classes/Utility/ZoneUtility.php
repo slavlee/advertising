@@ -19,15 +19,21 @@ class ZoneUtility
 	/**
 	 * Return the banner to display on the next request
 	 * based on their priorities
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $banners
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage|array $banners
 	 * @return \Slavlee\Advertisement\Domain\Model\Banner
 	 */
-	public static function getNextBanner(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $banners)
+	public static function getNextBanner($banners)
 	{
+		// Convert ObjectStorage
+		if (is_object($banners) && get_class($banners) == \TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
+		{
+			$banners = $banners->toArray();
+		}
+		
 		// At the moment treat all banners equally
-		$count = $banners->count();
+		$count = count($banners);
 		$index = rand(0, $count-1);
 		
-		return $banners->toArray()[$index];
+		return $banners[$index];
 	}
 }

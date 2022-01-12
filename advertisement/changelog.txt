@@ -1,3 +1,6 @@
+Version 0.14.18
+- [CHANGE] Zone: Delivered now only banners that are assigned to the zone and at least one active campaign
+
 Version 0.13.17
 - [NEW] Translate Click-Through-Rate into german
 - [CHANGE] Rename Click Through Rate to Click-Through-Rate

@@ -64,8 +64,6 @@ class ZoneController extends ActionController
    	public function showAction()
    	{   		   		   	
    		$zone = $this->zoneRepository->findByUid((int)$this->settings['zone']);
-   		$query = $this->bannerRepository->createQuery();
-   		$query->matching($query->equals('uid', 3));
    		   		
    		$this->view->assign('zone', $this->zoneRepository->findByUid($this->settings['zone']));
    	}

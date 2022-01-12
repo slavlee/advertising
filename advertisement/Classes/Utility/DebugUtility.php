@@ -16,24 +16,46 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class DebugUtility
 {
-	public static function debugQuery($query)
+	/**
+	 * Debug Query
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query
+	 * @return void
+	 */
+	public static function debugQuery(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query): void
 	{
 		$objectManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
 		$queryParser = $objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser::class);
-		$parameters = $queryParser->convertQueryToDoctrineQueryBuilder($query)->getParameters();
-		$sql = $queryParser->convertQueryToDoctrineQueryBuilder($query)->getSQL();
+		$queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
+		
+		self::debugQueryBuilder($queryBuilder, $query->getLimit(), $query->getOffset());
+	}
+	
+	/**
+	 * Debug QueryBuilder
+	 * @param \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder
+	 * @param int $limit
+	 * @param int $offset
+	 * @return void
+	 */
+	public static function debugQueryBuilder(\TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder, $limit = FALSE, $offset = FALSE): void
+	{
+		$parameters = $queryBuilder->getParameters();
+		$sql = $queryBuilder->getSQL();
 		
 		foreach($parameters as $placeholder => $value)
 		{
 			$sql = preg_replace('/:' . $placeholder . '/', $value, $sql, 1);
 		}
 		
-		if ($query->getLimit() && $query->getOffset())
+		if ($query)
 		{
-			$sql .= ' LIMIT ' . $query->getOffset() . ',' . $query->getLimit();
-		}else if($query->getLimit())
-		{
-			$sql .= ' LIMIT ' . $query->getLimit();
+			if ($limit && $offset)
+			{
+				$sql .= ' LIMIT ' . $query->getOffset() . ',' . $query->getLimit();
+			}else if($limit)
+			{
+				$sql .= ' LIMIT ' . $query->getLimit();
+			}
 		}
 		
 		var_dump($sql);
