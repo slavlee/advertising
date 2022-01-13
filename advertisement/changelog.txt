@@ -1,3 +1,6 @@
+Version 0.16.21
+- [NEW] Added LICENSE and README.MD
+
 Version 0.16.20
 - [STATE] First Beta Version Release
 - [NEW] Alle Icons ausgetauscht
