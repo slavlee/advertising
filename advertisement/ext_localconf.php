@@ -50,19 +50,6 @@ defined('TYPO3') || die();
 		 @import 'EXT:advertisement/Configuration/TSconfig/Page/Mod/Wizards/Banner.tsconfig'"
 	);
     
-    // Icons
-    $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-    $iconRegistry->registerIcon(
-    	'apps-pagetree-folder-contains-advertisement',
-    	\TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-    	['source' => 'EXT:advertisement/Resources/Public/Icons/Extension.svg']
-	);
-    $iconRegistry->registerIcon(
-    	'ad-banner',
-    	\TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-    	['source' => 'EXT:advertisement/Resources/Public/Icons/user_plugin_banner.svg']
-    );
-    
     //Caches
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['advertisement_campaign_totalstatistic'] ??= [];
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['advertisement_campaign_totalstatistic']['backend'] ??= \TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend::class;

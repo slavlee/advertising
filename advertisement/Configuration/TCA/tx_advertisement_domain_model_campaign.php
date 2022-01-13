@@ -17,7 +17,7 @@ return [
             'endtime' => 'endtime',
         ],
         'searchFields' => 'name,description',
-        'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_campaign.gif'
+        'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_campaign.svg'
     ],
     'types' => [
         '1' => ['showitem' => 'name, description, starttime, endtime, banners, hidden, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource'],

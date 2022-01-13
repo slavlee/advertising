@@ -15,7 +15,7 @@ return [
             'disabled' => 'hidden',
         ],
         'searchFields' => 'name',
-        'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_customer.gif'
+        'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_customer.svg'
     ],
     'types' => [
         '1' => ['showitem' => 'name, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, '],

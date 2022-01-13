@@ -88,9 +88,9 @@ $GLOBALS['TCA']['tt_content']['columns'] = array_merge($GLOBALS['TCA']['tt_conte
 /* Add customer and zones fields - END */
 
 /* Set Fields for Banner - START */
-$GLOBALS['TCA']['tt_content']['types']['advertisement_banner'] = [		
+$GLOBALS['TCA']['tt_content']['types']['advertisement_banner'] = [
 	'showitem' => 'CType, header, image, header_link, customer, zones, campaigns, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, --palette--;;hidden',
-	'columnsOverrides' => [
+	'columnsOverrides' => [		
 		'image' => [
 			'config' => [
 				'minitems' => 1,
@@ -106,6 +106,9 @@ $GLOBALS['TCA']['tt_content']['types']['advertisement_banner'] = [
 ];
 /* Set Fields for Banner - END */
 
+/* Add Icon for banner - START */
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['advertisement_banner'] = 'advertisement-plugin-banner';
+/* Add Icon for banner - END */
 /**********************************************************************
  * CUSTOM CTYPES - END
  *********************************************************************/
