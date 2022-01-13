@@ -258,4 +258,29 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->link = $link;
     }
+    
+    /**
+     * Returns true, if banner has at least one active campaign
+     * @param \Slavlee\Advertisement\Domain\Model\Banner $banner
+     * @return bool
+     */
+    public function hasActiveCampaign()
+    {
+    	$campaigns = $this->getCampaigns();
+    	
+    	if (get_class($campaigns) == \TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage::class)
+    	{
+    		$campaigns = $campaigns->toArray();		
+    	}
+    	
+    	foreach($campaigns as $campaign)
+    	{
+    		if ($campaign->isActive())
+    		{
+    			return true;
+    		}
+    	}
+    
+    	return false;
+    }
 }

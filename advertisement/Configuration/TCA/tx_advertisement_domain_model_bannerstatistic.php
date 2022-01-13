@@ -14,7 +14,8 @@ return [
         'enablecolumns' => [
         ],
         'searchFields' => 'delivered',
-        'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_bannerstatistic.gif'
+        'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_bannerstatistic.gif',
+    	'previewRenderer' => \Slavlee\Advertisement\Backend\PreviewRenderer\NonRenderer::class
     ],
     'types' => [
         '1' => ['showitem' => 'delivered, been_visible, clicked, banner, campaign, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, '],

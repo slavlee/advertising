@@ -14,7 +14,8 @@ return [
         'enablecolumns' => [
         ],
         'searchFields' => 'banner_persisted,campaign_persisted',
-        'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_campaignstatistic.gif'
+        'iconfile' => 'EXT:advertisement/Resources/Public/Icons/tx_advertisement_domain_model_campaignstatistic.gif',
+    	'previewRenderer' => \Slavlee\Advertisement\Backend\PreviewRenderer\NonRenderer::class
     ],
     'types' => [
         '1' => ['showitem' => 'priority, delivered, been_visible, clicked, banner_persisted, campaign_persisted, crdate, campaign, banner, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, '],

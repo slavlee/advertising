@@ -42,5 +42,5 @@ class BannerUtility
 		$total->ctr = GeneralStatistic::ctr($total->clicked, $total->delivered) . '%';
 		
 		return $total;
-	}
+	}		
 }

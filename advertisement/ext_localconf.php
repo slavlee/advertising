@@ -37,6 +37,11 @@ defined('TYPO3') || die();
    			\Slavlee\Advertisement\Controller\TrackingController::class => 'delivered'
    		]
    	);
+    
+    // Mod List View
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+    	"@import 'EXT:advertisement/Configuration/TSconfig/Page/Mod/Web/List.tsconfig'"
+	);
 
     // wizards    
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
