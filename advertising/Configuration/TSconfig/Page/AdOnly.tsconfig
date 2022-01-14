@@ -1,0 +1,7 @@
+#Configure Web -> List module
+mod.web_list {
+	table {
+		tx_advertising_domain_model_bannerstatistic.hideTable = 1
+		tx_advertising_domain_model_campaignstatistic.hideTable = 1
+	}
+}

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:advertising/Retargets/Private/Language/locallang.xlf" date="2021-12-23T13:19:25Z" product-name="advertising">
+		<header/>
+		<body>
+			<trans-unit id="tx_advertising_domain_model_banner" resname="tx_advertising_domain_model_banner">
+				<target>Banner</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_banner.name" resname="tx_advertising_domain_model_banner.name">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_banner.description" resname="tx_advertising_domain_model_banner.description">
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_banner.customer" resname="tx_advertising_domain_model_banner.customer">
+				<target>Kunde</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_banner.zones" resname="tx_advertising_domain_model_banner.zones">
+				<target>Zonen</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign" resname="tx_advertising_domain_model_campaign">
+				<target>Kampagne</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.name" resname="tx_advertising_domain_model_campaign.name">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.description" resname="tx_advertising_domain_model_campaign.description">
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.start_date" resname="tx_advertising_domain_model_campaign.start_date">
+				<target>Startdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.end_date" resname="tx_advertising_domain_model_campaign.end_date">
+				<target>Enddatum</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.banners" resname="tx_advertising_domain_model_campaign.banners">
+				<target>Banners</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.state.all" resname="tx_advertising_domain_model_campaign.state.all">
+				<target>Alle</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.state.active" resname="tx_advertising_domain_model_campaign.state.active">
+				<target>Aktiv</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.state.expired" resname="tx_advertising_domain_model_campaign.state.expired">
+				<target>Abgelaufen</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.state.disabled" resname="tx_advertising_domain_model_campaign.state.disabled">
+				<target>Deaktiviert</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_customer" resname="tx_advertising_domain_model_customer">
+				<target>Kunde</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_customer.name" resname="tx_advertising_domain_model_customer.name">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_zone" resname="tx_advertising_domain_model_zone">
+				<target>Zone</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_zone.name" resname="tx_advertising_domain_model_zone.name">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_zone.height" resname="tx_advertising_domain_model_zone.height">
+				<target>Höhe</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_zone.width" resname="tx_advertising_domain_model_zone.width">
+				<target>Breite</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic" resname="tx_advertising_domain_model_bannerstatistic">
+				<target>Banner Statistik</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.delivered" resname="tx_advertising_domain_model_bannerstatistic.delivered">
+				<target>Ausgeliefert</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.been_visible" resname="tx_advertising_domain_model_bannerstatistic.been_visible">
+				<target>Im sichtbaren Bereich</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.clicked" resname="tx_advertising_domain_model_bannerstatistic.clicked">
+				<target>Geklickt</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.crdate" resname="tx_advertising_domain_model_bannerstatistic.crdate">
+				<target>Erstellungsdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.banner" resname="tx_advertising_domain_model_bannerstatistic.banner">
+				<target>Banner</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic" resname="tx_advertising_domain_model_campaignstatistic">
+				<target>Kampagne Statistik</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority" resname="tx_advertising_domain_model_campaignstatistic.priority">
+				<target>Priorität</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.0" resname="tx_advertising_domain_model_campaignstatistic.priority.0">
+				<target>Keine (0)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.1" resname="tx_advertising_domain_model_campaignstatistic.priority.1">
+				<target>Sehr niedrig (1)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.2" resname="tx_advertising_domain_model_campaignstatistic.priority.2">
+				<target>Niedrig (2)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.3" resname="tx_advertising_domain_model_campaignstatistic.priority.3">
+				<target>Gering (3)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.4" resname="tx_advertising_domain_model_campaignstatistic.priority.4">
+				<target>Normal (4)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.5" resname="tx_advertising_domain_model_campaignstatistic.priority.5">
+				<target>Normal (5)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.6" resname="tx_advertising_domain_model_campaignstatistic.priority.6">
+				<target>Normal (6)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.7" resname="tx_advertising_domain_model_campaignstatistic.priority.7">
+				<target>Überdurchschnittlich (7)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.8" resname="tx_advertising_domain_model_campaignstatistic.priority.8">
+				<target>Hoch (8)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.9" resname="tx_advertising_domain_model_campaignstatistic.priority.9">
+				<target>Sehr Hoch (9)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority.10" resname="tx_advertising_domain_model_campaignstatistic.priority.10">
+				<target>Höchste (10)</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.delivered" resname="tx_advertising_domain_model_campaignstatistic.delivered">
+				<target>Ausgeliefert</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.been_visible" resname="tx_advertising_domain_model_campaignstatistic.been_visible">
+				<target>Im sichtbaren Bereich</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.clicked" resname="tx_advertising_domain_model_campaignstatistic.clicked">
+				<target>Geklickt</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.ctr" resname="tx_advertising_domain_model_campaignstatistic.clicked">
+				<target>Klickrate</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.banner_persisted" resname="tx_advertising_domain_model_campaignstatistic.banner_persisted">
+				<target>Banner gespeichert</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.campaign_persisted" resname="tx_advertising_domain_model_campaignstatistic.campaign_persisted">
+				<target>Kampagne gespeichert</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.crdate" resname="tx_advertising_domain_model_campaignstatistic.crdate">
+				<target>Erstellungsdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.campaign" resname="tx_advertising_domain_model_campaignstatistic.campaign">
+				<target>Kampagne</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.banner" resname="tx_advertising_domain_model_campaignstatistic.banner">
+				<target>Banner</target>
+			</trans-unit>
+			
+			<trans-unit id="module.dashboard.title" resname="module.dashboard.title">
+				<target>Advertising Dashboard</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.title" resname="module.dashboard.section.overview.title">
+				<target>Im Überblick</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.campaigns.title" resname="module.dashboard.section.overview.campaigns.title">
+				<target>Kampagnen</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.campaigns.text" resname="module.dashboard.section.overview.campaigns.text">
+				<target>%s/%s Kampagnen (Aktiv/Total)</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.campaigns.title" resname="module.dashboard.section.campaigns.title">
+				<target>Kampagnen</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.campaigns.statistic.info" resname="module.dashboard.section.campaigns.statistic.info">
+				<target>Die statistischen Daten werden circa alle 5 Minuten neu berechnet.</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.campaign.toolbar.recalculate" resname="module.dashboard.campaign.toolbar.recalculate">
+				<target>Neu berechnen</target>
+			</trans-unit>
+			
+			<trans-unit id="module.dashboard.section.overview.banners.text" resname="module.dashboard.section.overview.banners.text">
+				<target>%s/%s Banner (Aktiv/Total)</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.banners.title" resname="module.dashboard.section.overview.banners.title">
+				<target>Banner</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.campaign.title" resname="module.dashboard.section.overview.banners.text">
+				<target>Kerndaten</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.banners.title" resname="module.dashboard.section.overview.banners.title">
+				<target>Banner</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.campaigns.alert.empty" resname="module.dashboard.section.campaigns.alert.empty">
+				<target>Entschuldigung, aber Sie haben noch keine Kampagnen erstellt. Bitte erstellen Sie zuerst eine Kampagne.</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.banners.alert.empty" resname="module.dashboard.section.banners.alert.empty">
+				<target>Entschuldigung, aber Sie haben noch keinen Banner erstellt. Bitte erstellen Sie zuerst einen Banner.</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.banners.text" resname="module.dashboard.section.overview.banners.text">
+				<target>%s/%s Banner (Aktiv/Total)</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.campaign.banners.title" resname="module.dashboard.section.campaign.banners.title">
+				<target>Werbemittel</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.campaign.banners.text" resname="module.dashboard.section.campaign.banners.text">
+				<target>%s Banner</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.impressions.title" resname="module.dashboard.section.overview.impressions.title">
+				<target>Impressionen</target>
+			</trans-unit>
+			<trans-unit id="module.dashboard.section.overview.impressions.text" resname="module.dashboard.section.overview.impressions.text">
+				<target>%s/%s Interaktionen (Impressionen/Geklickt)</target>
+			</trans-unit>
+			
+			<trans-unit id="module.dashboard.section.campaign.title" resname="module.dashboard.section.campaign.title">
+				<target>Überblick der Kampagne: %s</target>
+			</trans-unit>
+			
+			<trans-unit id="module.tablefilter.title" resname="module.tablefilter.title">
+				<target>Filter</target>
+			</trans-unit>
+			<trans-unit id="module.tablefilter.submit" resname="module.tablefilter.submit">
+				<target>Filter</target>
+			</trans-unit>
+			
+			<trans-unit id="pagination.previous" resname="pagination.previous">
+				<target>Vorherige</target>
+			</trans-unit>
+			<trans-unit id="pagination.next" resname="pagination.next">
+				<target>Nächste</target>
+			</trans-unit>
+			
+			<trans-unit id="oclock" resname="oclock">
+				<target>Uhr</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

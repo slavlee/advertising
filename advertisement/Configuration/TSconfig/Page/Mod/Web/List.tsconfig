@@ -1,8 +1,0 @@
-#Configure Web -> List module
-mod.web_list {
-	allowedNewTables = tt_content,tx_advertisement_domain_model_campaign,tx_advertisement_domain_model_customer, tx_advertisement_domain_model_zone
-	table {
-		tx_advertisement_domain_model_bannerstatistic.hideTable = 1
-		tx_advertisement_domain_model_campaignstatistic.hideTable = 1
-	}
-}

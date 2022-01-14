@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:advertising/Resources/Private/Language/locallang_csh_tx_advertising_domain_model_zone.xlf" date="2021-12-23T13:19:25Z" product-name="advertising">
+		<header/>
+		<body>
+			<trans-unit id="name.description" resname="name.description">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="height.description" resname="height.description">
+				<source>height</source>
+			</trans-unit>
+			<trans-unit id="width.description" resname="width.description">
+				<source>width</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

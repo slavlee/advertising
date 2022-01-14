@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:advertising/Resources/Private/Language/locallang_db.xlf" date="2021-12-23T13:19:25Z" product-name="advertising">
+		<header/>
+		<body>
+			<trans-unit id="tx_advertising_domain_model_banner" resname="tx_advertising_domain_model_banner">
+				<source>Banner</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_banner.name" resname="tx_advertising_domain_model_banner.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_banner.description" resname="tx_advertising_domain_model_banner.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_banner.customer" resname="tx_advertising_domain_model_banner.customer">
+				<source>Customer</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_banner.zones" resname="tx_advertising_domain_model_banner.zones">
+				<source>Zones</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign" resname="tx_advertising_domain_model_campaign">
+				<source>Campaign</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.name" resname="tx_advertising_domain_model_campaign.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.description" resname="tx_advertising_domain_model_campaign.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.start_date" resname="tx_advertising_domain_model_campaign.start_date">
+				<source>Start Date</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.end_date" resname="tx_advertising_domain_model_campaign.end_date">
+				<source>End Date</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaign.banners" resname="tx_advertising_domain_model_campaign.banners">
+				<source>Banners</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_customer" resname="tx_advertising_domain_model_customer">
+				<source>Customer</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_customer.name" resname="tx_advertising_domain_model_customer.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_zone" resname="tx_advertising_domain_model_zone">
+				<source>Zone</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_zone.name" resname="tx_advertising_domain_model_zone.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_zone.height" resname="tx_advertising_domain_model_zone.height">
+				<source>Height</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_zone.width" resname="tx_advertising_domain_model_zone.width">
+				<source>Width</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic" resname="tx_advertising_domain_model_bannerstatistic">
+				<source>Banner Statistic</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.delivered" resname="tx_advertising_domain_model_bannerstatistic.delivered">
+				<source>Delivered</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.been_visible" resname="tx_advertising_domain_model_bannerstatistic.been_visible">
+				<source>Been Visible</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.clicked" resname="tx_advertising_domain_model_bannerstatistic.clicked">
+				<source>Clicked</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.crdate" resname="tx_advertising_domain_model_bannerstatistic.crdate">
+				<source>Crdate</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_bannerstatistic.banner" resname="tx_advertising_domain_model_bannerstatistic.banner">
+				<source>Banner</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic" resname="tx_advertising_domain_model_campaignstatistic">
+				<source>Campaign Statistic</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.priority" resname="tx_advertising_domain_model_campaignstatistic.priority">
+				<source>Priority</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.delivered" resname="tx_advertising_domain_model_campaignstatistic.delivered">
+				<source>Delivered</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.been_visible" resname="tx_advertising_domain_model_campaignstatistic.been_visible">
+				<source>Been Visible</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.clicked" resname="tx_advertising_domain_model_campaignstatistic.clicked">
+				<source>Clicked</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.banner_persisted" resname="tx_advertising_domain_model_campaignstatistic.banner_persisted">
+				<source>Banner Persisted</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.campaign_persisted" resname="tx_advertising_domain_model_campaignstatistic.campaign_persisted">
+				<source>Campaign Persisted</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.crdate" resname="tx_advertising_domain_model_campaignstatistic.crdate">
+				<source>Crdate</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.campaign" resname="tx_advertising_domain_model_campaignstatistic.campaign">
+				<source>Campaign</source>
+			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_campaignstatistic.banner" resname="tx_advertising_domain_model_campaignstatistic.banner">
+				<source>Banner</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:advertising/Resources/Private/Language/locallang_csh_tx_advertising_domain_model_bannerstatistic.xlf" date="2021-12-23T13:19:25Z" product-name="advertising">
+		<header/>
+		<body>
+			<trans-unit id="delivered.description" resname="delivered.description">
+				<source>delivered</source>
+			</trans-unit>
+			<trans-unit id="been_visible.description" resname="been_visible.description">
+				<source>beenVisible</source>
+			</trans-unit>
+			<trans-unit id="clicked.description" resname="clicked.description">
+				<source>clicked</source>
+			</trans-unit>
+			<trans-unit id="crdate.description" resname="crdate.description">
+				<source>crdate</source>
+			</trans-unit>
+			<trans-unit id="banner.description" resname="banner.description">
+				<source>banner</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

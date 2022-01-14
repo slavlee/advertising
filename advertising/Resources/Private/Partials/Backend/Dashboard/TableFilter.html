@@ -1,0 +1,12 @@
+<h2><f:translate key="module.tablefilter.title" extensionName="advertising" /></h2>
+<f:form action="{action}" controller="{controller}" method="POST" name="demand" object="{demand}">
+	<div class="mb-3">
+		<f:form.select property="state" class="form-select">
+			<f:form.select.option value="all"><f:translate key="tx_advertising_domain_model_campaign.state.all" extensionName="advertising" /></f:form.select.option>
+			<f:form.select.option value="active"><f:translate key="tx_advertising_domain_model_campaign.state.active" extensionName="advertising" /></f:form.select.option>
+			<f:form.select.option value="expired"><f:translate key="tx_advertising_domain_model_campaign.state.expired" extensionName="advertising" /></f:form.select.option>
+			<f:form.select.option value="disabled"><f:translate key="tx_advertising_domain_model_campaign.state.disabled" extensionName="advertising" /></f:form.select.option>
+		</f:form.select>
+	</div>
+	<f:form.submit value="{f:translate(key:'module.tablefilter.submit', extensionName: 'advertising')}" class="btn btn-primary" />
+</f:form> 

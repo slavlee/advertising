@@ -1,0 +1,16 @@
+mod.wizards.newContentElement.wizardItems {
+   // add the content element to the tab "advertising"
+   advertising {
+      elements {
+         advertising_banner {
+            iconIdentifier = ad-banner
+            title = LLL:EXT:advertising/Resources/Private/Language/locallang_be.xlf:tx_advertising_banner.name
+            description = LLL:EXT:advertising/Resources/Private/Language/locallang_be.xlf:tx_advertising_banner.description
+            tt_content_defValues {
+               CType = advertising_banner
+            }
+         }
+      }
+      show := addToList(advertising_banner)
+   }
+}

@@ -1,0 +1,5 @@
+# Create a new group and add a (pre-filled) element to it
+mod.wizards.newContentElement.wizardItems.advertising {
+    header = LLL:EXT:advertising/Resources/Private/Language/locallang_be.xlf:wizard.group.name
+    after = common,special,container,forms,menu,plugins,t3sbs
+}

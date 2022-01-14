@@ -1,0 +1,16 @@
+mod {
+        wizards.newContentElement.wizardItems.advertising {
+            elements {
+                zone {
+                    iconIdentifier = advertising-plugin-zone
+                    title = LLL:EXT:advertising/Resources/Private/Language/locallang_be.xlf:tx_advertising_zone.name
+                    description = LLL:EXT:advertising/Resources/Private/Language/locallang_be.xlf:tx_advertising_zone.description
+                    tt_content_defValues {
+                        CType = list
+                        list_type = advertising_zone
+                    }
+                }
+            }
+            show = *
+        }
+   }

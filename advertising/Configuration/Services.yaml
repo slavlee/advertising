@@ -1,0 +1,19 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    
+  cache.advertising_campaign_totalstatistic:
+    class: TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend
+    factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    arguments: ['advertising_campaign_totalstatistic']
+    
+  Slavlee\Advertising\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+      
+  Slavlee\Advertising\Cache\Backend\FileBackend:
+    public: true
+    arguments:
+      $cache: '@cache.advertising_campaign_totalstatistic'

@@ -1,0 +1,28 @@
+plugin.tx_advertising_zone {
+    view {
+        # cat=plugin.tx_advertising_zone/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:advertising/Resources/Private/Templates/
+        # cat=plugin.tx_advertising_zone/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:advertising/Resources/Private/Partials/
+        # cat=plugin.tx_advertising_zone/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:advertising/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_advertising_zone//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
+plugin.tx_advertising_banner {
+    view {
+        # cat=plugin.tx_advertising_banner/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:advertising/Resources/Private/Templates/
+        # cat=plugin.tx_advertising_banner/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:advertising/Resources/Private/Partials/
+        # cat=plugin.tx_advertising_banner/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:advertising/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_advertising_banner//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}

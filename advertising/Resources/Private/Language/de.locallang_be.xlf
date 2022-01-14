@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="en" datatype="plaintext" original="EXT:advertising/Resources/Private/Language/locallang_be.xlf" date="2021-12-14T21:14:53Z" product-name="advertising">
+		<header/>
+		<body>
+			<trans-unit id="ad-folder" resname="ad-folder">
+				<target>Advertising</target>
+			</trans-unit>
+			<trans-unit id="wizard.group.name" resname="wizard.group.name">
+				<target>Advertising</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_zone.name" resname="tx_advertising_zone.name">
+				<target>Zone</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_zone.description" resname="tx_advertising_zone.description">
+				<target>Eine Werbezone erstellen</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_banner.name" resname="tx_advertising_banner.name">
+				<target>Banner</target>
+			</trans-unit>
+			<trans-unit id="tx_advertising_banner.description" resname="tx_advertising_banner.description">
+				<target>Einen Werbebanner erstellen</target>
+			</trans-unit>
+			
+			<trans-unit id="extconf.general.storagePid" resname="extconf.general.storagePid">
+				<target>Sammelordner</target>
+			</trans-unit>
+			<trans-unit id="extconf.general.storagePid.desc" resname="extconf.general.storagePid.desc">
+				<target>TYPO3 Seite oder Verzeichnis, wo die statistische Daten, Banner, Kampagnen und Kunden gespeichert werden.</target>
+			</trans-unit>
+			<trans-unit id="extconf.typeNums.clickTracking" resname="extconf.typeNums.clickTracking">
+				<target>typeNum für das PAGE Objekt für das Klicktracking</target>
+			</trans-unit>
+			<trans-unit id="extconf.typeNums.deliveredTracking" resname="extconf.typeNums.deliveredTracking">
+				<target>typeNum für das PAGE Objekt für das Ausgliefert - Tracking</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
