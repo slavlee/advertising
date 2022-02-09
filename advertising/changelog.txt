@@ -1,3 +1,6 @@
+Version 0.17.23
+- [BUGFIX] SQL error: 'Unknown column 'campaigns' in 'field list', Re-execute Analyze DB in Install Tool and let the field create inside the tt_content table
+
 Version 0.17.22
 - [NEW] Rename extension from advertisement to advertising
 
