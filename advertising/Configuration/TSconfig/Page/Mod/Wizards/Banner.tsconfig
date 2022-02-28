@@ -11,6 +11,6 @@ mod.wizards.newContentElement.wizardItems {
             }
          }
       }
-      show := addToList(advertising_banner)
+      show := addToList(advertising_banner, advertising_textbanner)
    }
 }

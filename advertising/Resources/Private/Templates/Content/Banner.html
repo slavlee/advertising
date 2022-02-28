@@ -2,8 +2,13 @@
 	<f:layout name="Ad" />
 	
 	<f:section name="Main">
-	    <div class="ce-image ce-{gallery.position.horizontal} ce-{gallery.position.vertical}">
-	        <f:render partial="Media/Type" arguments="{file: gallery.rows.1.columns.1.media, dimensions: gallery.rows.1.columns.1.dimensions, data: data, settings: settings}" />
-	    </div>
+		<f:switch expression="{data.ad_type}">
+			<f:case value="text">
+				<f:render partial="Text" arguments="{_all}" />
+			</f:case>
+			<f:defaultCase>
+				<f:render partial="Image" arguments="{_all}" />
+			</f:defaultCase>
+		</f:switch>
 	</f:section>
 </html>

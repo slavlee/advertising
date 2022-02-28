@@ -3,7 +3,8 @@ CREATE TABLE tt_content (
 	description varchar(255) NOT NULL DEFAULT '',
 	customer int(11) unsigned DEFAULT '0',
 	zones int(11) unsigned NOT NULL DEFAULT '0',
-	campaigns int(11) unsigned NOT NULL DEFAULT '0'
+	campaigns int(11) unsigned NOT NULL DEFAULT '0',
+	ad_type varchar(45) NOT NULL DEFAULT 'image'
 );
 
 CREATE TABLE tx_advertising_domain_model_campaign (

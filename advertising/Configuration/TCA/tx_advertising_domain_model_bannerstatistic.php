@@ -14,7 +14,7 @@ return [
         'enablecolumns' => [
         ],
         'searchFields' => 'delivered',
-        'iconfile' => 'EXT:advertising/Resources/Public/Icons/tx_advertising_domain_model_bannerstatistic.gif',
+        'iconfile' => 'EXT:advertising/Resources/Public/Icons/tx_advertising_domain_model_campaignstatistic.svg',
     	'previewRenderer' => \Slavlee\Advertising\Backend\PreviewRenderer\NonRenderer::class
     ],
     'types' => [

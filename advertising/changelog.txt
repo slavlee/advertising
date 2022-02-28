@@ -1,3 +1,8 @@
+Version 0.18.24
+- [CHANGE] Icons for Campaign and BannerStatistic changed to SVG File
+- [BREAK] Add ad_type to Banner. Execute Compare Database Tool.
+- [BREAK] New Banner type: Text. Changed Template part. We have new Partials: Image and Text. Image is the old Banner.html Template. Inside the Banner.html is a now switch expression based on ad_type.
+
 Version 0.17.23
 - [BUGFIX] SQL error: 'Unknown column 'campaigns' in 'field list', Re-execute Analyze DB in Install Tool and let the field create inside the tt_content table
 

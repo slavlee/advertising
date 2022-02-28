@@ -13,4 +13,8 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:advertising/Resources/Public/Icons/user_plugin_banner.svg'
     ],
+    'ad-banner' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:advertising/Resources/Public/Icons/ad_banner.svg'
+    ]
 ];

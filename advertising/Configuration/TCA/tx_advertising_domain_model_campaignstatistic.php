@@ -14,7 +14,7 @@ return [
         'enablecolumns' => [
         ],
         'searchFields' => 'banner_persisted,campaign_persisted',
-        'iconfile' => 'EXT:advertising/Resources/Public/Icons/tx_advertising_domain_model_campaignstatistic.gif',
+        'iconfile' => 'EXT:advertising/Resources/Public/Icons/tx_advertising_domain_model_campaignstatistic.svg',
     	'previewRenderer' => \Slavlee\Advertising\Backend\PreviewRenderer\NonRenderer::class
     ],
     'types' => [

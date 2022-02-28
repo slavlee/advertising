@@ -64,6 +64,13 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $zones = null;
+    
+    /**
+     * type
+     *
+     * @var string
+     */
+    protected $type = '';
 
     /**
      * Returns the customer
@@ -282,5 +289,26 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     	}
     
     	return false;
+    }
+    
+    /**
+     * Returns the type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+    
+    /**
+     * Sets the type
+     *
+     * @param string $type
+     * @return void
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }

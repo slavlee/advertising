@@ -17,7 +17,7 @@ defined('TYPO3') || die();
 /**********************************************************************
  * CUSTOM CTYPES - START
  *********************************************************************/
-// Adds the content element to the "Type" dropdown
+/* Add Banner as CType - START */
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
 	'tt_content',
 	'CType',
@@ -32,6 +32,7 @@ defined('TYPO3') || die();
 	'textmedia',
 	'after'
 );    
+/* Add Banner as CType - END */
 
 /* Add customer and zones fields - START */
 $newColumns = [
@@ -81,17 +82,32 @@ $newColumns = [
 			'size' => 5,
 			'default' => 0
 		]
-	]
+	],
+    'ad_type' => [
+        'exclude' => false,
+        'label' => 'LLL:EXT:advertising/Resources/Private/Language/locallang_db.xlf:tx_advertising_domain_model_banner.type',
+        'onChange' => 'reload',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => [
+                ['Image', 'image'],
+                ['Text', 'text']
+            ],
+            'default' => 'image'
+        ]
+    ]    
 ];
 
 $GLOBALS['TCA']['tt_content']['columns'] = array_merge($GLOBALS['TCA']['tt_content']['columns'], $newColumns);
 /* Add customer and zones fields - END */
 
-/* Set Fields for Banner - START */
+/* Set Fields for Default Banner (Image Banner) - START */
 $GLOBALS['TCA']['tt_content']['types']['advertising_banner'] = [
-	'showitem' => 'CType, header, image, header_link, customer, zones, campaigns, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, --palette--;;hidden',
+	'showitem' => 'CType, ad_type, header, image, header_link, customer, zones, campaigns, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, --palette--;;hidden',
 	'columnsOverrides' => [		
 		'image' => [
+		    'displayCond' => 'FIELD:ad_type:=:image',
 			'config' => [
 				'minitems' => 1,
 				'maxitems' => 1,
@@ -104,7 +120,11 @@ $GLOBALS['TCA']['tt_content']['types']['advertising_banner'] = [
 		]
 	]
 ];
-/* Set Fields for Banner - END */
+/* Set Fields for Default Banner (Image Banner) - END */
+
+/* Set Fields for Image Banner - START */
+/* @TODO list_type for Text Banner */
+/* Set Fields for Text Banner - END */
 
 /* Add Icon for banner - START */
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['advertising_banner'] = 'advertising-plugin-banner';

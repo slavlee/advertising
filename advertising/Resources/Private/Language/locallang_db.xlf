@@ -6,6 +6,9 @@
 			<trans-unit id="tx_advertising_domain_model_banner" resname="tx_advertising_domain_model_banner">
 				<source>Banner</source>
 			</trans-unit>
+			<trans-unit id="tx_advertising_domain_model_banner.type" resname="tx_advertising_domain_model_banner.type">
+				<source>Ad Type</source>
+			</trans-unit>
 			<trans-unit id="tx_advertising_domain_model_banner.name" resname="tx_advertising_domain_model_banner.name">
 				<source>Name</source>
 			</trans-unit>

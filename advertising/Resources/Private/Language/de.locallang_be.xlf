@@ -20,7 +20,7 @@
 			</trans-unit>
 			<trans-unit id="tx_advertising_banner.description" resname="tx_advertising_banner.description">
 				<target>Einen Werbebanner erstellen</target>
-			</trans-unit>
+			</trans-unit>			
 			
 			<trans-unit id="extconf.general.storagePid" resname="extconf.general.storagePid">
 				<target>Sammelordner</target>

@@ -11,6 +11,9 @@ return [
     		],
    			'name' => [
 				'fieldName' => 'header'
+   			],
+    	    'type' => [
+   			    'fieldName' => 'ad_type'
    			]
     	]
     ],
