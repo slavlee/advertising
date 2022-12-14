@@ -21,6 +21,7 @@
                                 <items type="array">
                                     <numIndex index="0" type="array">
                                         <numIndex index="0"></numIndex>
+                                        <numIndex index="1">0</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
