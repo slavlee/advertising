@@ -64,7 +64,7 @@ The tracking is done with a asynchronous JavaScript. It is not perfect but the b
 That's why the data is not 100% accurate, but it is a very good guess.
 
 ## 6 Changelog
-The changelogs can be found inside the changelog.txt file.
+The changelogs can be found inside the CHANGES.md file.
 
 ### 6.1 Release Management
 
@@ -74,6 +74,9 @@ Advertising uses [**semantic versioning**][2], which means, that
 * and **major updates** (e.g. 1.0.0 => 2.0.0) breaking changes wich can be refactorings, features or bugfixes.
 
 Having this said, I **highly recommend** to make a update from your whole webpage before upgrading advertising to any version.
+
+## Thanks to my contributors
+- Dmitry Dulepov
 
 ## 7 Final words
 I give my best to make this extension as accurate and as reliable as I can. Unfortunately I can't promise or guarantee that the tracking will always be working. 
