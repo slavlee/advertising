@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Utility;
 
+use Slavlee\Advertising\Domain\Model\Campaign;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -21,7 +22,7 @@ class CampaignUtility
 	 * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
 	 * @return bool
 	 */
-	public static function isExpired(\Slavlee\Advertising\Domain\Model\Campaign $campaign): bool
+	public static function isExpired(Campaign $campaign): bool
 	{
 		$now = new \DateTime();
 		$endTime = $campaign->getEndtime();

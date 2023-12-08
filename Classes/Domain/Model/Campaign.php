@@ -5,6 +5,11 @@ declare(strict_types=1);
 namespace Slavlee\Advertising\Domain\Model;
 
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Annotation\Validate;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use Slavlee\Advertising\Service\Campaign\StatisticService;
 use Slavlee\Advertising\Utility\GeneralUtility;
 use Slavlee\Advertising\Utility\CacheUtility;
 use Slavlee\Advertising\Utility\CampaignUtility;
@@ -22,15 +27,15 @@ use Slavlee\Advertising\Utility\DateUtility;
 /**
  * Campaign
  */
-class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Campaign extends AbstractEntity
 {
 
     /**
      * name
      *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
+    #[Validate(['validator' => 'NotEmpty'])]
     protected $name = '';
 
     /**
@@ -57,9 +62,9 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * banners
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Banner>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Banner>
      */
+    #[Lazy]
     protected $banners = null;
     
     /**
@@ -136,16 +141,16 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function initializeObject()
     {
-        $this->banners = $this->banners ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->banners = $this->banners ?: new ObjectStorage();
     }
 
     /**
      * Adds a Banner
      *
-     * @param \Slavlee\Advertising\Domain\Model\Banner $banner
+     * @param Banner $banner
      * @return void
      */
-    public function addBanner(\Slavlee\Advertising\Domain\Model\Banner $banner)
+    public function addBanner(Banner $banner)
     {
         $this->banners->attach($banner);
     }
@@ -153,10 +158,10 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Banner
      *
-     * @param \Slavlee\Advertising\Domain\Model\Banner $bannerToRemove The Banner to be removed
+     * @param Banner $bannerToRemove The Banner to be removed
      * @return void
      */
-    public function removeBanner(\Slavlee\Advertising\Domain\Model\Banner $bannerToRemove)
+    public function removeBanner(Banner $bannerToRemove)
     {
         $this->banners->detach($bannerToRemove);
     }
@@ -164,7 +169,7 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the banners
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Banner> $banners
+     * @return ObjectStorage<Banner> $banners
      */
     public function getBanners()
     {
@@ -174,7 +179,7 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns only active banners
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Banner> $banners
+     * @return ObjectStorage<Banner> $banners
      */
     public function getActiveBanners()
     {
@@ -197,10 +202,10 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the banners
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Banner> $banners
+     * @param ObjectStorage<Banner> $banners
      * @return void
      */
-    public function setBanners(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $banners)
+    public function setBanners(ObjectStorage $banners)
     {
         $this->banners = $banners;
     }
@@ -286,7 +291,7 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     
     /**
      * Returns a summary of all related CampaignStatistic, if exists
-     * @return \Slavlee\Advertising\Domain\Model\CampaignStatistic
+     * @return CampaignStatistic
      */
     public function getTotalStatistic()
     {
@@ -401,7 +406,7 @@ class Campaign extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     	/**
     	 * @var \Slavlee\Advertising\Service\Campaign\StatisticService $service
     	 */
-    	$service = GeneralUtility::makeInstance(\Slavlee\Advertising\Service\Campaign\StatisticService::class);
+    	$service = GeneralUtility::makeInstance(StatisticService::class);
     	$service->execute('findTotalCampaignStatistics', $this);
     	$totalStatistic = $service->getLastReturnValue();
     	

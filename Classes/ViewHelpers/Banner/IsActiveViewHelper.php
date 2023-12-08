@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\ViewHelpers\Banner;
 
+use Slavlee\Advertising\Domain\Repository\BannerRepository;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 /**
@@ -36,7 +37,7 @@ class IsActiveViewHelper extends AbstractConditionViewHelper
 	 * @param \Slavlee\Advertising\Domain\Repository\CampaignStatisticRepository $bannerRepository
 	 * @return void
 	 */
-	public function injectCampaignStatisticRepository(\Slavlee\Advertising\Domain\Repository\BannerRepository $bannerRepository)
+	public function injectCampaignStatisticRepository(BannerRepository $bannerRepository)
 	{
 		$this->bannerRepository = $bannerRepository;
 	}

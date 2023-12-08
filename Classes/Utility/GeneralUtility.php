@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Utility;
 
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 /**
  * This file is part of the "Advertising" Extension for TYPO3 CMS.
  *
@@ -11,7 +12,6 @@ namespace Slavlee\Advertising\Utility;
  *
  * (c) 2021 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
 class GeneralUtility
 {
 	/**
@@ -22,7 +22,7 @@ class GeneralUtility
 	 */
 	public static function makeInstance($class, ...$arguments)
 	{
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ObjectManager::class);
 		return $objectManager->get($class, ...$arguments);
 	}
 }

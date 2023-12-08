@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Service\Banner;
 
+use Slavlee\Advertising\Service\BaseService;
+use Slavlee\Advertising\Domain\Repository\BannerRepository;
+use Slavlee\Advertising\Domain\Repository\CampaignRepository;
+use Slavlee\Advertising\Domain\Model\Zone;
 /**
  * This file is part of the "Advertising" Extension for TYPO3 CMS.
  *
@@ -11,8 +15,7 @@ namespace Slavlee\Advertising\Service\Banner;
  *
  * (c) 2021 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
-class BannerDeliveryService extends \Slavlee\Advertising\Service\BaseService
+class BannerDeliveryService extends BaseService
 {
 	/**
 	 * $bannerRepository
@@ -34,7 +37,7 @@ class BannerDeliveryService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Repository\BannerRepository $bannerRepository
 	 * @return void
 	 */
-	public function injectBannerRepository(\Slavlee\Advertising\Domain\Repository\BannerRepository $bannerRepository)
+	public function injectBannerRepository(BannerRepository $bannerRepository)
 	{
 		$this->bannerRepository = $bannerRepository;
 		$this->bannerRepository->setStorage($this->extConf['general']['storagePid']);
@@ -45,7 +48,7 @@ class BannerDeliveryService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Repository\CampaignRepository $campaignRepository
 	 * @return void
 	 */
-	public function injectCampaignRepository(\Slavlee\Advertising\Domain\Repository\CampaignRepository $campaignRepository)
+	public function injectCampaignRepository(CampaignRepository $campaignRepository)
 	{
 		$this->campaignRepository = $campaignRepository;
 		$this->campaignRepository->setStorage($this->extConf['general']['storagePid']);
@@ -59,7 +62,7 @@ class BannerDeliveryService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Model\Zone $zone
 	 * @return array
 	 */
-	public function getBannersFromActiveCampaignsForZone(\Slavlee\Advertising\Domain\Model\Zone $zone): array
+	public function getBannersFromActiveCampaignsForZone(Zone $zone): array
 	{
 		return $this->bannerRepository->findFromActiveCampaignsForZone($zone)->fetchAll();
 	}

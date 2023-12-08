@@ -41,7 +41,6 @@ $newColumns = [
 		'label' => 'LLL:EXT:advertising/Resources/Private/Language/locallang_db.xlf:tx_advertising_domain_model_banner.customer',
 		'config' => [
 			'type' => 'group',
-			'internal_type' => 'db',
 			'allowed' => 'tx_advertising_domain_model_customer',
 			'orderBy' => ' ORDER BY name ASC',
 			'minitems' => 1,
@@ -91,8 +90,8 @@ $newColumns = [
             'type' => 'select',
             'renderType' => 'selectSingle',
             'items' => [
-                ['Image', 'image'],
-                ['Text', 'text']
+                ['label' => 'Image', 'value' => 'image'],
+                ['label' => 'Text', 'value' => 'text']
             ],
             'default' => 'image'
         ]

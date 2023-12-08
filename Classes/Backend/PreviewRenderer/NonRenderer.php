@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Backend\PreviewRenderer;
 
+use TYPO3\CMS\Backend\Preview\PreviewRendererInterface;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 
 /**
@@ -22,7 +23,7 @@ use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
  * @subpackage Slavlee TYPO3
  * @project advertising
  */
-class NonRenderer implements \TYPO3\CMS\Backend\Preview\PreviewRendererInterface
+class NonRenderer implements PreviewRendererInterface
 {
 	/**
 	 * Dedicated method for rendering preview header HTML for

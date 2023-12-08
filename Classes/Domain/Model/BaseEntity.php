@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -17,16 +18,16 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * BaseEntity
  */
-class BaseEntity extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class BaseEntity extends AbstractEntity
 {
 	/**
 	 * Create an instance of current object with given
-	 * default values
-	 * @param array $defaults
-	 * @param string $className
-	 * @return \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-	 */
-	public static function makeInstance(array $defaults, $className): \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+	* default values
+	* @param array $defaults
+	* @param string $className
+	* @return AbstractEntity
+	*/
+	public static function makeInstance(array $defaults, $className): AbstractEntity
 	{
 		$entity = GeneralUtility::makeInstance($className);
 	

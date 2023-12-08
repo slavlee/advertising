@@ -5,7 +5,6 @@ return [
         'label' => 'delivered',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'versioningWS' => true,
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
@@ -36,7 +35,7 @@ return [
                 'renderType' => 'selectSingle',
                 'default' => 0,
                 'items' => [
-                    ['', 0],
+                    ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => 'tx_advertising_domain_model_bannerstatistic',
                 'foreign_table_where' => 'AND {#tx_advertising_domain_model_bannerstatistic}.{#pid}=###CURRENT_PID### AND {#tx_advertising_domain_model_bannerstatistic}.{#sys_language_uid} IN (-1,0)',
@@ -62,9 +61,8 @@ return [
             'exclude' => false,
             'label' => 'LLL:EXT:advertising/Resources/Private/Language/locallang_db.xlf:tx_advertising_domain_model_bannerstatistic.been_visible',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 4,
-                'eval' => 'int',
                 'default' => 0
             ]
         ],
@@ -72,9 +70,8 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:advertising/Resources/Private/Language/locallang_db.xlf:tx_advertising_domain_model_bannerstatistic.clicked',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 4,
-                'eval' => 'int',
                 'default' => 0
             ]
         ],

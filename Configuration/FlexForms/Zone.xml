@@ -1,17 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <T3DataStructure>
     <sheets>
         <sDEF>
             <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:advertising/Resources/Private/Language/locallang_be.xlf:tx_advertising_zone.name</sheetTitle>
-                </TCEforms>
+                <sheetTitle>LLL:EXT:advertising/Resources/Private/Language/locallang_be.xlf:tx_advertising_zone.name</sheetTitle>
                 <type>array</type>
                 <el>                   
                     <settings.zone>
-                        <TCEforms>
-                            <label>LLL:EXT:advertising/Resources/Private/Language/locallang_be.xlf:tx_advertising_zone.name</label>
-                            <config>
+                        <label>LLL:EXT:advertising/Resources/Private/Language/locallang_be.xlf:tx_advertising_zone.name</label><config>
                                 <type>select</type>
                                 <renderType>selectSingle</renderType>
                                 <required>1</required>
@@ -20,12 +15,11 @@
                                 <foreign_table_where>ORDER BY name</foreign_table_where>
                                 <items type="array">
                                     <numIndex index="0" type="array">
-                                        <numIndex index="0"></numIndex>
-                                        <numIndex index="1">0</numIndex>
+                                        <label></label>
+                                        <value>0</value>
                                     </numIndex>
                                 </items>
                             </config>
-                        </TCEforms>
                     </settings.zone>
                 </el>
             </ROOT>

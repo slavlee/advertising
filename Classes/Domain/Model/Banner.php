@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Domain\Model;
 
-
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Annotation\Validate;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 /**
  * This file is part of the "Advertising" Extension for TYPO3 CMS.
  *
@@ -13,11 +17,10 @@ namespace Slavlee\Advertising\Domain\Model;
  *
  * (c) 2021 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
 /**
  * Banner
  */
-class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Banner extends AbstractEntity
 {
 
     /**
@@ -30,17 +33,17 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * campaigns
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Campaign>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Campaign>
      */
+    #[Lazy]
     protected $campaigns = null;
 
     /**
      * name
      *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
+    #[Validate(['validator' => 'NotEmpty'])]
     protected $name = '';
 
     /**
@@ -53,16 +56,16 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * customer
      *
-     * @var \Slavlee\Advertising\Domain\Model\Customer
+     * @var Customer
      */
     protected $customer = null;
 
     /**
      * zones
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Zone>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Zone>
      */
+    #[Lazy]
     protected $zones = null;
     
     /**
@@ -75,7 +78,7 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the customer
      *
-     * @return \Slavlee\Advertising\Domain\Model\Customer $customer
+     * @return Customer $customer
      */
     public function getCustomer()
     {
@@ -85,10 +88,10 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the customer
      *
-     * @param \Slavlee\Advertising\Domain\Model\Customer $customer
+     * @param Customer $customer
      * @return void
      */
-    public function setCustomer(\Slavlee\Advertising\Domain\Model\Customer $customer)
+    public function setCustomer(Customer $customer)
     {
         $this->customer = $customer;
     }
@@ -155,17 +158,17 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function initializeObject()
     {
-        $this->zones = $this->zones ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->campaigns = $this->campaigns ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->zones = $this->zones ?: new ObjectStorage();
+        $this->campaigns = $this->campaigns ?: new ObjectStorage();
     }
 
     /**
      * Adds a Zone
      *
-     * @param \Slavlee\Advertising\Domain\Model\Zone $zone
+     * @param Zone $zone
      * @return void
      */
-    public function addZone(\Slavlee\Advertising\Domain\Model\Zone $zone)
+    public function addZone(Zone $zone)
     {
         $this->zones->attach($zones);
     }
@@ -173,10 +176,10 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Zone
      *
-     * @param \Slavlee\Advertising\Domain\Model\Zone $zoneToRemove The Zone to be removed
+     * @param Zone $zoneToRemove The Zone to be removed
      * @return void
      */
-    public function removeZone(\Slavlee\Advertising\Domain\Model\Zone $zoneToRemove)
+    public function removeZone(Zone $zoneToRemove)
     {
         $this->zones->detach($zoneToRemove);
     }
@@ -184,7 +187,7 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the zones
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Zone> zones
+     * @return ObjectStorage<Zone> zones
      */
     public function getZones()
     {
@@ -194,10 +197,10 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the zones
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Zone> $zones
+     * @param ObjectStorage<Zone> $zones
      * @return void
      */
-    public function setZones(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $zones)
+    public function setZones(ObjectStorage $zones)
     {
         $this->zones = $zones;
     }
@@ -205,10 +208,10 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Adds a Campaign
      *
-     * @param \Slavlee\Advertising\Domain\Model\Campaign $campaigns
+     * @param Campaign $campaigns
      * @return void
      */
-    public function addCampaign(\Slavlee\Advertising\Domain\Model\Campaign $campaign)
+    public function addCampaign(Campaign $campaign)
     {
         $this->campaigns->attach($campaigns);
     }
@@ -216,10 +219,10 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Campaign
      *
-     * @param \Slavlee\Advertising\Domain\Model\Campaign $campaignToRemove The Zone to be removed
+     * @param Campaign $campaignToRemove The Zone to be removed
      * @return void
      */
-    public function removeCampaign(\Slavlee\Advertising\Domain\Model\Campaign $campaignToRemove)
+    public function removeCampaign(Campaign $campaignToRemove)
     {
         $this->campaigns->detach($campaignToRemove);
     }
@@ -227,7 +230,7 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the campaigns
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Campaign> campaigns
+     * @return ObjectStorage<Campaign> campaigns
      */
     public function getCampaigns()
     {
@@ -237,10 +240,10 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the campaigns
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Campaign> $campaigns
+     * @param ObjectStorage<Campaign> $campaigns
      * @return void
      */
-    public function setCampaigns(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $campaigns)
+    public function setCampaigns(ObjectStorage $campaigns)
     {
         $this->campaigns = $campaigns;
     }
@@ -275,7 +278,7 @@ class Banner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
     	$campaigns = $this->getCampaigns();
     	
-    	if (get_class($campaigns) == \TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage::class)
+    	if (get_class($campaigns) == LazyObjectStorage::class)
     	{
     		$campaigns = $campaigns->toArray();		
     	}

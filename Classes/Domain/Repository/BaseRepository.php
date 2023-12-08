@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Domain\Repository;
 
-
+use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 /**
  * This file is part of the "Advertising" Extension for TYPO3 CMS.
  *
@@ -13,11 +15,10 @@ namespace Slavlee\Advertising\Domain\Repository;
  *
  * (c) 2021 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
 /**
  * Base repository for all advertising repositories
  */
-class BaseRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class BaseRepository extends Repository
 {
 	/**
 	 * Force to commit db transaction immediately
@@ -25,7 +26,7 @@ class BaseRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 */
 	public function commit()
 	{
-		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class);
+		$persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
 		$persistenceManager->persistAll();
 	}
 	

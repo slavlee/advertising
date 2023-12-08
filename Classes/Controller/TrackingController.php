@@ -3,10 +3,16 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Controller;
 
+use TYPO3\CMS\Extbase\Mvc\View\JsonView;
+use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use Slavlee\Advertising\Domain\Model\Banner;
+use Psr\Http\Message\ResponseInterface;
+use Slavlee\Advertising\Service\Campaign\StatisticService;
+use TYPO3\CMS\Core\LinkHandling\TypoLinkCodecService;
+use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Slavlee\Advertising\Utility\DebugUtility;
-use TYPO3\CMS\Frontend\Service\TypoLinkCodecService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -21,32 +27,27 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 class TrackingController extends ActionController
 {
-	protected $defaultViewObjectName = \TYPO3\CMS\Extbase\Mvc\View\JsonView::class;
+	protected $defaultViewObjectName = JsonView::class;
 	
 	/**
 	 * $statisticService
 	 * @var \Slavlee\Advertising\Service\Campaign\StatisticService
 	 */
 	protected $statisticService;
-	
-	/********************************************************
-	 * INJECTIONS - START
-	 *******************************************************/
 
-	/********************************************************
-	 * INJECTIONS - END
-	 *******************************************************/
+	public function __construct(StatisticService $statisticService) {
+		$this->statisticService = $statisticService;
+	}
 	
-	/**
-	 * Clicktracking for given banner
-	 * @param \Slavlee\Advertising\Domain\Model\Banner $banner
-	 * @return string 
-	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("banner")
-	 */
-   	public function clickAction(\Slavlee\Advertising\Domain\Model\Banner $banner)
+    /**
+     * Clicktracking for given banner
+     * @param \Slavlee\Advertising\Domain\Model\Banner $banner
+     * @return string
+     */
+    #[IgnoreValidation(['value' => 'banner'])]
+    public function clickAction(Banner $banner): ResponseInterface
    	{   		   		
-   		$service = $this->objectManager->get(\Slavlee\Advertising\Service\Campaign\StatisticService::class);
-   		$service->execute('clickedForBanner', $banner);
+   		$this->service->execute('clickedForBanner', $banner);
    		
    		// We dont send a JSON response, we simply redirect to target uri
    		
@@ -63,21 +64,21 @@ class TrackingController extends ActionController
 		$contentObject = GeneralUtility::makeInstance(ContentObjectRenderer::class);
    		
 		// Redirect
-		\TYPO3\CMS\Core\Utility\HttpUtility::redirect($contentObject->typoLink_URL($instructions));
+		HttpUtility::redirect($contentObject->typoLink_URL($instructions));
+  		return $this->htmlResponse();
    	}
    	
    	/**
-   	 * Delivered tracking for given banner
-   	 * @param \Slavlee\Advertising\Domain\Model\Banner $banner
-   	 * @return string
-   	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("banner")
-   	 */
-   	public function deliveredAction(\Slavlee\Advertising\Domain\Model\Banner $banner)
+     * Delivered tracking for given banner
+     * @param \Slavlee\Advertising\Domain\Model\Banner $banner
+     * @return string
+     */
+    #[IgnoreValidation(['value' => 'banner'])]
+    public function deliveredAction(Banner $banner): ResponseInterface
    	{
    		$state = 'success';
    		$data = [];
-   		$service = $this->objectManager->get(\Slavlee\Advertising\Service\Campaign\StatisticService::class);
-   		$service->execute('deliveredForBanner', $banner);
+   		$this->service->execute('deliveredForBanner', $banner);
    		
    		// Create json response
    		$this->view->setConfiguration([
@@ -95,5 +96,6 @@ class TrackingController extends ActionController
 		    'state' => $state,
 		    'data' => $data]
 		);
+  		return $this->htmlResponse();
    	}
 }

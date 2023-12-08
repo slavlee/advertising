@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Domain\Model\Dashboard\Demand;
 
+use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use Slavlee\Advertising\Utility\GeneralUtility;
 use Slavlee\Advertising\Helper\PaginateHelper;
 
@@ -65,20 +66,20 @@ abstract class AbstractDemand
 	}
 	
 	/**
-	 * Returns the query
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
-	 */
-	public function getQuery(): \TYPO3\CMS\Extbase\Persistence\Generic\Query
+  * Returns the query
+  * @return Query
+  */
+ public function getQuery(): Query
 	{		
 		return $this->query;
 	}
 	
 	/**
-	 * Sets the query
-	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query
-	 * @return void
-	 */
-	public function setQuery(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query): void
+  * Sets the query
+  * @param Query $query
+  * @return void
+  */
+ public function setQuery(Query $query): void
 	{
 		$this->query = $query;
 	}

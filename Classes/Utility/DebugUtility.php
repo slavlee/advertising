@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Utility;
 
+use TYPO3\CMS\Extbase\Persistence\Generic\Query;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -17,27 +21,27 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class DebugUtility
 {
 	/**
-	 * Debug Query
-	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query
-	 * @return void
-	 */
-	public static function debugQuery(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query): void
+  * Debug Query
+  * @param Query $query
+  * @return void
+  */
+ public static function debugQuery(Query $query): void
 	{
-		$objectManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
-		$queryParser = $objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser::class);
+		$objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+		$queryParser = $objectManager->get(Typo3DbQueryParser::class);
 		$queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
 		
 		self::debugQueryBuilder($queryBuilder, $query->getLimit(), $query->getOffset());
 	}
 	
 	/**
-	 * Debug QueryBuilder
-	 * @param \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder
-	 * @param int $limit
-	 * @param int $offset
-	 * @return void
-	 */
-	public static function debugQueryBuilder(\TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder, $limit = FALSE, $offset = FALSE): void
+  * Debug QueryBuilder
+  * @param QueryBuilder $queryBuilder
+  * @param int $limit
+  * @param int $offset
+  * @return void
+  */
+ public static function debugQueryBuilder(QueryBuilder $queryBuilder, $limit = FALSE, $offset = FALSE): void
 	{
 		$parameters = $queryBuilder->getParameters();
 		$sql = $queryBuilder->getSQL();

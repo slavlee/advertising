@@ -3,6 +3,14 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Service\Campaign;
 
+use Slavlee\Advertising\Service\BaseService;
+use Slavlee\Advertising\Domain\Repository\BannerRepository;
+use Slavlee\Advertising\Domain\Repository\CampaignRepository;
+use Slavlee\Advertising\Domain\Repository\CampaignStatisticRepository;
+use Slavlee\Advertising\Domain\Repository\BannerStatisticRepository;
+use Slavlee\Advertising\Domain\Model\Banner;
+use Slavlee\Advertising\Domain\Model\Campaign;
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Slavlee\Advertising\Domain\Model\CampaignStatistic;
 use Slavlee\Advertising\Domain\Model\BannerStatistic;
 use Slavlee\Advertising\Statistic\GeneralStatistic;
@@ -16,7 +24,7 @@ use Slavlee\Advertising\Statistic\GeneralStatistic;
  * (c) 2021 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
 
-class StatisticService extends \Slavlee\Advertising\Service\BaseService
+class StatisticService extends BaseService
 {
 	/**
 	 * $bannerRepository
@@ -50,7 +58,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Repository\BannerRepository $bannerRepository
 	 * @return void
 	 */
-	public function injectBannerRepository(\Slavlee\Advertising\Domain\Repository\BannerRepository $bannerRepository)
+	public function injectBannerRepository(BannerRepository $bannerRepository)
 	{
 		$this->bannerRepository = $bannerRepository;
 		$this->bannerRepository->setStorage($this->extConf['general']['storagePid']);
@@ -61,7 +69,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Repository\CampaignRepository $campaignRepository
 	 * @return void
 	 */
-	public function injectCampaignRepository(\Slavlee\Advertising\Domain\Repository\CampaignRepository $campaignRepository)
+	public function injectCampaignRepository(CampaignRepository $campaignRepository)
 	{
 		$this->campaignRepository = $campaignRepository;
 		$this->campaignRepository->setStorage($this->extConf['general']['storagePid']);
@@ -72,7 +80,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Repository\CampaignStatisticRepository $campaignStatisticRepository
 	 * @return void
 	 */
-	public function injectCampaignStatisticRepository(\Slavlee\Advertising\Domain\Repository\CampaignStatisticRepository $campaignStatisticRepository)
+	public function injectCampaignStatisticRepository(CampaignStatisticRepository $campaignStatisticRepository)
 	{
 		$this->campaignStatisticRepository = $campaignStatisticRepository;
 		$this->campaignStatisticRepository->setStorage($this->extConf['general']['storagePid']);
@@ -83,7 +91,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Repository\BannerStatisticRepository $bannerStatisticRepository
 	 * @return void
 	 */
-	public function injectBannerStatisticRepository(\Slavlee\Advertising\Domain\Repository\BannerStatisticRepository $bannerStatisticRepository)
+	public function injectBannerStatisticRepository(BannerStatisticRepository $bannerStatisticRepository)
 	{
 		$this->bannerStatisticRepository = $bannerStatisticRepository;
 		$this->bannerStatisticRepository->setStorage($this->extConf['general']['storagePid']);
@@ -97,7 +105,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Model\Banner $banner
 	 * @return void
 	 */
-	protected function clickedForBanner(\Slavlee\Advertising\Domain\Model\Banner $banner)
+	protected function clickedForBanner(Banner $banner)
 	{
 		// get all active campaigns for given banner
 		$campaigns = $this->findCampaignsForBanner($banner);
@@ -178,7 +186,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Model\Banner $banner
 	 * @return void
 	 */
-	protected function deliveredForBanner(\Slavlee\Advertising\Domain\Model\Banner $banner)
+	protected function deliveredForBanner(Banner $banner)
 	{
 		// get all active campaigns for given banner
 		$campaigns = $this->findCampaignsForBanner($banner);
@@ -236,7 +244,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
 	 * @return \stdClass
 	 */
-	protected function recalculateCampaignStatisticsWithTrackerData(\Slavlee\Advertising\Domain\Model\Campaign $campaign)
+	protected function recalculateCampaignStatisticsWithTrackerData(Campaign $campaign)
 	{
 		$banners = $campaign->getBanners();
 		$statistics = [];
@@ -297,11 +305,11 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	}
 	
 	/**
-	 * get all active campaigns for given content element
-	 * @param \Slavlee\Advertising\Domain\Model\Banner $banner
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
-	 */
-	protected function findCampaignsForBanner(\Slavlee\Advertising\Domain\Model\Banner $banner) : \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+  * get all active campaigns for given content element
+  * @param \Slavlee\Advertising\Domain\Model\Banner $banner
+  * @return QueryResult
+  */
+ protected function findCampaignsForBanner(Banner $banner) : QueryResult
 	{
 		return $this->campaignRepository->findCampaignsForBanner($banner);
 	}
@@ -312,7 +320,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
 	 * @return \Slavlee\Advertising\Domain\Model\BannerStatistic
 	 */
-	protected function findOrCreateBannerStatistic(\Slavlee\Advertising\Domain\Model\Banner $banner, \Slavlee\Advertising\Domain\Model\Campaign $campaign) : \Slavlee\Advertising\Domain\Model\BannerStatistic
+	protected function findOrCreateBannerStatistic(Banner $banner, Campaign $campaign) : BannerStatistic
 	{
 		$today = new \DateTime();
 		$today->setTime(0,0,0,0);
@@ -339,7 +347,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param boolean $suppressCreate
 	 * @return \Slavlee\Advertising\Domain\Model\CampaignStatistic|bool
 	 */
-	protected function findOrCreateCampaignStatisticForBanner(\Slavlee\Advertising\Domain\Model\Campaign $campaign, \Slavlee\Advertising\Domain\Model\Banner $banner, $suppressCreate = FALSE)
+	protected function findOrCreateCampaignStatisticForBanner(Campaign $campaign, Banner $banner, $suppressCreate = FALSE)
 	{
 		$campaignStatistic = $this->campaignStatisticRepository->findByCampaignAndBanner($campaign, $banner)->fetch();
 		
@@ -359,7 +367,7 @@ class StatisticService extends \Slavlee\Advertising\Service\BaseService
 	 * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
 	 * @return \stdClass
 	 */
-	protected function findTotalCampaignStatistics(\Slavlee\Advertising\Domain\Model\Campaign $campaign) : \stdClass
+	protected function findTotalCampaignStatistics(Campaign $campaign) : \stdClass
 	{
 		$banners = $campaign->getBanners();
 		$totalStatistic = new \stdClass();

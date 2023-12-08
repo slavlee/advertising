@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Domain\Model;
 
-
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Annotation\Validate;
 /**
  * This file is part of the "Advertising" Extension for TYPO3 CMS.
  *
@@ -13,19 +14,18 @@ namespace Slavlee\Advertising\Domain\Model;
  *
  * (c) 2021 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
 /**
  * Customer
  */
-class Customer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Customer extends AbstractEntity
 {
 
     /**
      * name
      *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
+    #[Validate(['validator' => 'NotEmpty'])]
     protected $name = '';
 
     /**

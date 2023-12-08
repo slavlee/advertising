@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Cache\Backend;
 
+use TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend;
 /**
  * This file is part of the "Advertising" Extension for TYPO3 CMS.
  *
@@ -11,21 +12,19 @@ namespace Slavlee\Advertising\Cache\Backend;
  *
  * (c) 2021 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
-
 class FileBackend
 {
 	/**
-	 * @var \TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend
-	 */
+	 * @var SimpleFileBackend
+	*/
 	private $cache;
 	
 	/**
 	 * Create a FileBackend
-	 * @param \TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend $cache
-	 * @return void
-	 */
-	public function __construct(\TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend $cache)
+	* @param SimpleFileBackend $cache
+	* @return void
+	*/
+	public function __construct(SimpleFileBackend $cache)
 	{
 		$this->cache = $cache;
 	}

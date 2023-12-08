@@ -74,14 +74,14 @@ class CampaignStatistic extends BaseEntity
     /**
      * campaign
      *
-     * @var \Slavlee\Advertising\Domain\Model\Campaign
+     * @var Campaign
      */
     protected $campaign = null;
 
     /**
      * banner
      *
-     * @var \Slavlee\Advertising\Domain\Model\Banner
+     * @var Banner
      */
     protected $banner = null;
 
@@ -213,7 +213,7 @@ class CampaignStatistic extends BaseEntity
     /**
      * Returns the campaign
      *
-     * @return \Slavlee\Advertising\Domain\Model\Campaign $campaign
+     * @return Campaign $campaign
      */
     public function getCampaign()
     {
@@ -223,10 +223,10 @@ class CampaignStatistic extends BaseEntity
     /**
      * Sets the campaign
      *
-     * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
+     * @param Campaign $campaign
      * @return void
      */
-    public function setCampaign(\Slavlee\Advertising\Domain\Model\Campaign $campaign)
+    public function setCampaign(Campaign $campaign)
     {
         $this->campaign = $campaign;
     }
@@ -234,7 +234,7 @@ class CampaignStatistic extends BaseEntity
     /**
      * Returns the banner
      *
-     * @return \Slavlee\Advertising\Domain\Model\Banner $banner
+     * @return Banner $banner
      */
     public function getBanner()
     {
@@ -244,10 +244,10 @@ class CampaignStatistic extends BaseEntity
     /**
      * Sets the banner
      *
-     * @param \Slavlee\Advertising\Domain\Model\Banner $banner
+     * @param Banner $banner
      * @return void
      */
-    public function setBanner(\Slavlee\Advertising\Domain\Model\Banner $banner)
+    public function setBanner(Banner $banner)
     {
         $this->banner = $banner;
     }

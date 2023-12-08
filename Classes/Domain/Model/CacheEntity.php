@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Slavlee\Advertising\Domain\Model;
 
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use Slavlee\Advertising\Cache\Backend\FileBackend;
 use Slavlee\Advertising\Utility\GeneralUtility;
 use Slavlee\Advertising\Utility\CacheUtility;
 
@@ -20,7 +22,7 @@ use Slavlee\Advertising\Utility\CacheUtility;
 /**
  * CacheEntity
  */
-class CacheEntity extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class CacheEntity extends AbstractEntity
 {
 	/**
 	 * $cache
@@ -32,7 +34,7 @@ class CacheEntity extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	 * Inject $cache
 	 * @param \Slavlee\Advertising\Cache\Backend\FileBackend $cache
 	 */
-	public function injectCache(\Slavlee\Advertising\Cache\Backend\FileBackend $cache)
+	public function injectCache(FileBackend $cache)
 	{
 		$this->cache = $cache;
 	}

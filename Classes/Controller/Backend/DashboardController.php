@@ -3,6 +3,11 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Controller\Backend;
 
+use Slavlee\Advertising\Domain\Repository\CampaignRepository;
+use Slavlee\Advertising\Statistic\CampaignStatistic;
+use Slavlee\Advertising\Helper\PaginateHelper;
+use TYPO3\CMS\Core\Page\PageRenderer;
+use Slavlee\Advertising\Service\Campaign\StatisticService;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use Slavlee\Advertising\Controller\BaseActionController;
 use Psr\Http\Message\ResponseInterface;
@@ -49,7 +54,7 @@ class DashboardController extends BaseActionController
 	 * @param \Slavlee\Advertising\Domain\Repository\CampaignRepository $campaignRepository
 	 * @return void
 	 */
-	public function injectCampaignRepository(\Slavlee\Advertising\Domain\Repository\CampaignRepository $campaignRepository): void
+	public function injectCampaignRepository(CampaignRepository $campaignRepository): void
 	{
 		$this->campaignRepository = $campaignRepository;
 	}
@@ -99,7 +104,7 @@ class DashboardController extends BaseActionController
 	 * @param array $pagination
 	 * @return ResponseInterface 
 	 */
-   	public function showAction(\Slavlee\Advertising\Domain\Model\Dashboard\Demand\CampaignDemand $demand = null, $pagination = []): ResponseInterface
+   	public function showAction(CampaignDemand $demand = null, $pagination = []): ResponseInterface
    	{   	
    		// Set start pagination
    		if (empty($pagination))
@@ -118,12 +123,12 @@ class DashboardController extends BaseActionController
    		
    		// Statistic object for dashboard overview
    		$campaigns = $this->campaignRepository->findDemanded($demand);   		
-   		$statistic = $this->objectManager->get(\Slavlee\Advertising\Statistic\CampaignStatistic::class, $campaigns);
+   		$statistic = $this->objectManager->get(CampaignStatistic::class, $campaigns);
    		
    		// Do pagination
    		if (!empty($pagination))
    		{
-   			$paginateHelper = GeneralUtility::makeInstance(\Slavlee\Advertising\Helper\PaginateHelper::class, $pagination);
+   			$paginateHelper = GeneralUtility::makeInstance(PaginateHelper::class, $pagination);
    			$query = $paginateHelper->paginate($campaigns->getQuery(), $pagination['currentStep']);
    			
    			$campaigns = $query->execute();
@@ -134,7 +139,7 @@ class DashboardController extends BaseActionController
    		$this->view->assign('statistic', $statistic);
    		$this->view->assign('campaigns', $campaigns);
    		$this->view->assign('demand', $demand);
-   		$pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+   		$pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(PageRenderer::class);
    		$pageRenderer->addCssFile('EXT:advertising/Resources/Public/Contrib/FontAwesome/css/all.min.css');
    		$pageRenderer->addCssFile('EXT:advertising/Resources/Public/Css/Backend/dashboard.css');
    		
@@ -188,7 +193,7 @@ class DashboardController extends BaseActionController
    			/**
    			 * @var \Slavlee\Advertising\Service\Campaign\StatisticService $service
    			 */
-   			$service = $this->objectManager->get(\Slavlee\Advertising\Service\Campaign\StatisticService::class);
+   			$service = $this->objectManager->get(StatisticService::class);
    			$service->execute('recalculateCampaignStatisticsWithTrackerData', $campaign);
    		}
    		

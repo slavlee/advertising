@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Domain\Repository;
 
-
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use Slavlee\Advertising\Domain\Model\Banner;
+use Slavlee\Advertising\Domain\Model\Campaign;
 /**
  * This file is part of the "Advertising" Extension for TYPO3 CMS.
  *
@@ -13,19 +15,18 @@ namespace Slavlee\Advertising\Domain\Repository;
  *
  * (c) 2021 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
 /**
  * The repository for BannerStatistics
  */
 class BannerStatisticRepository extends BaseRepository
 {
 	/**
-	 * Find a banner statistic for given banner and date
-	 * @param \Slavlee\Advertising\Domain\Model\Banner $banner
-	 * @param \DateTime $date
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
-	 */
-	public function findByBannerAndDate($banner, $date)
+  * Find a banner statistic for given banner and date
+  * @param \Slavlee\Advertising\Domain\Model\Banner $banner
+  * @param \DateTime $date
+  * @return QueryResult
+  */
+ public function findByBannerAndDate($banner, $date)
 	{
 		$query = $this->createQuery();
 		$query->matching(
@@ -37,12 +38,12 @@ class BannerStatisticRepository extends BaseRepository
 	}
 	
 	/**
-	 * Find a banner statistic for given banner and date
-	 * @param \Slavlee\Advertising\Domain\Model\Banner $banner
-	 * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
-	 */
-	public function findByBannerAndCampaign(\Slavlee\Advertising\Domain\Model\Banner $banner, \Slavlee\Advertising\Domain\Model\Campaign $campaign)
+  * Find a banner statistic for given banner and date
+  * @param \Slavlee\Advertising\Domain\Model\Banner $banner
+  * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
+  * @return QueryResult
+  */
+ public function findByBannerAndCampaign(Banner $banner, Campaign $campaign)
 	{
 		$query = $this->createQuery();
 		$query->matching(
@@ -64,13 +65,13 @@ class BannerStatisticRepository extends BaseRepository
 	}
 	
 	/**
-	 * Find a banner statistic for given banner and date
-	 * @param \Slavlee\Advertising\Domain\Model\Banner $banner
-	 * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
-	 * @param \DateTime $date
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
-	 */
-	public function findByBannerCampaignAndDate(\Slavlee\Advertising\Domain\Model\Banner $banner, \Slavlee\Advertising\Domain\Model\Campaign $campaign, \DateTime $date)
+  * Find a banner statistic for given banner and date
+  * @param \Slavlee\Advertising\Domain\Model\Banner $banner
+  * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
+  * @param \DateTime $date
+  * @return QueryResult
+  */
+ public function findByBannerCampaignAndDate(Banner $banner, Campaign $campaign, \DateTime $date)
 	{
 		$query = $this->createQuery();
 		$query->matching(

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Utility;
 
+use Slavlee\Advertising\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -22,7 +23,7 @@ class CacheUtility
 	 */
 	public static function getCacheInstance()
 	{
-		return GeneralUtility::makeInstance(\Slavlee\Advertising\Cache\Backend\FileBackend::class);
+		return GeneralUtility::makeInstance(FileBackend::class);
 	}
 	
 	/**

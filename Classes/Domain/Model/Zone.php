@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Annotation\Validate;
+use Slavlee\Advertising\Service\Banner\BannerDeliveryService;
 use Slavlee\Advertising\Utility\ZoneUtility;
 use Slavlee\Advertising\Utility\GeneralUtility;
 
@@ -19,39 +24,39 @@ use Slavlee\Advertising\Utility\GeneralUtility;
 /**
  * Zone
  */
-class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Zone extends AbstractEntity
 {
 
     /**
      * banners
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Banner>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Banner>
      */
+    #[Lazy]
     protected $banners = null;
 
     /**
      * name
      *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
+    #[Validate(['validator' => 'NotEmpty'])]
     protected $name = '';
 
     /**
      * height
      *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
+    #[Validate(['validator' => 'NotEmpty'])]
     protected $height = '';
 
     /**
      * width
      *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
+    #[Validate(['validator' => 'NotEmpty'])]
     protected $width = '';
 
     /**
@@ -137,16 +142,16 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function initializeObject()
     {
-    	$this->banners = $this->banners ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    	$this->banners = $this->banners ?: new ObjectStorage();
     }
 
     /**
      * Adds a Banner
      *
-     * @param \Slavlee\Advertising\Domain\Model\Banner $banner
+     * @param Banner $banner
      * @return void
      */
-    public function addBanner(\Slavlee\Advertising\Domain\Model\Banner $banner)
+    public function addBanner(Banner $banner)
     {
         $this->banners->attach($banner);
     }
@@ -154,10 +159,10 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Banner
      *
-     * @param \Slavlee\Advertising\Domain\Model\Banner $bannerToRemove The Banner to be removed
+     * @param Banner $bannerToRemove The Banner to be removed
      * @return void
      */
-    public function removeBanner(\Slavlee\Advertising\Domain\Model\Banner $bannerToRemove)
+    public function removeBanner(Banner $bannerToRemove)
     {
         $this->banners->detach($bannerToRemove);
     }
@@ -165,7 +170,7 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the banners
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Banner> $banners
+     * @return ObjectStorage<Banner> $banners
      */
     public function getBanners()
     {
@@ -176,11 +181,11 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Get the banner to display next request
      * based on prior
      *
-     * @return \Slavlee\Advertising\Domain\Model\Banner
+     * @return Banner
      */
     public function getNextBanner()
     {
-    	$service = GeneralUtility::makeInstance(\Slavlee\Advertising\Service\Banner\BannerDeliveryService::class);
+    	$service = GeneralUtility::makeInstance(BannerDeliveryService::class);
     	$banners = $service->getBannersFromActiveCampaignsForZone($this); // we want only banners from active campaigns
         
     	return $banners ? ZoneUtility::getNextBanner($banners) : null;
@@ -189,10 +194,10 @@ class Zone extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the banners
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slavlee\Advertising\Domain\Model\Banner> $banners
+     * @param ObjectStorage<Banner> $banners
      * @return void
      */
-    public function setBanners(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $banners)
+    public function setBanners(ObjectStorage $banners)
     {
         $this->banners = $banners;
     }

@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\Controller;
 
+use Slavlee\Advertising\Domain\Repository\ZoneRepository;
+use Slavlee\Advertising\Domain\Repository\BannerRepository;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Slavlee\Advertising\Utility\DebugUtility;
@@ -38,7 +41,7 @@ class ZoneController extends ActionController
 	 * Inject $zoneRepository
 	 * @param \Slavlee\Advertising\Domain\Repository\ZoneRepository $zoneRepository
 	 */
-	public function injectZoneRepository(\Slavlee\Advertising\Domain\Repository\ZoneRepository $zoneRepository)
+	public function injectZoneRepository(ZoneRepository $zoneRepository)
 	{
 		$this->zoneRepository = $zoneRepository;
 		$this->zoneRepository->disableStorage();
@@ -48,7 +51,7 @@ class ZoneController extends ActionController
 	 * Inject $bannerRepository
 	 * @param \Slavlee\Advertising\Domain\Repository\BannerRepository $bannerRepository
 	 */
-	public function injectBannerRepository(\Slavlee\Advertising\Domain\Repository\BannerRepository $bannerRepository)
+	public function injectBannerRepository(BannerRepository $bannerRepository)
 	{
 		$this->bannerRepository = $bannerRepository;
 		$this->bannerRepository->disableStorage();
@@ -61,10 +64,11 @@ class ZoneController extends ActionController
 	 * Displays all banner of a given zone
 	 * @return string 
 	 */
-   	public function showAction()
+   	public function showAction(): ResponseInterface
    	{   		   		   	
    		$zone = $this->zoneRepository->findByUid((int)$this->settings['zone']);
    		   		
    		$this->view->assign('zone', $this->zoneRepository->findByUid($this->settings['zone']));
+     return $this->htmlResponse();
    	}
 }

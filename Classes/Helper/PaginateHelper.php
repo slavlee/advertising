@@ -93,11 +93,11 @@ class PaginateHelper
 	}
 	
 	/**
-	 * 
-	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query
-	 * @param int $currentStep
-	 */
-	public function paginate(Query $query, $currentStep): Query
+  *
+  * @param Query $query
+  * @param int $currentStep
+  */
+ public function paginate(Query $query, $currentStep): Query
 	{
 		$this->initQuery($query);
 		

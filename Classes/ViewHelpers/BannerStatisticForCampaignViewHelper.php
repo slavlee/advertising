@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Slavlee\Advertising\ViewHelpers;
 
+use Slavlee\Advertising\Domain\Repository\BannerStatisticRepository;
+use Slavlee\Advertising\Domain\Model\Campaign;
+use Slavlee\Advertising\Domain\Model\Banner;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -40,7 +43,7 @@ class BannerStatisticForCampaignViewHelper extends AbstractViewHelper
 	 * @param \Slavlee\Advertising\Domain\Repository\BannerStatisticRepository $bannerStatisticRepository
 	 * @return void
 	 */
-	public function injectCampaignStatisticRepository(\Slavlee\Advertising\Domain\Repository\BannerStatisticRepository $bannerStatisticRepository)
+	public function injectCampaignStatisticRepository(BannerStatisticRepository $bannerStatisticRepository)
 	{
 		$this->bannerStatisticRepository = $bannerStatisticRepository;
 		$this->bannerStatisticRepository->setStorage($this->extConf['general']['storagePid']);
@@ -55,8 +58,8 @@ class BannerStatisticForCampaignViewHelper extends AbstractViewHelper
 	public function initializeArguments()
 	{
 		parent::initializeArguments();
-		$this->registerArgument('campaign', \Slavlee\Advertising\Domain\Model\Campaign::class, 'Campaign entity', true);
-		$this->registerArgument('banner', \Slavlee\Advertising\Domain\Model\Banner::class, 'Banner entity', true);
+		$this->registerArgument('campaign', Campaign::class, 'Campaign entity', true);
+		$this->registerArgument('banner', Banner::class, 'Banner entity', true);
 		$this->registerArgument('as', 'string', 'Name of the template variable, where the statistic is stored', true);				
 	}
 	

@@ -1,3 +1,8 @@
+### Version dev-typo312-1
+- [IMPORTANT] Change dependency to TYPO3 min. 12.4.8
+- [IMPORTANT] Changed testing framework version in composer.json to min. 8.0.7.
+- [IMPORTANT] Run PHPRector
+
 ### Version 0.19.0
 - [IMPORTANT] Changed file structure for composer, thanks to @dmitryd
 - [NOTICE] Changed tags in CHANGES.md. [BREAK] to !!![IMPORTANT], [NEW] to [FEATURE]. So we have now: [IMPORTANT], [FEATURE], [CHANGE], [NOTICE]
