@@ -68,40 +68,6 @@ plugin.tx_advertising_zone {
 plugin.tx_advertising_banner =< plugin.tx_advertising_zone
 plugin.tx_advertising_clicktracking =< plugin.tx_advertising_zone
 plugin.tx_advertising_deliveredtracking =< plugin.tx_advertising_zone
-
-# these classes are only used in auto-generated templates
-plugin.tx_advertising._CSS_DEFAULT_STYLE (
-    textarea.f3-form-error {
-        background-color:#FF9F9F;
-        border: 1px #FF0000 solid;
-    }
-
-    input.f3-form-error {
-        background-color:#FF9F9F;
-        border: 1px #FF0000 solid;
-    }
-
-    .tx-advertising table {
-        border-collapse:separate;
-        border-spacing:10px;
-    }
-
-    .tx-advertising table th {
-        font-weight:bold;
-    }
-
-    .tx-advertising table td {
-        vertical-align:top;
-    }
-
-    .typo3-messages .message-error {
-        color:red;
-    }
-
-    .typo3-messages .message-ok {
-        color:green;
-    }
-)
 ##########################################################################################
 # PLUGINS - END
 ##########################################################################################
@@ -113,8 +79,10 @@ page {
 		#axios = EXT:advertising/Resources/Public/JavaScript/axios.min.js
 		#vue = EXT:advertising/Resources/Public/JavaScript/vue.js
 		#vue_axios = EXT:advertising/Resources/Public/JavaScript/vue-axios.common.min.js
-		advertising_delivered_tracker = EXT:advertising/Resources/Public/JavaScript/jquery.advertising-delivered-tracker.js
-		advertising_delivered_tracker.async = 1
+		advertising_delivered_tracker = EXT:advertising/Resources/Public/JavaScript/advertising-delivered-tracker.js
+		advertising_delivered_tracker {
+			async = 1
+		}
 	}
 }
 

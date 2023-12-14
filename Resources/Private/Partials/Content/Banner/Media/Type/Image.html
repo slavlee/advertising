@@ -1,8 +1,12 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:ce="http://typo3.org/ns/TYPO3/CMS/FluidStyledContent/ViewHelpers" data-namespace-typo3-fluid="true">
-<figure class="image">
+<html 
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" 
+    xmlns:ce="http://typo3.org/ns/TYPO3/CMS/FluidStyledContent/ViewHelpers"
+    xmlns:ad="http://typo3.org/ns/Slavlee/Advertising/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+<figure class="image ad" data-ad-delivered-uri="{ad:uri.delivered(banner: data.uid)}">
     <f:if condition="{data.header_link}">
         <f:then>
-            <f:link.typolink parameter="t3://page?uid={settings.currentPageId}" title="{file.title}" additionalParams="type={settings.typeNums.clickTracking}&tx_advertising_clicktracking[banner]={data.uid}" class="link-advertising" additionalAttributes="{data-ad-banner: data.uid, data-ad-typeNum-delivered: settings.typeNums.deliveredTracking}">
+            <f:link.typolink parameter="t3://page?uid={settings.currentPageId}" title="{file.title}" additionalParams="type={settings.typeNums.clickTracking}&tx_advertising_clicktracking[banner]={data.uid}" class="link-advertising">
                 <f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
             </f:link.typolink>
         </f:then>

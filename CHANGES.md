@@ -1,3 +1,8 @@
+### Version dev-typo312-2
+- [IMPORTANT] Translate jQuery Plugin to ES6
+- [IMPORTANT] Repository now return Doctrine\DBAL\Result (TYPO3 12 Migration)
+- [NOTICE] Removed plugin.tx_advertising._CSS_DEFAULT_STYLE, because it is not needed
+
 ### Version dev-typo312-1
 - [IMPORTANT] Change dependency to TYPO3 min. 12.4.8
 - [IMPORTANT] Changed testing framework version in composer.json to min. 8.0.7.

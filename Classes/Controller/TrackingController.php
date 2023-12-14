@@ -47,7 +47,7 @@ class TrackingController extends ActionController
     #[IgnoreValidation(['value' => 'banner'])]
     public function clickAction(Banner $banner): ResponseInterface
    	{   		   		
-   		$this->service->execute('clickedForBanner', $banner);
+   		$this->statisticService->execute('clickedForBanner', $banner);
    		
    		// We dont send a JSON response, we simply redirect to target uri
    		
@@ -78,7 +78,7 @@ class TrackingController extends ActionController
    	{
    		$state = 'success';
    		$data = [];
-   		$this->service->execute('deliveredForBanner', $banner);
+   		$this->statisticService->execute('deliveredForBanner', $banner);
    		
    		// Create json response
    		$this->view->setConfiguration([

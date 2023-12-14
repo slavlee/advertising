@@ -1,5 +1,8 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<figure class="audio">
+<html 
+	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:ad="http://typo3.org/ns/Slavlee/Advertising/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+<figure class="audio ad" data-ad-delivered-uri="{ad:uri.delivered(banner: data.uid)}">
     <div class="audio-embed">
     	<f:if condition="{data.header_link}">
 	        <f:then>

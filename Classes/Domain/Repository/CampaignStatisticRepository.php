@@ -27,9 +27,9 @@ class CampaignStatisticRepository extends BaseRepository
 	 * Find campaign statistic for campaign and banner
 	 * @param \Slavlee\Advertising\Domain\Model\Campaign $campaign
 	 * @param \Slavlee\Advertising\Domain\Model\Banner $banner
-	 * @return \Doctrine\DBAL\ForwardCompatibility\Result
+	 * @return \Doctrine\DBAL\Result
 	 */
-	public function findByCampaignAndBanner(\Slavlee\Advertising\Domain\Model\Campaign $campaign, \Slavlee\Advertising\Domain\Model\Banner $banner): \Doctrine\DBAL\ForwardCompatibility\Result
+	public function findByCampaignAndBanner(\Slavlee\Advertising\Domain\Model\Campaign $campaign, \Slavlee\Advertising\Domain\Model\Banner $banner): \Doctrine\DBAL\Result
 	{
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_advertising_domain_model_campaignstatistic')->createQueryBuilder();
 		$queryBuilder

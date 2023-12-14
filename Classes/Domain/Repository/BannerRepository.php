@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Slavlee\Advertising\Domain\Repository;
 
 use Slavlee\Advertising\Domain\Model\Zone;
-use Doctrine\DBAL\ForwardCompatibility\Result;
+use Doctrine\DBAL\Result;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Slavlee\Advertising\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -44,7 +44,7 @@ class BannerRepository extends BaseRepository
 	/**
 	 * Find all Banners that are assigned to at least one active campaign and given zone
 	 * @param \Slavlee\Advertising\Domain\Model\Zone $zone
-	 * @return \Doctrine\DBAL\ForwardCompatibility\Result
+	 * @return \Doctrine\DBAL\Result
 	 */
 	public function findFromActiveCampaignsForZone(Zone $zone): Result
 	{

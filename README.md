@@ -25,8 +25,20 @@ Download and install the [extension][1] with the extension manager module.
 2) Edit this sysfolder and go to **Behaviour** and choose the Advertising plugin
 3) Go to the **Resources** tab and choose **Page TSConfig**: EXT:advertising and save the folder
 4) Edit your root page template and go to the **Includes tab** and choose the EXT:advertising static file.
-5) Go to the Admin Tools: **settings** and click on **Configure extensions**. Edit there the **Storage Page** for the extension: **advertising**
-6) Now you are ready to create customers, campaign, zones and banners inside the new folder you have created in step 1 
+5) Go to the Admin Tools: **Settings** and click on **Configure extensions**. Edit there the **Storage Page** for the extension: **advertising**
+6) Now you are ready to create customers, campaign, zones and banners inside the new folder you have created in step 1
+
+### 2.3 Recommended settings
+#### Route Enhancer
+Set custom routes for the typeNum values set in step 5 (see list above). I recommend the following settings:
+routeEnhancers:
+  PageTypeSuffix:
+    type: PageType
+    [...]
+    map:
+      [...]
+      '/clicktracking': 28062019
+      '/deliveredtracking': 28062020
 
 ## 3 How do you should use this extension
 Before you create your first banner, go to the created sysfolder and create there at least one customer and campaign. Every banner needs to be assigned to a customer and a campaign. 

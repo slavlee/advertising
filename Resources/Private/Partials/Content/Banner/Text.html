@@ -1,8 +1,11 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
- 	<div class="ce-text">
+<html 
+	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:ad="http://typo3.org/ns/Slavlee/Advertising/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+ 	<div class="ce-text ad" data-ad-delivered-uri="{ad:uri.delivered(banner: data.uid)}">
         <f:if condition="{data.header_link}">
         	<f:then>
-        		<f:link.typolink parameter="t3://page?uid={settings.currentPageId}" title="{file.title}" additionalParams="type={settings.typeNums.clickTracking}&tx_advertising_clicktracking[banner]={data.uid}" class="link-advertising" additionalAttributes="{data-ad-banner: data.uid, data-ad-typeNum-delivered: settings.typeNums.deliveredTracking}">
+        		<f:link.typolink parameter="t3://page?uid={settings.currentPageId}" title="{file.title}" additionalParams="type={settings.typeNums.clickTracking}&tx_advertising_clicktracking[banner]={data.uid}" class="link-advertising">
         			<f:format.html>{data.bodytext}</f:format.html>
         		</f:link.typolink>
         	</f:then>
