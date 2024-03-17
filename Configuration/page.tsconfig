@@ -1,0 +1,4 @@
+@import 'EXT:advertising/Configuration/TSconfig/Page/Mod/Web/List.tsconfig'
+@import 'EXT:advertising/Configuration/TSconfig/Page/Mod/Wizards/Groups.tsconfig'
+@import 'EXT:advertising/Configuration/TSconfig/Page/Mod/Wizards/Plugins.tsconfig'
+@import 'EXT:advertising/Configuration/TSconfig/Page/Mod/Wizards/Banner.tsconfig'

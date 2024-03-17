@@ -21,7 +21,7 @@ use Slavlee\Advertising\Utility\DateUtility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- * (c) 2021 Kevin Chileong Lee <support@slavlee.de>, Slavlee
+ * (c) 2023 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
 
 /**
