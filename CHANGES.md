@@ -1,8 +1,11 @@
-### Version dev-typo312-3
+### Version 1.0.0
+- !!![IMPORTANT] Change dependency to TYPO3 min. 12.4
+- [IMPORTANT] Changed testing framework version in composer.json to min. 8.0.7.
 - [IMPORTANT] Moved all ext_localconf.php entries inside Bootstrap/ExtLocalconf
 - [IMPORTANT] Include Page TsConfig via page.tsconfig
-- !!![IMPORTANT] This version is not compatible with TYPO3 11 anymore
 - [IMPORTANT] Register Backend Module via Configuration/Backend/Modules.php
+- [IMPORTANT] Translate jQuery Plugin to ES6
+- [IMPORTANT] Repository now return Doctrine\DBAL\Result (TYPO3 12 Migration)
 - [NOTICE] Add several classes to Services.yaml public for DI
 - [NOTICE] Removed ObjectManager
 - [NOTICE] Remove Extension Builder files
@@ -10,18 +13,9 @@
 - [NOTICE] Change copyright year to 2023 in all files
 - [NOTICE] Removed unused/deprecated stuff in composer.json
 - [NOTICE] Add autoload in ext_emconf for better autoloading in non-composer
+- [NOTICE] Removed plugin.tx_advertising._CSS_DEFAULT_STYLE, because it is not needed
 - [BUGFIX] Several small bugfixes
 - [BUGFIX] Text Banner didnt show text from header field
-
-### Version dev-typo312-2
-- [IMPORTANT] Translate jQuery Plugin to ES6
-- [IMPORTANT] Repository now return Doctrine\DBAL\Result (TYPO3 12 Migration)
-- [NOTICE] Removed plugin.tx_advertising._CSS_DEFAULT_STYLE, because it is not needed
-
-### Version dev-typo312-1
-- [IMPORTANT] Change dependency to TYPO3 min. 12.4.8
-- [IMPORTANT] Changed testing framework version in composer.json to min. 8.0.7.
-- [IMPORTANT] Run PHPRector
 
 ### Version 0.19.0
 - [IMPORTANT] Changed file structure for composer, thanks to @dmitryd
