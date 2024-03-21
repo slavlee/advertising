@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Slavlee\Advertising\Utility;
 
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -27,8 +26,7 @@ class DebugUtility
   */
  public static function debugQuery(Query $query): void
 	{
-		$objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-		$queryParser = $objectManager->get(Typo3DbQueryParser::class);
+		$queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
 		$queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
 		
 		self::debugQueryBuilder($queryBuilder, $query->getLimit(), $query->getOffset());

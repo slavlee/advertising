@@ -10,7 +10,7 @@ use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use Slavlee\Advertising\Service\Campaign\StatisticService;
-use Slavlee\Advertising\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Slavlee\Advertising\Utility\CacheUtility;
 use Slavlee\Advertising\Utility\CampaignUtility;
 use Slavlee\Advertising\Utility\DateUtility;

@@ -9,10 +9,8 @@ use Slavlee\Advertising\Domain\Model\Banner;
 use Psr\Http\Message\ResponseInterface;
 use Slavlee\Advertising\Service\Campaign\StatisticService;
 use TYPO3\CMS\Core\LinkHandling\TypoLinkCodecService;
-use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Slavlee\Advertising\Utility\DebugUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -64,8 +62,7 @@ class TrackingController extends ActionController
 		$contentObject = GeneralUtility::makeInstance(ContentObjectRenderer::class);
    		
 		// Redirect
-		HttpUtility::redirect($contentObject->typoLink_URL($instructions));
-  		return $this->htmlResponse();
+		return $this->redirectToUri($contentObject->typoLink_URL($instructions));
    	}
    	
    	/**

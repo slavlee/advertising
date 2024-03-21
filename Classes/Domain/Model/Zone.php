@@ -10,7 +10,7 @@ use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Annotation\Validate;
 use Slavlee\Advertising\Service\Banner\BannerDeliveryService;
 use Slavlee\Advertising\Utility\ZoneUtility;
-use Slavlee\Advertising\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This file is part of the "Advertising" Extension for TYPO3 CMS.

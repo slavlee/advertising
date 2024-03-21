@@ -12,7 +12,7 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use Slavlee\Advertising\Controller\BaseActionController;
 use Psr\Http\Message\ResponseInterface;
 use Slavlee\Advertising\Domain\Model\Dashboard\Demand\CampaignDemand;
-use Slavlee\Advertising\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Slavlee\Advertising\Utility\DebugUtility;
 
 /**
@@ -115,7 +115,7 @@ class DashboardController extends BaseActionController
    		// if we have to demand object, then create one
    		if (!$demand)
    		{
-   			$demand = $this->objectManager->get(CampaignDemand::class);
+   			$demand = GeneralUtility::makeInstance(CampaignDemand::class);
    		}
    		
    		// ignore always these enabled fields
@@ -123,7 +123,7 @@ class DashboardController extends BaseActionController
    		
    		// Statistic object for dashboard overview
    		$campaigns = $this->campaignRepository->findDemanded($demand);   		
-   		$statistic = $this->objectManager->get(CampaignStatistic::class, $campaigns);
+   		$statistic = GeneralUtility::makeInstance(CampaignStatistic::class, $campaigns);
    		
    		// Do pagination
    		if (!empty($pagination))
@@ -175,11 +175,11 @@ class DashboardController extends BaseActionController
    	 * Recalculate all campaign statistics
    	 * @param \Slavlee\Advertising\Domain\Model\Dashboard\Demand\CampaignDemand $demand
    	 * @param array $pagination
-   	 * @return void
+   	 * @return ResponseInterface
    	 */
-   	public function recalculateCampaignStatisticAction(): void
+   	public function recalculateCampaignStatisticAction(): ResponseInterface
    	{
-   		$demand = $this->objectManager->get(CampaignDemand::class);
+   		$demand = GeneralUtility::makeInstance(CampaignDemand::class);
    		 
    		// ignore always these enabled fields
    		$demand->setEnabledFieldsToBeIgnored(['disabled', 'endtime', 'starttime']);
@@ -193,10 +193,10 @@ class DashboardController extends BaseActionController
    			/**
    			 * @var \Slavlee\Advertising\Service\Campaign\StatisticService $service
    			 */
-   			$service = $this->objectManager->get(StatisticService::class);
+   			$service = GeneralUtility::makeInstance(StatisticService::class);
    			$service->execute('recalculateCampaignStatisticsWithTrackerData', $campaign);
    		}
    		
-   		$this->redirect('show');
+   		return $this->redirect('show');
    	}
 }

@@ -30,22 +30,18 @@ class BannerStatisticForCampaignViewHelper extends AbstractViewHelper
 	protected $escapeChildren = false;
 	
 	/**
-	 * $bannerStatisticRepository
-	 * @var \Slavlee\Advertising\Domain\Repository\BannerStatisticRepository
+	 * @var array
 	 */
-	protected $bannerStatisticRepository;
+	protected array $extConf = [];
 	
 	/***********************************************************************************
 	 * INJECTIONS - START
 	 **********************************************************************************/
-	/**
-	 * Inject $bannerStatisticRepository
-	 * @param \Slavlee\Advertising\Domain\Repository\BannerStatisticRepository $bannerStatisticRepository
-	 * @return void
-	 */
-	public function injectCampaignStatisticRepository(BannerStatisticRepository $bannerStatisticRepository)
-	{
-		$this->bannerStatisticRepository = $bannerStatisticRepository;
+	public function __construct(
+		protected BannerStatisticRepository $bannerStatisticRepository,
+        private readonly ExtensionConfiguration $extensionConfiguration,
+    ) {
+		$this->extConf = $this->extensionConfiguration->get('advertising');
 		$this->bannerStatisticRepository->setStorage($this->extConf['general']['storagePid']);
 	}
 	/***********************************************************************************
@@ -101,7 +97,7 @@ class BannerStatisticForCampaignViewHelper extends AbstractViewHelper
 				// check if data is older than 5mins
 				$now = new \DateTime();
 				
-				if (!$totalBannerStatistic->crdate || ($now->getTimestamp() - $totalBannerStatistic->crdate->getTimestamp()) >= 300000)
+				if (!isset($totalBannerStatistic->crdate) || ($now->getTimestamp() - $totalBannerStatistic->crdate->getTimestamp()) >= 300000)
 				{
 					// then refetch data
 					// Get all metrics for banner inside campaign on all dates
@@ -109,7 +105,7 @@ class BannerStatisticForCampaignViewHelper extends AbstractViewHelper
 					$totalBannerStatistic = BannerUtility::calculateTotalStatistic($bannerStatistics);
 				
 					// and save to cache
-					$session->set($cacheIdentifier, serialize($this->totalStatistic));
+					$session->set($cacheIdentifier, serialize($totalBannerStatistic));
 				}else
     			{
     				// If value from cache is to old, then refetch data

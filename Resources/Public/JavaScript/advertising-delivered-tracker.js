@@ -32,8 +32,7 @@ class AdvertisingDeliveredTracker {
 
 			const response = this.asyncFetch(this.host + element.getAttribute("data-ad-delivered-uri"));
 			response.then((resolve, reject) => {
-				console.debug(resolve);
-				console.debug(reject);
+				// do nothing here
 			});
 		})
 	}

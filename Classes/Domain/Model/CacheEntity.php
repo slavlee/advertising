@@ -7,7 +7,7 @@ namespace Slavlee\Advertising\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use Slavlee\Advertising\Cache\Backend\FileBackend;
-use Slavlee\Advertising\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Slavlee\Advertising\Utility\CacheUtility;
 
 /**

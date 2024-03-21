@@ -6,11 +6,11 @@
         <f:if condition="{data.header_link}">
         	<f:then>
         		<f:link.typolink parameter="t3://page?uid={settings.currentPageId}" title="{file.title}" additionalParams="type={settings.typeNums.clickTracking}&tx_advertising_clicktracking[banner]={data.uid}" class="link-advertising">
-        			<f:format.html>{data.bodytext}</f:format.html>
+        			<f:format.html>{data.header}</f:format.html>
         		</f:link.typolink>
         	</f:then>
         	<f:else>
-        		<f:format.html>{data.bodytext}</f:format.html>
+        		<f:format.html>{data.header}</f:format.html>
         	</f:else>
         </f:if>
     </div>

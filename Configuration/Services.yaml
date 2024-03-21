@@ -17,3 +17,9 @@ services:
     public: true
     arguments:
       $cache: '@cache.advertising_campaign_totalstatistic'
+
+  Slavlee\Advertising\Service\Banner\BannerDeliveryService:
+    public: true
+
+  Slavlee\Advertising\Service\Campaign\StatisticService:
+    public: true

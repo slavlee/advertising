@@ -1,14 +1,17 @@
 ### Version dev-typo312-3
-- [WIP] Remove Zone->getNextBanner and outsource it in Service Class and use ViewHelper in Fluid for it
 - [IMPORTANT] Moved all ext_localconf.php entries inside Bootstrap/ExtLocalconf
 - [IMPORTANT] Include Page TsConfig via page.tsconfig
 - !!![IMPORTANT] This version is not compatible with TYPO3 11 anymore
 - [IMPORTANT] Register Backend Module via Configuration/Backend/Modules.php
+- [NOTICE] Add several classes to Services.yaml public for DI
+- [NOTICE] Removed ObjectManager
 - [NOTICE] Remove Extension Builder files
 - [NOTICE] Remove allowTableOnStandardPages in ext_tables. I dont want to add models outside folder and this setting is deprecated anyway
 - [NOTICE] Change copyright year to 2023 in all files
 - [NOTICE] Removed unused/deprecated stuff in composer.json
 - [NOTICE] Add autoload in ext_emconf for better autoloading in non-composer
+- [BUGFIX] Several small bugfixes
+- [BUGFIX] Text Banner didnt show text from header field
 
 ### Version dev-typo312-2
 - [IMPORTANT] Translate jQuery Plugin to ES6

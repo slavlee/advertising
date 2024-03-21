@@ -40,6 +40,7 @@ class CampaignDemand extends AbstractDemand
 	{
 		$constraints = [];
 		$stateConstraints = [];
+		$now = new \DateTime();
 		
 		switch($this->state)
 		{
@@ -86,7 +87,7 @@ class CampaignDemand extends AbstractDemand
 		
 		if (count($this->enabledFieldsToBeIgnored) > 0)
 		{
-			$querySettings->setEnableFieldsToBeIgnored($enableFieldsToIgnore);
+			$querySettings->setEnableFieldsToBeIgnored($this->enabledFieldsToBeIgnored);
 			$querySettings->setIgnoreEnableFields(true);
 		}
 		

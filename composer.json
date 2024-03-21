@@ -7,6 +7,10 @@
     "require": {
         "typo3/cms-core": "^12.4.8"
     },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
+    },
     "require-dev": {
         "typo3/testing-framework": "^8.0.7"
     },
@@ -22,7 +26,8 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "advertising"
+            "extension-key": "advertising",
+            "web-dir": ".Build/Web"
         }
     }
 }

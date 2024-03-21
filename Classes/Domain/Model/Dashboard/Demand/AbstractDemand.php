@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Slavlee\Advertising\Domain\Model\Dashboard\Demand;
 
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
-use Slavlee\Advertising\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Slavlee\Advertising\Helper\PaginateHelper;
 
 /**
