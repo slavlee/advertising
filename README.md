@@ -90,6 +90,9 @@ Having this said, I **highly recommend** to make a update from your whole webpag
 ## Thanks to my contributors
 - Dmitry Dulepov
 
+## Explore more
+If you are looking for awesome and easy to use TYPO3 templates and extensions, then visit: [T3 Templates][3]
+
 ## 7 Final words
 I give my best to make this extension as accurate and as reliable as I can. Unfortunately I can't promise or guarantee that the tracking will always be working. 
 Also, there are a lot of external potentials that this extension can't work. For example JavaScript tend to stop working and certain error types. 
@@ -100,3 +103,4 @@ All I can is to give my very best to make this extension as best as I can.
 
 [1]: https://extensions.typo3.org/extension/advertising
 [2]: https://semver.org/
+[3]: https://t3templates.de/en/products
